@@ -38,4 +38,9 @@ class LandingController extends Controller
     	}
     	return view('public.landing', compact('user', 'data'));
     }
+
+    public function details(Request $request)
+    {
+        return view('component.details');
+    }
 }
