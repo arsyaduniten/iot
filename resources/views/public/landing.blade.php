@@ -154,12 +154,12 @@
 	</div>
 </div>
 
-<div id="collaborate" class="flex flex-col bg-teal-lighter shadow-md items-center">
+<div id="collaborate" class="flex flex-col bg-grey-lighter shadow-md items-center">
 	<p class="text-4xl font-bold p-8">Collaborate</p>
 	<form class="flex flex-col items-center">
-		<input class="p-4 m-4 rounded shadow-md w-full" type="text" name="type">
-		<input class="p-4 m-4 rounded shadow-md w-full" type="email" name="email">
-		<textarea class="p-4 m-4 rounded shadow-md w-full" rows="4" cols="50"></textarea>
+		<input class="p-4 m-4 rounded shadow-md w-full" type="text" name="type" placeholder="Type">
+		<input class="p-4 m-4 rounded shadow-md w-full" type="email" name="email" placeholder="Email">
+		<textarea class="p-4 m-4 rounded shadow-md w-full" rows="4" cols="50" placeholder="Message"></textarea>
 		<button type="submit" class="text-white w-1/2 rounded shadow-md p-4 font-bold m-4" style="background-color: #39445C;">SUBMIT</button>
 	</form>
 </div>

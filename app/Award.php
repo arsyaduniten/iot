@@ -11,4 +11,14 @@ class Award extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function researches()
+    {
+    	return $this->belongsToMany('App\Research');
+    }
+
+    public function projects()
+    {
+    	return $this->belongsToMany('App\Project');
+    }
 }

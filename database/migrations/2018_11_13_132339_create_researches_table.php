@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkAssetsTable extends Migration
+class CreateResearchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateWorkAssetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_assets', function (Blueprint $table) {
+        Schema::create('researches', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('work_id')->unsigned();
-            $table->string('image_url');
+            $table->string('title');
+            $table->text('description');
+            $table->date('start_date');  
+            $table->date('end_date')->nullable();  
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateWorkAssetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_assets');
+        Schema::dropIfExists('researches');
     }
 }
