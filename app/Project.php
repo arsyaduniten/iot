@@ -14,26 +14,26 @@ class Project extends Model
 
     public function collaborators()
     {
-    	return $this->belongsToMany('App\Collaborator');
+    	return $this->belongsToMany('App\Collaborator', 'project_collaborator');
     }
 
     public function publications()
     {
-    	return $this->belongsToMany('App\Publication');
+    	return $this->belongsToMany('App\Publication', 'project_publication');
     }
 
     public function awards()
     {
-    	return $this->belongsToMany('App\Award');
+    	return $this->belongsToMany('App\Award', 'project_award');
     }
 
     public function fundings()
     {
-    	return $this->hasMany('App\Funding');
+    	return $this->hasMany('App\Funding', 'project_fundings');
     }
 
     public function researchers()
     {
-    	return $this->belongsToMany('App\Researcher');
+    	return $this->belongsToMany('App\Researcher','project_researcher');
     }
 }
