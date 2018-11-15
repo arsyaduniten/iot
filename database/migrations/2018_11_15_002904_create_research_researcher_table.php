@@ -15,8 +15,8 @@ class CreateResearchResearcherTable extends Migration
     {
         Schema::create('research_researcher', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('research_id')->unsigned()
-            $table->integer('researcher_id')->unsigned()
+            $table->integer('research_id')->unsigned();
+            $table->integer('researcher_id')->unsigned();
             $table->timestamps();
         });
     }
