@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'LandingController@index')->name('home');
-Route::get('/details', 'LandingController@details')->name('home');
+Route::get('/details', 'DetailsController@index')->name('details');
 
 Route::group(['prefix'=>'backend', 'middleware' => 'is_admin'], function() {
 	Route::get('/', 'BackendController@index');
