@@ -28,7 +28,7 @@
 	}
 
 	body{
-		background: #39445C;
+		background: #e5e5e5;
 	}
 
 	/*.is-outlined{
@@ -52,14 +52,14 @@
 </style>
 <div class="container mx-auto m-4 rounded-t-lg z-20">
 	<div class="flex p-8 rounded-t-lg">
-		<a class="pr-8" href="#"><i class="fas fa-2x fa-arrow-left text-white"></i></a>
+		<a class="pr-8" href="#"><i class="fas fa-2x fa-arrow-left text-black"></i></a>
 		<div>
-			<p class="text-xl font-bold text-grey-light">{{ $title }}</p>
-			<p class="text-4xl font-bold -my-2 text-white">{{ $data->title }}</p>
+			<p class="text-xl font-bold text-grey-dark">{{ $title }}</p>
+			<p class="text-4xl font-bold -my-2 text-black">{{ $data->title }}</p>
 		</div>
 	</div>
 	<div class="flex m-4 p-4">
-		<div class="bg-grey-lighter shadow-lg rounded">
+		<div class="bg-grey-lighter shadow-md">
 			<p class="p-4 font-bold">Description</p>
 			<p class="p-4">Velit labore fugiat nulla est ut dolor consequat ut do voluptate. Ex sit culpa excepteur ad incididunt dolor adipisicing quis velit dolore consectetur nulla adipisicing. Occaecat sunt officia fugiat minim voluptate duis officia laborum nostrud. Elit magna magna et id culpa excepteur velit ad sed ut voluptate ut nulla excepteur consectetur ex adipisicing proident. Lorem ipsum deserunt id occaecat sunt velit sunt labore officia proident. Ea nulla ex laboris non reprehenderit do deserunt id deserunt pariatur laborum fugiat laborum est. Dolor veniam ea ex qui aliqua esse do quis fugiat esse occaecat in. Nisi irure velit magna ea ut in anim consectetur deserunt. Eu eiusmod quis anim culpa proident nisi velit est velit. Velit eu occaecat sit deserunt in ut ut dolor adipisicing anim tempor tempor. Mollit ad elit non enim tempor aliqua officia eu dolor sunt officia occaecat qui aute.</p>
 		</div>
@@ -85,7 +85,7 @@
 </div>
 <div class="container mx-auto z-10 mb-8">
 	<div class="px-8 pt-4">
-	<a class="flex font-bold brand-color no-underline text-black p-6 shadow-lg w-full text-2xl rounded" href="#">
+	<a class="flex font-bold brand-color no-underline text-black p-6 shadow-md w-full text-2xl" href="#">
 		<span class="flex-1">Go to Project Website</span>
 		<i class="fas fa-arrow-right text-black"></i>
 	</a>

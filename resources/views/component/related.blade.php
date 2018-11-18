@@ -1,4 +1,4 @@
-<div class="bg-grey-lighter rounded shadow-lg flex-1 p-4">
+<div class="bg-grey-lighter shadow-md flex-1 p-4">
 	<p class="font-bold text-base p-4">{{ $type }}</p>
 	<ul class="list-reset flex flex-col">
 	@foreach($data as $item)
