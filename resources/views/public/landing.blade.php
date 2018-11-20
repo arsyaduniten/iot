@@ -90,7 +90,7 @@
 		<div class="flex flex-col bg-white rounded shadow-md text-center items-center m-8 mr-4 w-1/5">
 			<div class="brand-color py-10 w-full rounded-t -mb-2"></div>
 			<img class="justify-center" src="./images/sami.png" style="height: 100px; width: 100px; margin: -40px">
-			<p class="pt-6 mt-6 font-bold">Sami Hajjaj</p>
+			<p class="pt-6 mt-6 font-bold">{{ $user->full_name }}</p>
 			<p class="p-2 mx-4 text-grey-dark text-xs leading-tight">[PhD, CEng, MIEEE, BEM]<br> Educator | Researcher | Enthusiast of Robotics, Automation, and IoT</p>
 			<div class="flex items-center justify-center p-4">
 				<img class="p-1" src="./images/linkedin.png" style="width: 30px; height: 30px;">

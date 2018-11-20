@@ -28,7 +28,9 @@
 	}
 
 	body{
-		background: #e5e5e5;
+/*		background: #e5e5e5;
+*/	
+		background: white;
 	}
 
 	/*.is-outlined{
@@ -41,12 +43,54 @@
 
 	}
 
+	a {
+		text-decoration: none;
+	}
+
 	.elevated-btn{
 		color: #FFFFFF !important;
 	    display: block;
 	    border: 0 !important;
 	    background-image: linear-gradient(-180deg, #4653F1 0%, #1524DA 100%);
 	    box-shadow: 0 2px 4px 0 rgba(22, 71, 182, 0.3) !important;
+	}
+
+	[data-popup] {
+	  position: relative;
+	}
+	[data-popup]:before, [data-popup]:after {
+	  opacity: 0;
+	  transform: translate(-50%, 0);
+	  transition: 0.15s ease opacity, 0.15s ease transform;
+	  will-change: opacity transform;
+	  content: "";
+	}
+	[data-popup]:hover:before, [data-popup]:hover:after {
+	  position: absolute;
+	  left: 50%;
+	  transform: translate(-50%, -10px);
+	  opacity: 1;
+	}
+	[data-popup]:hover:before {
+	  bottom: 100%;
+	  padding: 5px 10px;
+	  background: rgba(0, 0, 0, 0.8);
+	  border-radius: 5px;
+	  color: white;
+	  font-size: 12px;
+	  line-height: 12px;
+	  text-align: center;
+	  content: attr(data-popup);
+	  white-space: nowrap;
+	}
+	[data-popup]:hover:after {
+	  top: 0;
+	  height: 0;
+	  width: 0;
+	  border: solid transparent;
+	  border-top-color: rgba(0, 0, 0, 0.8);
+	  border-width: 5px;
+	  content: "";
 	}
 
 </style>
@@ -59,7 +103,7 @@
 		</div>
 	</div>
 	<div class="flex m-4 p-4">
-		<div class="bg-grey-lighter shadow-md">
+		<div class="bg-grey-lighter shadow-lg">
 			<p class="p-4 font-bold">Description</p>
 			<p class="p-4">Velit labore fugiat nulla est ut dolor consequat ut do voluptate. Ex sit culpa excepteur ad incididunt dolor adipisicing quis velit dolore consectetur nulla adipisicing. Occaecat sunt officia fugiat minim voluptate duis officia laborum nostrud. Elit magna magna et id culpa excepteur velit ad sed ut voluptate ut nulla excepteur consectetur ex adipisicing proident. Lorem ipsum deserunt id occaecat sunt velit sunt labore officia proident. Ea nulla ex laboris non reprehenderit do deserunt id deserunt pariatur laborum fugiat laborum est. Dolor veniam ea ex qui aliqua esse do quis fugiat esse occaecat in. Nisi irure velit magna ea ut in anim consectetur deserunt. Eu eiusmod quis anim culpa proident nisi velit est velit. Velit eu occaecat sit deserunt in ut ut dolor adipisicing anim tempor tempor. Mollit ad elit non enim tempor aliqua officia eu dolor sunt officia occaecat qui aute.</p>
 		</div>
@@ -74,8 +118,8 @@
 		@endif
 	</div>
 	<div class="flex m-4 p-4 pt-0">
-		@if(array_key_exists('projects', $r_data))
-			<related type="Projects" :data="$r_data['projects']" />
+		@if(array_key_exists('researchers', $r_data))
+			<related-avatar type="Researchers Team" :data="$r_data['researchers']" />
 		@endif
 		<space-between/>
 		@if(array_key_exists('publications', $r_data))
@@ -85,7 +129,7 @@
 </div>
 <div class="container mx-auto z-10 mb-8">
 	<div class="px-8 pt-4">
-	<a class="flex font-bold brand-color no-underline text-black p-6 shadow-md w-full text-2xl" href="#">
+	<a class="flex font-bold brand-color no-underline text-black p-6 shadow-lg w-full text-2xl" href="#">
 		<span class="flex-1">Go to Project Website</span>
 		<i class="fas fa-arrow-right text-black"></i>
 	</a>

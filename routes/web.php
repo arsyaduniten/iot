@@ -14,30 +14,14 @@
 Route::get('/', 'LandingController@index')->name('home');
 Route::get('/details', 'DetailsController@index')->name('details');
 
-Route::group(['prefix'=>'backend', 'middleware' => 'is_admin'], function() {
-	Route::get('/', 'BackendController@index');
+Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], function() {
+	Route::get('/', 'Backend\BackendController@index')->name('backend:home');
 	Route::resource('/sns', 'Backend\SnsController')->names([
         'index' => 'backend:sns',
         'store' =>'backend:sns:store',
         'edit' =>'backend:sns:edit',
         'update' => 'backend:sns:update',
         'destroy' => 'backend:sns:destroy'
-    ]);
-
-    Route::resource('/work', 'Backend\WorkController')->names([
-        'index' => 'backend:works',
-        'store' =>'backend:work:store',
-        'edit' =>'backend:work:edit',
-        'update' => 'backend:work:update',
-        'destroy' => 'backend:work:destroy'
-    ]);
-
-    Route::resource('/work_asset', 'Backend\WorkAssetController')->names([
-        'index' => 'backend:work_assets',
-        'store' =>'backend:work_asset:store',
-        'edit' =>'backend:work_asset:edit',
-        'update' => 'backend:work_asset:update',
-        'destroy' => 'backend:work_asset:destroy'
     ]);
 
     Route::resource('/education', 'Backend\EducationController')->names([
@@ -47,5 +31,17 @@ Route::group(['prefix'=>'backend', 'middleware' => 'is_admin'], function() {
         'update' => 'backend:education:update',
         'destroy' => 'backend:education:destroy'
     ]);
+
+    Route::resource('/user', 'Backend\UserController')->names([
+        'index' => 'backend:users',
+        'store' =>'backend:user:store',
+        'edit' =>'backend:user:edit',
+        'update' => 'backend:user:update',
+        'destroy' => 'backend:user:destroy'
+    ]);
 });
 
+
+Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/home', 'HomeController@index')->name('home');

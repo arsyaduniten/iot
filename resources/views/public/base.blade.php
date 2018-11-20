@@ -17,6 +17,7 @@
 	        text-rendering: optimizeLegibility;
 	    }
 	</style>
+	@yield('head')
 </head>
 <body>
 @yield('content')

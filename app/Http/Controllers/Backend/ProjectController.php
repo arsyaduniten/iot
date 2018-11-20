@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Award;
+use App\Project;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AwardController extends Controller
+
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class AwardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Award  $award
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Award $award)
+    public function show(Project $project)
     {
         //
     }
@@ -52,10 +54,10 @@ class AwardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Award  $award
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Award $award)
+    public function edit(Project $project)
     {
         //
     }
@@ -64,10 +66,10 @@ class AwardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Award  $award
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Award $award)
+    public function update(Request $request, Project $project)
     {
         //
     }
@@ -75,10 +77,10 @@ class AwardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Award  $award
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Award $award)
+    public function destroy(Project $project)
     {
         //
     }

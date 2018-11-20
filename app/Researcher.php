@@ -16,4 +16,9 @@ class Researcher extends Model
     {
     	return $this->belongsToMany('App\Research');
     }
+
+    public function getFullNameAttribute()
+	{
+	    return "{$this->first_name} {$this->last_name}";
+	}
 }

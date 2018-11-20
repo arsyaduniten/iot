@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Publication;
+use App\Researcher;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PublicationController extends Controller
+
+class ResearcherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class PublicationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Publication  $publication
+     * @param  \App\Researcher  $researcher
      * @return \Illuminate\Http\Response
      */
-    public function show(Publication $publication)
+    public function show(Researcher $researcher)
     {
         //
     }
@@ -52,10 +54,10 @@ class PublicationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Publication  $publication
+     * @param  \App\Researcher  $researcher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Publication $publication)
+    public function edit(Researcher $researcher)
     {
         //
     }
@@ -64,10 +66,10 @@ class PublicationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Publication  $publication
+     * @param  \App\Researcher  $researcher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Publication $publication)
+    public function update(Request $request, Researcher $researcher)
     {
         //
     }
@@ -75,10 +77,10 @@ class PublicationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Publication  $publication
+     * @param  \App\Researcher  $researcher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Publication $publication)
+    public function destroy(Researcher $researcher)
     {
         //
     }

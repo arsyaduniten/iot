@@ -26,7 +26,8 @@ class DetailsController extends Controller
             	$projects = $research->projects->all();
             	$r_data = collect([
             				'projects' => $projects,
-            				'publications' => $research->publications->all()
+            				'publications' => $research->publications->all(),
+            				'researchers' => $research->researchers->all()
             			  ])->all();
         }
         return view('component.details', compact('data', 'r_data', 'title'));

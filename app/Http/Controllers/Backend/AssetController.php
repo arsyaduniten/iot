@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Collaborator;
+use App\Asset;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CollaboratorController extends Controller
+
+class AssetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class CollaboratorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Collaborator  $collaborator
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function show(Collaborator $collaborator)
+    public function show(Asset $asset)
     {
         //
     }
@@ -52,10 +54,10 @@ class CollaboratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Collaborator  $collaborator
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function edit(Collaborator $collaborator)
+    public function edit(Asset $asset)
     {
         //
     }
@@ -64,10 +66,10 @@ class CollaboratorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Collaborator  $collaborator
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Collaborator $collaborator)
+    public function update(Request $request, Asset $asset)
     {
         //
     }
@@ -75,10 +77,10 @@ class CollaboratorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Collaborator  $collaborator
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Collaborator $collaborator)
+    public function destroy(Asset $asset)
     {
         //
     }
