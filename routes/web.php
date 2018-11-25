@@ -26,10 +26,74 @@ Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], functio
 
     Route::resource('/education', 'Backend\EducationController')->names([
         'index' => 'backend:educations',
+        'create' => 'backend:education:create',
         'store' =>'backend:education:store',
         'edit' =>'backend:education:edit',
         'update' => 'backend:education:update',
         'destroy' => 'backend:education:destroy'
+    ]);
+
+    Route::resource('/research', 'Backend\ResearchController')->names([
+        'index' => 'backend:researches',
+        'create' => 'backend:research:create',
+        'store' =>'backend:research:store',
+        'edit' =>'backend:research:edit',
+        'update' => 'backend:research:update',
+        'destroy' => 'backend:research:destroy'
+    ]);
+
+    Route::resource('/project', 'Backend\ProjectController')->names([
+        'index' => 'backend:projects',
+        'create' => 'backend:project:create',
+        'store' =>'backend:project:store',
+        'edit' =>'backend:project:edit',
+        'update' => 'backend:project:update',
+        'destroy' => 'backend:project:destroy'
+    ]);
+
+    Route::resource('/publication', 'Backend\PublicationController')->names([
+        'index' => 'backend:publications',
+        'create' => 'backend:publication:create',
+        'store' =>'backend:publication:store',
+        'edit' =>'backend:publication:edit',
+        'update' => 'backend:publication:update',
+        'destroy' => 'backend:publication:destroy'
+    ]);
+
+    Route::resource('/award', 'Backend\AwardController')->names([
+        'index' => 'backend:awards',
+        'create' => 'backend:award:create',
+        'store' =>'backend:award:store',
+        'edit' =>'backend:award:edit',
+        'update' => 'backend:award:update',
+        'destroy' => 'backend:award:destroy'
+    ]);
+
+    Route::resource('/researcher', 'Backend\ResearcherController')->names([
+        'index' => 'backend:researchers',
+        'create' => 'backend:researcher:create',
+        'store' =>'backend:researcher:store',
+        'edit' =>'backend:researcher:edit',
+        'update' => 'backend:researcher:update',
+        'destroy' => 'backend:researcher:destroy'
+    ]);
+
+    Route::resource('/collaborator', 'Backend\CollaboratorController')->names([
+        'index' => 'backend:collaborators',
+        'create' => 'backend:collaborator:create',
+        'store' =>'backend:collaborator:store',
+        'edit' =>'backend:collaborator:edit',
+        'update' => 'backend:collaborator:update',
+        'destroy' => 'backend:collaborator:destroy'
+    ]);
+
+    Route::resource('/funding', 'Backend\FundingController')->names([
+        'index' => 'backend:fundings',
+        'create' => 'backend:funding:create',
+        'store' =>'backend:funding:store',
+        'edit' =>'backend:funding:edit',
+        'update' => 'backend:funding:update',
+        'destroy' => 'backend:funding:destroy'
     ]);
 
     Route::resource('/user', 'Backend\UserController')->names([
