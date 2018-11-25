@@ -8,6 +8,7 @@ class Education extends Model
 {
     //
     protected $table = "user_educations";
+    protected $fillable = ['user_id','institution', 'level', 'description', 'date_start', 'date_completed'];
 
     public function user()
     {

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Education;
 
 class EducationController extends Controller
 {
@@ -15,6 +17,9 @@ class EducationController extends Controller
     public function index()
     {
         //
+        $user = User::first();
+        $data = Education::all();
+        return view("backend.education.index", compact('user', 'data'));
     }
 
     /**
@@ -25,6 +30,8 @@ class EducationController extends Controller
     public function create()
     {
         //
+        $user = User::first();
+        return view('backend.education.create', compact('user'));
     }
 
     /**
@@ -36,6 +43,8 @@ class EducationController extends Controller
     public function store(Request $request)
     {
         //
+        Education::create($request->all());
+        return redirect()->route('backend:educations');
     }
 
     /**
@@ -58,6 +67,8 @@ class EducationController extends Controller
     public function edit($id)
     {
         //
+        $edu = Education::find($id);
+        return view('backend.education.edit', compact('edu'));
     }
 
     /**
@@ -70,6 +81,8 @@ class EducationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Education::find($id)->update($request->all());
+        return redirect()->route('backend:educations');
     }
 
     /**
