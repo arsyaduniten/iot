@@ -18,6 +18,7 @@
 	</div>
 	<text-input :name="'institution'" :data=null/>
 	<text-input :name="'level'" :data=null/>
+	<text-input :name="'title'" :data=null/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>

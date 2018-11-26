@@ -130,7 +130,9 @@
 						@case('education')
 						<div class="flex flex-col items-start">
 							@foreach($data as $item)
-								<div class="border-l-4 border-grey-light">
+								<div class="border-l-4 border-grey-light flex flex-col w-full">
+									<p class="ml-4 font-bold text-black text-2xl">{{ $item->title }}, {{ $item->level }}</p>
+									<p class="m-4 mb-1 -my-1 font-bold text-grey-dark text-xl">{{ $item->institution }}</p>
 									@component('component.button_outline')
 										{{ strtoupper(\Carbon\Carbon::parse($item->date_start)->format('M')) }} 
 										{{ \Carbon\Carbon::parse($item->date_start)->year }}
@@ -138,9 +140,7 @@
 										{{ strtoupper(\Carbon\Carbon::parse($item->date_completed)->format('M')) }} 
 										{{ \Carbon\Carbon::parse($item->date_completed)->year }}
 									@endcomponent
-									<p class="m-4 mb-1 font-bold text-teal-dark text-xl">{{ $item->institution }}</p>
-									<p class="ml-4 font-bold text-black text-base">{{ $item->course_name }}, {{ $item->level }}</p>
-									<p class="m-4 text-grey-dark text-base">{{ $item->description }}</p>
+									<div class="m-2 mt-0 mx-4 text-grey-dark text-base"><?php echo $item->description ?></div>
 								</div>
 							@endforeach
 						</div>

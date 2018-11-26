@@ -15,6 +15,7 @@
 	</div> --}}
 	<text-input :name="'institution'" :data="$edu->institution"/>
 	<text-input :name="'level'" :data="$edu->level"/>
+	<text-input :name="'title'" :data="$edu->title"/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
