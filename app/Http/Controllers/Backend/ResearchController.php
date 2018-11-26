@@ -17,6 +17,8 @@ class ResearchController extends Controller
     public function index()
     {
         //
+        $data = Research::all();
+        return view('backend.research.index', compact('data'));
     }
 
     /**
@@ -27,6 +29,7 @@ class ResearchController extends Controller
     public function create()
     {
         //
+        return view('backend.research.create');
     }
 
     /**
@@ -38,6 +41,8 @@ class ResearchController extends Controller
     public function store(Request $request)
     {
         //
+        Research::create($request->all());
+        return redirect()->route('backend:researches');
     }
 
     /**
@@ -60,6 +65,7 @@ class ResearchController extends Controller
     public function edit(Research $research)
     {
         //
+        return view('backend.research.edit', compact('research'));
     }
 
     /**
@@ -72,6 +78,8 @@ class ResearchController extends Controller
     public function update(Request $request, Research $research)
     {
         //
+        $research->update($request->all());
+        return redirect()->route('backend:researches');
     }
 
     /**
