@@ -84,6 +84,8 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         //
+        $project->researches()->detach();
+        $project->researches()->attach($request->get('related_r'));
         $project->update($request->all());
         return redirect()->route('backend:projects');
     }

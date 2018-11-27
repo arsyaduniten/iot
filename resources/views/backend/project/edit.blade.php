@@ -6,8 +6,9 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:project:store') }}">
+<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:project:update', ['project' => $project]) }}">
 	@csrf
+	@method('PUT')
 	<text-input :name="'title'" :data="$project->title"/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
