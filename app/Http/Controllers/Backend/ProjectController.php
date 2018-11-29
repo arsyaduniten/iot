@@ -79,9 +79,15 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
-        $research = $project->researches->first();
+        // $research = $project->researches->first();
+        $r_title = [];
         $researches = Research::all();
-        return view('backend.project.edit', compact('project', 'research', 'researches'));
+        foreach ($researches as $r) {
+            # code...
+            $r_title[] = $r->title;
+        }
+        $tags = $project->tagNames();
+        return view('backend.project.edit', compact('project', 'r_title', 'researches', 'tags'));
     }
 
     /**
@@ -97,6 +103,9 @@ class ProjectController extends Controller
         $project->researches()->detach();
         $project->researches()->attach($request->get('related_r'));
         $project->update($request->all());
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
+        $project->retag($tags);
         return redirect()->route('backend:projects');
     }
 

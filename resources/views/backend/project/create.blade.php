@@ -19,14 +19,14 @@
 	</div>
 	<date-input :name="'start_date'" :data=null/>
 	<date-input :name="'end_date'" :data=null/>
-    <div class="flex">
+    {{-- <div class="flex">
         <label class="p-2">Related Research</label>
         <select class="bg-white m-2 p-2 shadow-md rounded" name="related_r">
             @foreach($researches as $research)
             <option value="{{ $research->id }}">{{ $research->title }}</option>
             @endforeach
         </select>
-    </div>
+    </div> --}}
     <div class="flex">
     	<label class="p-2">Related Research</label>
 	    <div id='app'>
@@ -73,7 +73,7 @@
 	    function addTag(element) {
 		    $appendHere = $(".tagHere");
 		    var $tag = $("<div />"), $a = $("<a href='#' />"), $span = $("<span />");
-		    $tag.addClass('tag');
+		    $tag.addClass('tag rounded-full');
 		    $('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
 		    $span.addClass('selected_items');
 		    $span.text(element);

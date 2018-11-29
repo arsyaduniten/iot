@@ -82,15 +82,15 @@
 	}
 
 	.tag {
-	  border-radius: 3px;
-	  background: #b5aff9;
+	  border-radius: 50px;
+	  background: #f8ed62;
 	  float: left;
 	  margin: 3px;
 	  padding: 4px;
 	  font-size: 1em;
 	  vertical-align: middle;
-	  box-shadow: 0px 1px 4px #c6c6c6, 0px 2px 17px #d1d1d1;
-	}
+/*	  box-shadow: 0px 1px 4px #c6c6c6, 0px 2px 17px #d1d1d1;
+*/	}
 	.tag a {
 	  color: #000;
 	  padding-right: 10px;
