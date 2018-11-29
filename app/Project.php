@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Conner\Tagging\Taggable;
 
 class Project extends Model
 {
     //
+    use Taggable;
     protected $fillable = ['title', 'description', 'start_date', 'end_date'];
     public function researches()
     {

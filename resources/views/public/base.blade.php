@@ -9,8 +9,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="https://cdn.rawgit.com/resir014/Clear-Sans-Webfont/v1.1.1/css/clear-sans.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-{{-- 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- --}}	<style type="text/css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style type="text/css">
 		body{
 	        font-family: "Clear Sans", "Helvetica Neue","sans-serif";
 	        -moz-osx-font-smoothing: grayscale;
@@ -53,6 +53,59 @@
 
 	.dropdown:hover .dropdown-content {display: block;}
 
+	#app {
+	  padding: 20px;
+	  width: 600px;
+	  height: auto;
+	  background: #fff;
+	  border-radius: 4px;
+	  box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);
+	  outline: none;
+	  font-size: 1em;
+	}
+	#app input {
+	  outline: none;
+	  width: auto;
+	  border: 0;
+	  float: left;
+	  padding: 8px;
+	  background: none;
+	}
+	#app::before {
+	  content: '';
+	  display: table;
+	}
+	#app::after {
+	  content: '';
+	  display: table;
+	  clear: both;
+	}
+
+	.tag {
+	  border-radius: 3px;
+	  background: #b5aff9;
+	  float: left;
+	  margin: 3px;
+	  padding: 4px;
+	  font-size: 1em;
+	  vertical-align: middle;
+	  box-shadow: 0px 1px 4px #c6c6c6, 0px 2px 17px #d1d1d1;
+	}
+	.tag a {
+	  color: #000;
+	  padding-right: 10px;
+	  padding-left: 5px;
+	  padding-top: 5px;
+	  padding-bottom: 5px;
+	  margin-right: 5px;
+	}
+	.tag span {
+	  padding-right: 10px;
+	  padding-left: 0px;
+	  padding-top: 5px;
+	  padding-bottom: 5px;
+	}
+
 /*	.dropdown:hover .dropbtn {background-color: #3e8e41;}
 */	</style>
 	{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -69,5 +122,49 @@
 <body>
 @yield('content')
 @yield('script')
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	// $(document).ready(function(){
+	  // var $input = $("#app input"),
+	  //     $appendHere = $(".tagHere"),
+	  //     oldKey = 0, newKey,
+	  //     TABKEY = 9;
+	  // $input.focus();
+	  
+	  // $input.keydown(function(e){
+	  
+	  //   if(e.keyCode == "13") {
+	  //     if(e.preventDefault) {
+	  //       e.preventDefault();
+	  //       if($(this).val() == '' || $(this).val() == ' ') {
+	  //         return false;
+	  //       }
+	  //       addTag($(this));
+	  //     }
+	  //     return false;
+	  //   }
+	    
+	    // if($(thiss).val() == '' && e.keyCode === 8) {
+	    //   $(".tag:last-child").remove();
+	    // }
+	    
+	  // })
+	  
+	  // function addTag(element) {
+	  //   var $tag = $("<div />"), $a = $("<a href='#' />"), $span = $("<span />");
+	  //   $tag.addClass('tag');
+	  //   $('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
+	  //   $span.text(element);
+	  //   $a.bind('click', function(){
+	  //     $(this).parent().remove();
+	  //     $(this).unbind('click');
+	  //   });
+	  //   $a.appendTo($tag);
+	  //   $span.appendTo($tag);
+	  //   $tag.appendTo($appendHere);
+	  //   $("#app input").val('');
+	  // }
+	//});
+</script>
 </body>
 </html>

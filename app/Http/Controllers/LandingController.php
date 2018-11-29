@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Work;
+use App\Research;
 
 class LandingController extends Controller
 {
@@ -21,7 +22,7 @@ class LandingController extends Controller
     			$data = $user->educations;
     			break;
     		case 'research':
-    			$data = Work::where('user_id', $user->id)->research()->get();
+    			$data = Research::all();
     			break;
     		case 'iot':
     			$data = Work::where('user_id', $user->id)->iot()->get();

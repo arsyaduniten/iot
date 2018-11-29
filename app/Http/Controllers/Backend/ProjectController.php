@@ -6,7 +6,7 @@ use App\Project;
 use App\Research;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 
 class ProjectController extends Controller
 {
@@ -30,8 +30,15 @@ class ProjectController extends Controller
     public function create()
     {
         //
+        // dd($r_title = Research::pluck('title'));
+        $r_title = [];
         $researches = Research::all();
-        return view('backend.project.create', compact('researches'));
+        foreach ($researches as $r) {
+            # code...
+            $r_title[] = $r->title;
+        }
+        // dd($r_title);
+        return view('backend.project.create', compact('researches', 'r_title'));
     }
 
     /**
@@ -43,7 +50,10 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
         $new_p = Project::create($request->all());
+        $new_p->tag($tags);
         $research = Research::find($request->get('related_r'));
         $research->projects()->attach($new_p->id);
         return redirect()->route('backend:projects');
