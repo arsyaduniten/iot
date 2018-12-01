@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Conner\Tagging\Taggable;
 
 class Researcher extends Model
 {
     //
+    use Taggable;
+    protected $fillable = ['first_name', 'last_name', 'role', 'image_url', 'profile_url'];
     public function projects()
     {
     	return $this->belongsToMany('App\Project');
