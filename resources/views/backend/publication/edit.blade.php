@@ -6,24 +6,29 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:project:store') }}">
+<form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:publication:update', ['publication' => $publication]) }}">
 	@csrf
-	{{-- <div class="flex">
-		<label class="self-center">User</label>
-		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="user_id" value="{{ $user->id }}">
-	</div> --}}
-	<text-input :name="'title'" :data=null/>
+	@method('PUT')
+	<text-input :name="'title'" :data="$publication->title"/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	<date-input :name="'start_date'" :data=null/>
-	<date-input :name="'end_date'" :data=null/>
-    <div class="flex">
+	<date-input :name="'start_date'" :data="$publication->start_date"/>
+	<date-input :name="'end_date'" :data="$publication->end_date"/>
+    <div class="flex m-2">
     	<label class="p-2">Related Research</label>
 	    <div id='app'>
-		    <div class='tagHere'></div>
+		    <div class='tagHere research'></div>
 		    <input type="text" name="tags-field"/>
+		</div>
+	</div>
+
+	<div class="flex">
+    	<label class="p-2">Related Project</label>
+	    <div id='app'>
+		    <div class='tagHere project'></div>
+		    <input type="text" name="ptags-field"/>
 		</div>
 	</div>
 	<input type="hidden" id="tag_values" name="tags">
@@ -34,21 +39,37 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-		var tags = [];
-		@foreach($r_title as $title)
-		tags.push("{{ $title }}");
-		@endforeach
-		console.log(tags);
 		$('.summernote').summernote({
 	    	height:200,
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
-	    $( "input[name=tags-field]" ).autocomplete({
+        $('.summernote').summernote("code", "<?php echo $publication->description ?>");
+
+        var tags = [];
+		@foreach($r_title as $title)
+		tags.push("{{ $title }}");
+		@endforeach
+
+		var p_tags = [];
+		@foreach($p_title as $title)
+		p_tags.push("{{ $title }}");
+		@endforeach
+
+		$( "input[name=ptags-field]" ).autocomplete({
+	      source: p_tags,
+	      select: function (e, ui) {
+		        var el = ui.item.label;
+		        e.preventDefault();
+		        addTag(el, ".project");
+		  },
+	    });
+
+		$( "input[name=tags-field]" ).autocomplete({
 	      source: tags,
 	      select: function (e, ui) {
 		        var el = ui.item.label;
 		        e.preventDefault();
-		        addTag(el);
+		        addTag(el, ".research");
 		  },
 	    });
 
@@ -59,11 +80,20 @@
 	    		var tag_text = $(this).text()+",";
     		    $('#tag_values').val($('#tag_values').val() + tag_text);
 	    	});
-	    	$("#createForm").submit();
+	    	$("#editForm").submit();
 	    });
 
-	    function addTag(element) {
-		    $appendHere = $(".tagHere");
+	    @foreach($r_tags as $tag)
+	    addTag("{{ $tag }}", '.research');
+	    @endforeach
+
+	    @foreach($p_tags as $tag)
+	    addTag("{{ $tag }}", '.project');
+	    @endforeach
+
+
+	    function addTag(element, className) {
+		    $appendHere = $(".tagHere"+className);
 		    var $tag = $("<div />"), $a = $("<a href='#' />"), $span = $("<span />");
 		    $tag.addClass('tag rounded-full');
 		    $('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
