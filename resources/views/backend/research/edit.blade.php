@@ -13,7 +13,7 @@
 		<label class="self-center">User</label>
 		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="user_id" value="{{ $user->id }}">
 	</div> --}}
-	<text-input :name="'title'" :data="$research->title"/>
+	<text-input :name="'research_area'" :data="$research->research_area"/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>

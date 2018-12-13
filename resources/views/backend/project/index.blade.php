@@ -13,6 +13,7 @@
             <th class="p-2">Description</th>
             <th class="p-2">Start Date</th>
             <th class="p-2">End Date</th>
+            <th class="p-2">Related Research Areas</th>
             <th></th><th></th>
         </tr>
         @foreach($data as $project)

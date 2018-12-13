@@ -17,7 +17,7 @@
 	<date-input :name="'start_date'" :data="$project->start_date"/>
 	<date-input :name="'end_date'" :data="$project->end_date"/>
     <div class="flex">
-    	<label class="p-2">Related Research</label>
+    	<label class="p-2">Related Research Areas</label>
 	    <div id='app'>
 		    <div class='tagHere'></div>
 		    <input type="text" name="tags-field"/>

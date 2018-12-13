@@ -15,13 +15,13 @@
 	</div> --}}
 	<text-input :name="'institution'" :data="$edu->institution"/>
 	<text-input :name="'level'" :data="$edu->level"/>
-	<text-input :name="'title'" :data="$edu->title"/>
+	<text-input :name="'degree'" :data="$edu->title"/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	<date-input :name="'date_start'" :data="$edu->date_start"/>
-	<date-input :name="'date_completed'" :data="$edu->date_completed"/>
+	<date-input :name="'year_start'" :data="$edu->year_start"/>
+	<date-input :name="'year_completed'" :data="$edu->year_completed"/>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Update</button>
 </form>
 @endsection

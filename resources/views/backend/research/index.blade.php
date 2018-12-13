@@ -9,7 +9,7 @@
 <div class="container mx-auto">
 	<table class="border border-grey-dark m-2">
 		<tr>
-			<th class="p-2">Title</th>
+			<th class="p-2">Research Area</th>
 			<th class="p-2">Description</th>
 			<th class="p-2">Start Date</th>
 			<th class="p-2">End Date</th>
@@ -18,7 +18,7 @@
 		</tr>
 		@foreach($data as $research)
 		<tr class="">
-			<td class="p-2">{{ $research->title }}</td>
+			<td class="p-2">{{ $research->research_area }}</td>
 			<td class="p-2"><?php echo $research->description ?></td>
 			<td class="p-2">{{ $research->start_date }}</td>
 			<td class="p-2">{{ $research->end_date }}</td>

@@ -9,21 +9,21 @@
 		</div>
 	</div> --}}
 	<div class="dropdown">
-	  <button class="dropbtn">Educations</button>
+	  <button class="dropbtn">Education</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:educations') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:education:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">
-	  <button class="dropbtn">Research</button>
+	  <button class="dropbtn">Research Areas</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:researches') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:research:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">
-	  <button class="dropbtn">Project</button>
+	  <button class="dropbtn">Projects</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:projects') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:project:create') }}" class="text-black font-bold no-underline p-4">Add New</a>

@@ -20,7 +20,7 @@
 	<date-input :name="'start_date'" :data=null/>
 	<date-input :name="'end_date'" :data=null/>
     <div class="flex">
-    	<label class="p-2">Related Research</label>
+    	<label class="p-2">Related Research Areas</label>
 	    <div id='app'>
 		    <div class='tagHere'></div>
 		    <input type="text" name="tags-field"/>
