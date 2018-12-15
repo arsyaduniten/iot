@@ -37,21 +37,21 @@
 	  </div>
 	</div>
 	<div class="dropdown">
-	  <button class="dropbtn">Researcher</button>
+	  <button class="dropbtn">Colleagues</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:researchers') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:researcher:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">
-	  <button class="dropbtn">Award</button>
+	  <button class="dropbtn">Awards</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:awards') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:award:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">
-	  <button class="dropbtn">Collaborator</button>
+	  <button class="dropbtn">Collaboration</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:collaborators') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:collaborator:create') }}" class="text-black font-bold no-underline p-4">Add New</a>

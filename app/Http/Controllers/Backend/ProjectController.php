@@ -35,7 +35,7 @@ class ProjectController extends Controller
         $researches = Research::all();
         foreach ($researches as $r) {
             # code...
-            $r_title[] = $r->title;
+            $r_title[] = $r->research_area;
         }
         // dd($r_title);
         return view('backend.project.create', compact('researches', 'r_title'));
@@ -84,7 +84,7 @@ class ProjectController extends Controller
         $researches = Research::all();
         foreach ($researches as $r) {
             # code...
-            $r_title[] = $r->title;
+            $r_title[] = $r->research_area;
         }
         $tags = $project->tagNames();
         return view('backend.project.edit', compact('project', 'r_title', 'researches', 'tags'));

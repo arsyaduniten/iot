@@ -14,16 +14,8 @@
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	<date-input :name="'start_date'" :data="$publication->start_date"/>
-	<date-input :name="'end_date'" :data="$publication->end_date"/>
-    <div class="flex m-2">
-    	<label class="p-2">Related Research</label>
-	    <div id='app'>
-		    <div class='tagHere research'></div>
-		    <input type="text" name="tags-field"/>
-		</div>
-	</div>
-
+	<text-input :name="'doi'" :data="$publication->doi"/>
+	<date-input :name="'publication_date'" :data="$publication->publication_date"/>
 	<div class="flex">
     	<label class="p-2">Related Project</label>
 	    <div id='app'>
@@ -45,11 +37,6 @@
 	    $(".note-editor").addClass("m-2 shadow-md");
         $('.summernote').summernote("code", "<?php echo $publication->description ?>");
 
-        var tags = [];
-		@foreach($r_title as $title)
-		tags.push("{{ $title }}");
-		@endforeach
-
 		var p_tags = [];
 		@foreach($p_title as $title)
 		p_tags.push("{{ $title }}");
@@ -57,21 +44,15 @@
 
 		$( "input[name=ptags-field]" ).autocomplete({
 	      source: p_tags,
+	      minLength: 0,
 	      select: function (e, ui) {
 		        var el = ui.item.label;
 		        e.preventDefault();
 		        addTag(el, ".project");
 		  },
-	    });
-
-		$( "input[name=tags-field]" ).autocomplete({
-	      source: tags,
-	      select: function (e, ui) {
-		        var el = ui.item.label;
-		        e.preventDefault();
-		        addTag(el, ".research");
-		  },
-	    });
+	    }).click(function(){
+		    $(this).autocomplete("search");
+		});
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
@@ -82,10 +63,6 @@
 	    	});
 	    	$("#editForm").submit();
 	    });
-
-	    @foreach($r_tags as $tag)
-	    addTag("{{ $tag }}", '.research');
-	    @endforeach
 
 	    @foreach($p_tags as $tag)
 	    addTag("{{ $tag }}", '.project');

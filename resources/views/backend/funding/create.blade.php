@@ -6,15 +6,12 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:publication:store') }}">
+<form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:funding:store') }}">
 	@csrf
-	<text-input :name="'title'" :data=null/>
-	<div class="flex">
-		<label class="pt-4">Description</label>
-		<textarea name="description" class="m-2 summernote"></textarea>
-	</div>
-	<text-input :name="'doi'" :data=null/>
-	<date-input :name="'publication_date'" :data=null/>
+	<text-input :name="'granted_by'" :data=null/>
+	<text-input :name="'amount'" :data=null/>
+	<date-input :name="'start_date'" :data=null/>
+	<date-input :name="'end_date'" :data=null/>
 	<div class="flex m-2">
     	<label class="p-2">Related Projects</label>
 	    <div id='app'>
@@ -30,11 +27,6 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.summernote').summernote({
-	    	height:200,
-	    });
-	    $(".note-editor").addClass("m-2 shadow-md");
-
 		var p_tags = [];
 		@foreach($p_title as $title)
 		p_tags.push("{{ $title }}");

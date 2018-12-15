@@ -32,20 +32,14 @@ class PublicationController extends Controller
     public function create()
     {
         //
-        $r_title = $p_title = [];
-        $researches = Research::all();
+        $p_title = [];
         $projects = Project::all();
-        foreach ($researches as $r) {
-            # code...
-            $r_title[] = $r->title;
-        }
-
         foreach ($projects as $p) {
             # code...
             $p_title[] = $p->title;
         }
         // dd($r_title);
-        return view('backend.publication.create', compact('researches', 'r_title', 'p_title'));
+        return view('backend.publication.create', compact('projects', 'p_title'));
     }
 
     /**
@@ -84,28 +78,21 @@ class PublicationController extends Controller
     public function edit(Publication $publication)
     {
         //
-        $r_title = $p_title = [];
-        $researches = Research::all();
+        $p_title = [];
         $projects = Project::all();
-        foreach ($researches as $r) {
-            # code...
-            $r_title[] = $r->title;
-        }
         foreach ($projects as $p) {
             # code...
             $p_title[] = $p->title;
         }
-        $p_tags = $r_tags = [];
+        $p_tags = [];
         $tags = $publication->tagNames();
         foreach ($tags as $tag) {
-            if ($this->in_arrayi($tag, $r_title)){
-                $r_tags[] = $tag;
-            } else if ($this->in_arrayi($tag, $p_title)){
+            if ($this->in_arrayi($tag, $p_title)){
                 $p_tags[] = $tag;
             }
         }
 
-        return view('backend.publication.edit', compact('publication', 'r_title', 'p_title', 'researches', 'p_tags', 'r_tags', 'projects'));
+        return view('backend.publication.edit', compact('publication', 'p_title', 'p_tags', 'projects'));
     }
 
 

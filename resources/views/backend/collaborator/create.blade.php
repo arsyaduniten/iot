@@ -8,36 +8,12 @@
 @include('backend.nav')
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:collaborator:store') }}">
 	@csrf
-	{{-- <div class="flex">
-		<label class="self-center">User</label>
-		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="user_id" value="{{ $user->id }}">
-	</div> --}}
 	<text-input :name="'name'" :data=null/>
 	<text-input :name="'logo_url'" :data=null/>
-{{-- 	<text-input :name="'image_url'" :data=null/>
-	<text-input :name="'profile_url'" :data=null/> --}}
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	{{-- <date-input :name="'last_name'" :data=null/>
-	<date-input :name="'end_date'" :data=null/> --}}
-    {{-- <div class="flex">
-        <label class="p-2">Related Research</label>
-        <select class="bg-white m-2 p-2 shadow-md rounded" name="related_r">
-            @foreach($researches as $research)
-            <option value="{{ $research->id }}">{{ $research->title }}</option>
-            @endforeach
-        </select>
-    </div> --}}
-    <div class="flex">
-    	<label class="p-2">Related Research</label>
-	    <div id='app'>
-		    <div class='tagHere research'></div>
-		    <input type="text" name="tags-field"/>
-		</div>
-	</div>
-
 	<div class="flex m-2">
     	<label class="p-2">Related Projects</label>
 	    <div id='app'>
@@ -58,11 +34,6 @@
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
 
-	    var tags = [];
-		@foreach($r_title as $title)
-		tags.push("{{ $title }}");
-		@endforeach
-
 		var p_tags = [];
 		@foreach($p_title as $title)
 		p_tags.push("{{ $title }}");
@@ -70,21 +41,15 @@
 
 	    $( "input[name=ptags-field]" ).autocomplete({
 	      source: p_tags,
+	      minLength: 0,
 	      select: function (e, ui) {
 		        var el = ui.item.label;
 		        e.preventDefault();
 		        addTag(el, ".project");
 		  },
-	    });
-
-	    $( "input[name=tags-field]" ).autocomplete({
-	      source: tags,
-	      select: function (e, ui) {
-		        var el = ui.item.label;
-		        e.preventDefault();
-		        addTag(el, ".research");
-		  },
-	    });
+	    }).click(function(){
+		    $(this).autocomplete("search");
+		});
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();

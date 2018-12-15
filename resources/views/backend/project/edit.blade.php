@@ -42,12 +42,15 @@
 		@endforeach
 		$( "input[name=tags-field]" ).autocomplete({
 	      source: tags,
+	      minLength: 0,
 	      select: function (e, ui) {
 		        var el = ui.item.label;
 		        e.preventDefault();
 		        addTag(el);
 		  },
-	    });
+	    }).click(function(){
+		    $(this).autocomplete("search");
+		});
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();

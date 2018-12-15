@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Fundings;
+use App\Funding;
+use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 
 class FundingController extends Controller
 {
@@ -17,6 +18,8 @@ class FundingController extends Controller
     public function index()
     {
         //
+        $data = Funding::all();
+        return view('backend.funding.index', compact('data'));
     }
 
     /**
@@ -27,6 +30,15 @@ class FundingController extends Controller
     public function create()
     {
         //
+        $p_title = [];
+        $projects = Project::all();
+
+        foreach ($projects as $p) {
+            # code...
+            $p_title[] = $p->title;
+        }
+        // dd($r_title);
+        return view('backend.funding.create', compact('p_title'));
     }
 
     /**
@@ -38,6 +50,11 @@ class FundingController extends Controller
     public function store(Request $request)
     {
         //
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
+        $new_p = Funding::create($request->all());
+        $new_p->tag($tags);
+        return redirect()->route('backend:fundings');
     }
 
     /**
@@ -46,7 +63,7 @@ class FundingController extends Controller
      * @param  \App\Fundings  $fundings
      * @return \Illuminate\Http\Response
      */
-    public function show(Fundings $fundings)
+    public function show(Funding $funding)
     {
         //
     }
@@ -57,9 +74,29 @@ class FundingController extends Controller
      * @param  \App\Fundings  $fundings
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fundings $fundings)
+    public function edit(Funding $funding)
     {
         //
+        $p_title = [];
+        $projects = Project::all();
+        foreach ($projects as $p) {
+            # code...
+            $p_title[] = $p->title;
+        }
+        $p_tags = [];
+        $tags = $funding->tagNames();
+        foreach ($tags as $tag) {
+            if ($this->in_arrayi($tag, $p_title)){
+                $p_tags[] = $tag;
+            } 
+        }
+
+        return view('backend.funding.edit', compact('funding', 'p_title', 'p_tags', 'projects'));
+    }
+
+    public function in_arrayi($needle, $haystack)
+    {
+        return in_array(strtolower($needle), array_map('strtolower', $haystack));
     }
 
     /**
@@ -69,9 +106,14 @@ class FundingController extends Controller
      * @param  \App\Fundings  $fundings
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fundings $fundings)
+    public function update(Request $request, Funding $funding)
     {
         //
+        $funding->update($request->all());
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
+        $funding->retag($tags);
+        return redirect()->route('backend:fundings');
     }
 
     /**
@@ -80,7 +122,7 @@ class FundingController extends Controller
      * @param  \App\Fundings  $fundings
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fundings $fundings)
+    public function destroy(Funding $funding)
     {
         //
     }

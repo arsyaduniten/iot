@@ -22,6 +22,7 @@
             <td class="p-2"><?php echo $project->description ?></td>
             <td class="p-2">{{ $project->start_date }}</td>
             <td class="p-2">{{ $project->end_date }}</td>
+            <td class="p-2">{{ implode(", ", $project->tagNames()) }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:project:edit', ['project' => $project]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
             <td class="p-2 py-4"><a href="{{ route('backend:project:destroy', ['project' => $project]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
         </tr>

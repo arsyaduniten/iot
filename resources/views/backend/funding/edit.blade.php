@@ -6,17 +6,15 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:publication:store') }}">
+<form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:funding:update', ['funding' => $funding]) }}">
 	@csrf
-	<text-input :name="'title'" :data=null/>
+	@method('PUT')
+	<text-input :name="'granted_by'" :data="$funding->granted_by"/>
+	<text-input :name="'amount'" :data="$funding->amount"/>
+	<date-input :name="'start_date'" :data="$funding->start_date"/>
+	<date-input :name="'end_date'" :data="$funding->end_date"/>
 	<div class="flex">
-		<label class="pt-4">Description</label>
-		<textarea name="description" class="m-2 summernote"></textarea>
-	</div>
-	<text-input :name="'doi'" :data=null/>
-	<date-input :name="'publication_date'" :data=null/>
-	<div class="flex m-2">
-    	<label class="p-2">Related Projects</label>
+    	<label class="p-2">Related Project</label>
 	    <div id='app'>
 		    <div class='tagHere project'></div>
 		    <input type="text" name="ptags-field"/>
@@ -30,17 +28,12 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.summernote').summernote({
-	    	height:200,
-	    });
-	    $(".note-editor").addClass("m-2 shadow-md");
-
 		var p_tags = [];
 		@foreach($p_title as $title)
 		p_tags.push("{{ $title }}");
 		@endforeach
 
-	    $( "input[name=ptags-field]" ).autocomplete({
+		$( "input[name=ptags-field]" ).autocomplete({
 	      source: p_tags,
 	      minLength: 0,
 	      select: function (e, ui) {
@@ -59,8 +52,13 @@
 	    		var tag_text = $(this).text()+",";
     		    $('#tag_values').val($('#tag_values').val() + tag_text);
 	    	});
-	    	$("#createForm").submit();
+	    	$("#editForm").submit();
 	    });
+
+	    @foreach($p_tags as $tag)
+	    addTag("{{ $tag }}", '.project');
+	    @endforeach
+
 
 	    function addTag(element, className) {
 		    $appendHere = $(".tagHere"+className);

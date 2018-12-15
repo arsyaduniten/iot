@@ -32,7 +32,7 @@ class Project extends Model
 
     public function fundings()
     {
-    	return $this->hasMany('App\Funding', 'project_fundings');
+    	return $this->hasMany('App\Funding', 'fundings');
     }
 
     public function researchers()
