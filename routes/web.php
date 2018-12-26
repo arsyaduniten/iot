@@ -103,6 +103,15 @@ Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], functio
         'update' => 'backend:user:update',
         'destroy' => 'backend:user:destroy'
     ]);
+
+    Route::resource('/gallery', 'Backend\GalleryController')->names([
+        'index' => 'backend:galleries',
+        'create' => 'backend:gallery:create',
+        'store' =>'backend:gallery:store',
+        'edit' =>'backend:gallery:edit',
+        'update' => 'backend:gallery:update',
+        'destroy' => 'backend:gallery:destroy'
+    ]);
 });
 
 

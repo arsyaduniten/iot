@@ -64,4 +64,11 @@
 			<a href="{{ route('backend:funding:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
+	<div class="dropdown">
+	  <button class="dropbtn">Gallery</button>
+	  <div class="dropdown-content">
+	    	<a href="{{ route('backend:galleries') }}" class="text-black font-bold no-underline p-4">All</a>
+			<a href="{{ route('backend:gallery:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
+	  </div>
+	</div>
 </div>
