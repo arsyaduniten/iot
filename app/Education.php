@@ -8,7 +8,7 @@ class Education extends Model
 {
     //
     protected $table = "user_educations";
-    protected $fillable = ['user_id','institution', 'level', 'title', 'description', 'date_start', 'date_completed'];
+    protected $fillable = ['user_id','institution', 'level', 'degree', 'description', 'date_start', 'date_completed'];
 
     public function user()
     {
