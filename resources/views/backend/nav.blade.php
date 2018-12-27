@@ -30,24 +30,10 @@
 	  </div>
 	</div>
 	<div class="dropdown">
-	  <button class="dropbtn">Publication</button>
-	  <div class="dropdown-content">
-	    	<a href="{{ route('backend:publications') }}" class="text-black font-bold no-underline p-4">All</a>
-			<a href="{{ route('backend:publication:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
-	  </div>
-	</div>
-	<div class="dropdown">
 	  <button class="dropbtn">Colleagues</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:researchers') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:researcher:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
-	  </div>
-	</div>
-	<div class="dropdown">
-	  <button class="dropbtn">Awards</button>
-	  <div class="dropdown-content">
-	    	<a href="{{ route('backend:awards') }}" class="text-black font-bold no-underline p-4">All</a>
-			<a href="{{ route('backend:award:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">
@@ -62,6 +48,20 @@
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:fundings') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:funding:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
+	  </div>
+	</div>
+	<div class="dropdown">
+	  <button class="dropbtn">Publications</button>
+	  <div class="dropdown-content">
+	    	<a href="{{ route('backend:publications') }}" class="text-black font-bold no-underline p-4">All</a>
+			<a href="{{ route('backend:publication:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
+	  </div>
+	</div>
+	<div class="dropdown">
+	  <button class="dropbtn">Awards</button>
+	  <div class="dropdown-content">
+	    	<a href="{{ route('backend:awards') }}" class="text-black font-bold no-underline p-4">All</a>
+			<a href="{{ route('backend:award:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">

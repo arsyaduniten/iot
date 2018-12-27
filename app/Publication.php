@@ -10,7 +10,7 @@ class Publication extends Model
 {
     //
     use Taggable;
-    protected $fillable = ['title', 'description', 'publication_date', 'doi'];
+    protected $fillable = ['title', 'publication_date', 'conference', 'conference_url', 'citations', 'paper_url'];
     public function projects()
     {
     	return $this->belongsToMany('App\Project', 'project_publication');

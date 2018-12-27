@@ -13,6 +13,7 @@
             <th class="p-2">Amount</th>
             <th class="p-2">Start Date</th>
             <th class="p-2">End Date</th>
+            <th class="p-2">Related Projects</th>
             <th></th><th></th>
         </tr>
         @foreach($data as $funding)
@@ -21,6 +22,7 @@
             <td class="p-2">{{ $funding->amount }}</td>
             <td class="p-2">{{ $funding->start_date }}</td>
             <td class="p-2">{{ $funding->end_date }}</td>
+            <td class="p-2">{{ implode(", ", $funding->tagNames()) }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:funding:edit', ['funding' => $funding]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
             <td class="p-2 py-4"><a href="{{ route('backend:funding:destroy', ['funding' => $funding]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
         </tr>

@@ -10,14 +10,22 @@
 	@csrf
 	@method('PUT')
 	<text-input :name="'title'" :data="$publication->title"/>
+	<text-input :name="'paper_url'" :data="$publication->paper_url"/>
 	<div class="flex">
-		<label class="pt-4">Description</label>
-		<textarea name="description" class="m-2 summernote"></textarea>
+		<label class="self-center">Conference/Journal</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="conference" value="{{ $publication->conference }}">
 	</div>
-	<text-input :name="'doi'" :data="$publication->doi"/>
-	<date-input :name="'publication_date'" :data="$publication->publication_date"/>
 	<div class="flex">
-    	<label class="p-2">Related Project</label>
+		<label class="self-center">Conference/Journal Url</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="conference_url" value="{{ $publication->conference_url }}">
+	</div>
+	<div class="flex">
+		<label class="self-center">Citations</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="number" name="citations" value="{{ $publication->citations }}">
+	</div>
+	<date-input :name="'publication_date'" :data="$publication->publication_date"/>
+	<div class="flex m-2">
+    	<label class="p-2">Related Projects</label>
 	    <div id='app'>
 		    <div class='tagHere project'></div>
 		    <input type="text" name="ptags-field"/>

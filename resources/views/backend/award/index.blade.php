@@ -13,6 +13,7 @@
             <th class="p-2">Description</th>
             <th class="p-2">Awarded By</th>
             <th class="p-2">Date Obtained</th>
+            <th class="p-2">Related Projects</th>
             <th></th><th></th>
         </tr>
         @foreach($data as $award)
@@ -21,6 +22,7 @@
             <td class="p-2"><?php echo $award->description ?></td>
             <td class="p-2">{{ $award->awarded_by }}</td>
             <td class="p-2">{{ $award->date_obtained }}</td>
+            <td class="p-2">{{ implode(", ", $award->tagNames()) }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:award:edit', ['award' => $award]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
             <td class="p-2 py-4"><a href="{{ route('backend:award:destroy', ['award' => $award]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
         </tr>

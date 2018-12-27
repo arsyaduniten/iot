@@ -14,6 +14,7 @@
             <th class="p-2">Last Name</th>
             <th class="p-2">Image URL</th>
             <th class="p-2">Profile URL</th>
+            <th class="p-2">Related Projects</th>
             <th></th><th></th>
         </tr>
         @foreach($data as $researcher)
@@ -23,6 +24,7 @@
             <td class="p-2"><?php echo $researcher->last_name ?></td>
             <td class="p-2">{{ $researcher->image_url }}</td>
             <td class="p-2">{{ $researcher->profile_url }}</td>
+            <td class="p-2">{{ implode(", ", $researcherz->tagNames()) }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:researcher:edit', ['researcher' => $researcher]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
             <td class="p-2 py-4"><a href="{{ route('backend:researcher:destroy', ['researcher' => $researcher]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
         </tr>

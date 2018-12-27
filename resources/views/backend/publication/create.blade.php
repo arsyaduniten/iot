@@ -9,11 +9,19 @@
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:publication:store') }}">
 	@csrf
 	<text-input :name="'title'" :data=null/>
+	<text-input :name="'paper_url'" :data=null/>
 	<div class="flex">
-		<label class="pt-4">Description</label>
-		<textarea name="description" class="m-2 summernote"></textarea>
+		<label class="self-center">Conference/Journal</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="conference">
 	</div>
-	<text-input :name="'doi'" :data=null/>
+	<div class="flex">
+		<label class="self-center">Conference/Journal Url</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="conference_url">
+	</div>
+	<div class="flex">
+		<label class="self-center">Citations</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="number" name="citations">
+	</div>
 	<date-input :name="'publication_date'" :data=null/>
 	<div class="flex m-2">
     	<label class="p-2">Related Projects</label>
