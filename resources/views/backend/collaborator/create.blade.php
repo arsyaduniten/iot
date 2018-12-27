@@ -10,6 +10,7 @@
 	@csrf
 	<text-input :name="'name'" :data=null/>
 	<text-input :name="'logo_url'" :data=null/>
+	<text-input :name="'company_url'" :data=null/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>

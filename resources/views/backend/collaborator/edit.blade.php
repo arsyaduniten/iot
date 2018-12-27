@@ -11,6 +11,7 @@
 	@method('PUT')
 	<text-input :name="'name'" :data="$collaborator->name"/>
 	<text-input :name="'logo_url'" :data="$collaborator->logo_url"/>
+	<text-input :name="'company_url'" :data="$collaborator->company_url"/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>

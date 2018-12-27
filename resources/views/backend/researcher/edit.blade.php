@@ -9,8 +9,7 @@
 <form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:researcher:update', ['researcher' => $researcher]) }}">
 	@csrf
 	@method('PUT')
-	<text-input :name="'first_name'" :data="$researcher->first_name"/>
-	<text-input :name="'last_name'" :data="$researcher->last_name"/>
+	<text-input :name="'fullname'" :data="$researcher->first_name"/>
 	<text-input :name="'image_url'" :data="$researcher->image_url"/>
 	<text-input :name="'profile_url'" :data="$researcher->profile_url"/>
 

@@ -8,8 +8,7 @@
 @include('backend.nav')
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:researcher:store') }}">
 	@csrf
-	<text-input :name="'first_name'" :data=null/>
-	<text-input :name="'last_name'" :data=null/>
+	<text-input :name="'fullname'" :data=null/>
 	<text-input :name="'image_url'" :data=null/>
 	<text-input :name="'profile_url'" :data=null/>
 	

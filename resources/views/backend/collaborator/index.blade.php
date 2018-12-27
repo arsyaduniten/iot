@@ -13,6 +13,7 @@
             <th class="p-2">Name</th>
             <th class="p-2">Description</th>
             <th class="p-2">Logo Url</th>
+            <th class="p-2">Company Url</th>
             <th class="p-2">Related Projects</th>
             <th></th><th></th>
         </tr>
@@ -22,6 +23,7 @@
             <td class="p-2">{{ $collaborator->name }}</td>
             <td class="p-2"><?php echo $collaborator->description ?></td>
             <td class="p-2">{{ $collaborator->logo_url }}</td>
+            <td class="p-2"><a href="{{ $collaborator->company_url }}" target="_blank">{{ $collaborator->company_url }}</a></td>
             <td class="p-2">{{ implode(", ", $collaborator->tagNames()) }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:collaborator:edit', ['collaborator' => $collaborator]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
             <td class="p-2 py-4"><a href="{{ route('backend:collaborator:destroy', ['collaborator' => $collaborator]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
