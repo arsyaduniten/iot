@@ -17,14 +17,13 @@
 		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="user_id" value="{{ $user->id }}">
 	</div>
 	<text-input :name="'institution'" :data=null/>
-	<text-input :name="'level'" :data=null/>
 	<text-input :name="'degree'" :data=null/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	<date-input :name="'year_start'" :data=null/>
-	<date-input :name="'year_completed'" :data=null/>
+	<date-input :name="'date_start'" :data=null/>
+	<date-input :name="'date_completed'" :data=null/>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection

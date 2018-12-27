@@ -14,14 +14,13 @@
 		<input class="m-2 p-2 bg-white shadow-md rounded" type="text" name="first_name" value="{{ $user->first_name }}">
 	</div> --}}
 	<text-input :name="'institution'" :data="$edu->institution"/>
-	<text-input :name="'level'" :data="$edu->level"/>
-	<text-input :name="'degree'" :data="$edu->title"/>
+	<text-input :name="'degree'" :data="$edu->degree"/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	<date-input :name="'year_start'" :data="$edu->year_start"/>
-	<date-input :name="'year_completed'" :data="$edu->year_completed"/>
+	<date-input :name="'date_start'" :data="$edu->date_start"/>
+	<date-input :name="'date_completed'" :data="$edu->date_completed"/>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Update</button>
 </form>
 @endsection
