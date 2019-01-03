@@ -19,7 +19,11 @@
         </tr>
         @foreach($data as $collaborator)
         <tr class="">
-            <td class="p-2"><img width="150" height="150" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') }}"></td>
+            <td class="p-2">
+                @if($collaborator->logo_url != NULL)
+                <img width="150" height="150" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') }}">
+                @endif
+            </td>
             <td class="p-2">{{ $collaborator->name }}</td>
             <td class="p-2"><?php echo $collaborator->description ?></td>
             <td class="p-2">{{ $collaborator->logo_url }}</td>

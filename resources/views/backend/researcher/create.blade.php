@@ -9,7 +9,6 @@
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:researcher:store') }}">
 	@csrf
 	<text-input :name="'fullname'" :data=null/>
-	<text-input :name="'image_url'" :data=null/>
 	<text-input :name="'profile_url'" :data=null/>
 	
 	<div class="flex m-2">
