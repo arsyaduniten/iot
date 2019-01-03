@@ -13,6 +13,7 @@
 			<th class="p-2">Description</th>
 			<th class="p-2">Start Date</th>
 			<th class="p-2">End Date</th>
+			<th class="p-2">Related Projects</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -22,6 +23,7 @@
 			<td class="p-2"><?php echo $research->description ?></td>
 			<td class="p-2">{{ $research->start_date }}</td>
 			<td class="p-2">{{ $research->end_date }}</td>
+            <td class="p-2">{{ implode(", ", \App\Project::withAnyTag($research->research_area)->pluck('title')->toArray()) }}</td>
 			<td class="p-2 py-4"><a href="{{ route('backend:research:edit', ['research' => $research]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
 			<td class="p-2 py-4"><a href="{{ route('backend:research:destroy', ['research' => $research]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
 		</tr>

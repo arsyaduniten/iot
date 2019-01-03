@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'LandingController@index')->name('home');
+Route::get('/', 'LandingController@index')->name('home')->middleware('auth');
 Route::get('/details', 'DetailsController@index')->name('details');
 
 Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], function() {

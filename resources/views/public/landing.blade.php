@@ -104,9 +104,9 @@
 				{{ Request::get('active') == null ? 'active-tab shadow-inner' : Request::get('active') == 'about-me' ? 'active-tab shadow-inner' : ''}}">
 					<a href="{{ Request::get('active') == null ? "#" : Request::get('active') == 'about-me' ? "#" : url('/')."?active=about-me"}}" class="text-black p-2 no-underline {{ Request::get('active') == null ? 'font-semibold' : Request::get('active') == 'about-me' ? 'font-semibold' : ''}}">About Me</a>
 				</div>
-				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'education' ? 'active-tab shadow-inner' : ''}}">
+				{{-- <div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'education' ? 'active-tab shadow-inner' : ''}}">
 					<a href="{{ Request::get('active') == 'education' ? '#' : url('/')."?active=education"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'education' ? 'font-semibold' : ''}}">Education</a>
-				</div>
+				</div> --}}
 				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'research' ? 'active-tab shadow-inner' : ''}}">
 					<a href="{{ Request::get('active') == 'research' ? '#' : url('/')."?active=research"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'research' ? 'font-semibold' : ''}}">Research</a>
 				</div>

@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:user:update', ['id' => $user->id]) }}">
+<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:user:update', ['id' => $user->id]) }}" enctype="multipart/form-data">
 	@method('PUT')
 	@csrf
 	{{-- <div class="flex">
@@ -15,8 +15,12 @@
 	</div> --}}
 	<text-input :name="'first_name'" :data="$user->first_name"/>
 	<text-input :name="'last_name'" :data="$user->last_name"/>
+	<div class="flex m-2">
+		<label class="p-2">Profile Image</label></label>
+	    <input type='file' name="image" /><br>
+	    <img src="{{ $user->profile_url }}" width="100" height="100">
+	</div>
 	<text-input :name="'email'" :data="$user->email"/>
-	<text-input :name="'phone_number'" :data="$user->phone_number"/>
 	<text-input :name="'about_short'" :data="$user->about_short"/>
 	<div class="flex">
 		<label class="pt-4">About Long</label>
