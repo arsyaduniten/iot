@@ -78,13 +78,15 @@ class UserController extends Controller
     {
         //
         $image = $request->file('image');
-        ImageOptimizer::optimize($image->getRealPath());
-        $file = Storage::disk('s3')->putFile('/', new File($image->getRealPath()), 'public');
-        $url = Storage::disk('s3')->url($file);
+        if ($image != null){
+            ImageOptimizer::optimize($image->getRealPath());
+            $file = Storage::disk('s3')->putFile('/', new File($image->getRealPath()), 'public');
+            $url = Storage::disk('s3')->url($file);
+            $user = User::find($id);
+            $user->profile_url = $url;
+            $user->save();
+        }
         User::find($id)->update($request->all());
-        $user = User::find($id);
-        $user->profile_url = $url;
-        $user->save();
         return back();
     }
 

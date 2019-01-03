@@ -147,7 +147,7 @@
 						@break
 					@endswitch
 				@else
-				<?php echo $data ?>
+				<?php echo htmlspecialchars_decode($data) ?>
 				@endif
 			</div>
 		</div>
