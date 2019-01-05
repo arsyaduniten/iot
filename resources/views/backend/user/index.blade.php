@@ -36,7 +36,7 @@
 		$('.summernote').summernote({
 	    	height:200,
 	    });
-	    $('.summernote').summernote("insertText", "{{ strip_tags($user->about_long) }}");
+	    $('.summernote').summernote("code", `<?php echo $user->about_long ?>`);
 	    $(".note-editor").addClass("m-2 shadow-md");
 	});
 </script>
