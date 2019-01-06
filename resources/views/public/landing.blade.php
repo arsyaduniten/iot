@@ -36,6 +36,27 @@
 	#about-me{
 
 	}
+
+	.avatar-upload .avatar-preview {
+	  width: 100px;
+	  height: 100px;
+	  /*position: relative;*/
+	  border-radius: 100%;
+	  /*border: 6px solid #F8F8F8;
+*/	  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+	}
+	.avatar-upload .avatar-preview > div {
+	  width: 100%;
+	  height: 100%;
+	  border-radius: 100%;
+	  background: white;
+	  background-size: cover;
+	  background-repeat: no-repeat;
+	  background-position: center;
+	}
+	#sourcePreview{
+		margin:auto;
+	}
 </style>
 
 
@@ -89,8 +110,14 @@
 	<div class="flex items-start relative z-10" style="background-color: #39445C;">
 		<div class="flex flex-col bg-white rounded shadow-md text-center items-center m-8 mr-4 w-1/5">
 			<div class="brand-color py-10 w-full rounded-t -mb-2"></div>
-			<img class="justify-center" src="./images/sami.png" style="height: 100px; width: 100px; margin: -40px">
-			<p class="pt-6 mt-6 font-bold">{{ $user->full_name }}</p>
+			<div class="avatar-upload">
+	            <div class="avatar-preview">
+	                <div id="sourcePreview" class="" style="background-image: url({{ $user->profile_url }});">
+	                </div>
+	            </div>
+	        </div>
+{{-- 			<img class="justify-center" src="{{ $user->profile_url }}" style="height: 100px; width: 100px; margin: -40px">
+ --}}			<p class="pt-6 mt-6 font-bold">{{ $user->full_name }}</p>
 			<p class="p-2 mx-4 text-grey-dark text-xs leading-tight"><?php echo $user->box_description ?></p>
 			<div class="flex items-center justify-center p-4">
 				<img class="p-1" src="./images/linkedin.png" style="width: 30px; height: 30px;">
@@ -155,13 +182,15 @@
 								<th class="p-2">Description</th>
 								<th class="p-2">Start Date</th>
 								<th class="p-2">End Date</th>
+								<th></th>
 							</tr>
 							@foreach($data as $research)
-							<tr class="">
-								<td class="p-2">{{ $research->research_area }}</td>
+							<tr class=""> 
+								<td class="p-3">{{ $research->research_area }}</td>
 								<td class="p-2"><?php echo $research->description ?></td>
 								<td class="p-2">{{ $research->start_date }}</td>
 								<td class="p-2">{{ $research->end_date }}</td>
+								<td class="p-2"><a href="{{ route('details') }}?type=research" class="rounded-full no-underline bg-blue-darker p-2 px-4 text-white text-xs font-bold">VIEW</a></td>
 							</tr>
 							@endforeach
 						</table>

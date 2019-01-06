@@ -23,7 +23,7 @@ class DetailsController extends Controller
             	$research = Research::find($request->get('id'));
             	$data = $research;
             	$title = "Research";
-            	$projects = $research->projects->all();
+            	$projects = Project::withAnyTag($research->research_area)->get();
             	$r_data = collect([
             				'projects' => $projects,
             				'publications' => $research->publications->all(),
