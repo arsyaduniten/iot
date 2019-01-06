@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Work;
 use App\Research;
+use App\Project;
+use App\Award;
 
 class LandingController extends Controller
 {
@@ -24,15 +26,15 @@ class LandingController extends Controller
     		case 'research':
     			$data = Research::all();
     			break;
-    		case 'iot':
-    			$data = Work::where('user_id', $user->id)->iot()->get();
-    			break;
-    		case 'robotic':
-    			$data = Work::where('user_id', $user->id)->robotic()->get();
+    		case 'project':
+    			$data = Project::all();
     			break;
     		case 'awards':
-    			$data = $user->awards;
+    			$data = Award::all();
     			break;
+            case 'rants':
+                $data = "";
+                break;
     		default:
     			$data = $user->about_long;
     			break;

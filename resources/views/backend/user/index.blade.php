@@ -23,8 +23,12 @@
 	<text-input :name="'email'" :data="$user->email"/>
 	<text-input :name="'about_short'" :data="$user->about_short"/>
 	<div class="flex">
+		<label class="pt-4">Box Description</label>
+		<textarea name="box_description" class="m-2 summernote summernote-box"></textarea>
+	</div>
+	<div class="flex">
 		<label class="pt-4">About Long</label>
-		<textarea name="about_long" class="m-2 summernote"></textarea>
+		<textarea name="about_long" class="m-2 summernote summernote-about"></textarea>
 	</div>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
@@ -36,7 +40,8 @@
 		$('.summernote').summernote({
 	    	height:200,
 	    });
-	    $('.summernote').summernote("code", `<?php echo $user->about_long ?>`);
+	    $('.summernote-about').summernote("code", `<?php echo $user->about_long ?>`);
+	    $('.summernote-box').summernote("code", `<?php echo $user->box_description ?>`);
 	    $(".note-editor").addClass("m-2 shadow-md");
 	});
 </script>

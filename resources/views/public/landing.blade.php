@@ -84,14 +84,14 @@
 <div id="about-me">
 	<div class="text-center p-4 relative z-20 shadow-md">
 		<p class="text-4xl font-bold p-4">About Me</p>
-		<p class="text-xl font-base p-4">A robotic maniac and IoT enthusiast  <br> Educator & Researcher</p>
+		<p class="text-xl font-base p-4">{{ $user->about_short }}</p>
 	</div>
 	<div class="flex items-start relative z-10" style="background-color: #39445C;">
 		<div class="flex flex-col bg-white rounded shadow-md text-center items-center m-8 mr-4 w-1/5">
 			<div class="brand-color py-10 w-full rounded-t -mb-2"></div>
 			<img class="justify-center" src="./images/sami.png" style="height: 100px; width: 100px; margin: -40px">
 			<p class="pt-6 mt-6 font-bold">{{ $user->full_name }}</p>
-			<p class="p-2 mx-4 text-grey-dark text-xs leading-tight">[PhD, CEng, MIEEE, BEM]<br> Educator | Researcher | Enthusiast of Robotics, Automation, and IoT</p>
+			<p class="p-2 mx-4 text-grey-dark text-xs leading-tight"><?php echo $user->box_description ?></p>
 			<div class="flex items-center justify-center p-4">
 				<img class="p-1" src="./images/linkedin.png" style="width: 30px; height: 30px;">
 				<img class="p-1" src="./images/fb.png" style="width: 30px; height: 30px;">
@@ -108,30 +108,33 @@
 					<a href="{{ Request::get('active') == 'education' ? '#' : url('/')."?active=education"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'education' ? 'font-semibold' : ''}}">Education</a>
 				</div> --}}
 				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'research' ? 'active-tab shadow-inner' : ''}}">
-					<a href="{{ Request::get('active') == 'research' ? '#' : url('/')."?active=research"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'research' ? 'font-semibold' : ''}}">Research</a>
+					<a href="{{ Request::get('active') == 'research' ? '#' : url('/')."?active=research"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'research' ? 'font-semibold' : ''}}">Research Areas</a>
 				</div>
-				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'iot' ? 'active-tab shadow-inner' : ''}}">
+				{{-- <div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'iot' ? 'active-tab shadow-inner' : ''}}">
 					<a href="{{ Request::get('active') == 'iot' ? '#' : url('/')."?active=iot"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'iot' ? 'font-semibold' : ''}}">Iot</a>
-				</div>
-				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'robotic' ? 'active-tab shadow-inner' : ''}}">
-					<a href="{{ Request::get('active') == 'robotic' ? '#' : url('/')."?active=robotic"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'robotic' ? 'font-semibold' : ''}}">Robotic</a>
+				</div> --}}
+				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'project' ? 'active-tab shadow-inner' : ''}}">
+					<a href="{{ Request::get('active') == 'project' ? '#' : url('/')."?active=project"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'project' ? 'font-semibold' : ''}}">Project</a>
 				</div>
 				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'awards' ? 'active-tab shadow-inner' : ''}}">
 					<a href="{{ Request::get('active') == 'awards' ? '#' : url('/')."?active=awards"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'awards' ? 'font-semibold' : ''}}">Awards</a>
+				</div>
+				<div class="flex-1 bg-white mt-8 py-4 mb-2 {{ Request::get('active') == 'rants' ? 'active-tab shadow-inner' : ''}}">
+					<a href="{{ Request::get('active') == 'rants' ? '#' : url('/')."?active=rants"}}" class="text-black p-2 no-underline {{ Request::get('active') == 'rants' ? 'font-semibold' : ''}}">Rants</a>
 				</div>
 			</div>
 			{{-- <a class="text-black p-2">Education</a>
 				<a class="text-black p-2">Research</a>
 				<a class="text-black p-2">Projects</a>
 				<a class="text-black p-2">Awards</a> --}}
-			<div class="bg-white rounded-b shadow-md items-center mr-8 ml-8 mb-8 p-10 overflow-x-scroll" style="max-height: 80vh;">
+			<div class="rounded-b shadow-md items-center mr-8 ml-8 mb-8 p-10 overflow-x-scroll" style="max-height: 80vh; background: #FBFBFB;">
 				@if(gettype($data) != "string" && $data->count() > 0)
 					@switch(Request::get('active'))
 						@case('education')
 						<div class="flex flex-col items-start">
 							@foreach($data as $item)
 								<div class="border-l-4 border-grey-light flex flex-col w-full">
-									<p class="ml-4 font-bold text-black text-2xl">{{ $item->title }}, {{ $item->level }}</p>
+									<p class="ml-4 font-bold text-black text-2xl">{{ $item->degree }}</p>
 									<p class="m-4 mb-1 -my-1 font-bold text-grey-dark text-xl">{{ $item->institution }}</p>
 									@component('component.button_outline')
 										{{ strtoupper(\Carbon\Carbon::parse($item->date_start)->format('M')) }} 
@@ -144,6 +147,60 @@
 								</div>
 							@endforeach
 						</div>
+						@break
+						@case('research')
+						<table class="shadow-lg rounded m-2">
+							<tr>
+								<th class="p-2">Research Area</th>
+								<th class="p-2">Description</th>
+								<th class="p-2">Start Date</th>
+								<th class="p-2">End Date</th>
+							</tr>
+							@foreach($data as $research)
+							<tr class="">
+								<td class="p-2">{{ $research->research_area }}</td>
+								<td class="p-2"><?php echo $research->description ?></td>
+								<td class="p-2">{{ $research->start_date }}</td>
+								<td class="p-2">{{ $research->end_date }}</td>
+							</tr>
+							@endforeach
+						</table>
+						@break
+						@case('project')
+						<table class="border border-grey-dark m-2">
+					        <tr>
+					            <th class="p-2">Title</th>
+					            <th class="p-2">Description</th>
+					            <th class="p-2">Start Date</th>
+					            <th class="p-2">End Date</th>
+					        </tr>
+					        @foreach($data as $project)
+					        <tr class="">
+					            <td class="p-2">{{ $project->title }}</td>
+					            <td class="p-2"><?php echo $project->description ?></td>
+					            <td class="p-2">{{ $project->start_date }}</td>
+					            <td class="p-2">{{ $project->end_date }}</td>
+					        </tr>
+					        @endforeach
+					    </table>
+					    @break
+						@case('awards')
+						<table class="border border-grey-dark m-2">
+					        <tr>
+					            <th class="p-2">Title</th>
+					            <th class="p-2">Description</th>
+					            <th class="p-2">Awarded By</th>
+					            <th class="p-2">Date Obtained</th>
+					        </tr>
+					        @foreach($data as $award)
+					        <tr class="">
+					            <td class="p-2">{{ $award->title }}</td>
+					            <td class="p-2"><?php echo $award->description ?></td>
+					            <td class="p-2">{{ $award->awarded_by }}</td>
+					            <td class="p-2">{{ $award->date_obtained }}</td>
+					        </tr>
+					        @endforeach
+					    </table>
 						@break
 					@endswitch
 				@else
