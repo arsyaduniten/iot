@@ -54,8 +54,8 @@ class ProjectController extends Controller
         array_pop($tags);
         $new_p = Project::create($request->all());
         $new_p->tag($tags);
-        $research = Research::find($request->get('related_r'));
-        $research->projects()->attach($new_p->id);
+        // $research = Research::find($request->get('related_r'));
+        // $research->projects()->attach($new_p->id);
         return redirect()->route('backend:projects');
     }
 
