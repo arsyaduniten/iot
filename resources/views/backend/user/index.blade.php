@@ -18,7 +18,7 @@
 	<div class="flex m-2">
 		<label class="p-2">Profile Image</label></label>
 	    <input type='file' name="image" /><br>
-	    <img src="{{ $user->profile_url }}" width="100" height="100">
+	    <img src="{{ $user->profile_url }}" style="border-radius:100%">
 	</div>
 	<text-input :name="'email'" :data="$user->email"/>
 	<text-input :name="'about_short'" :data="$user->about_short"/>
