@@ -1,4 +1,4 @@
-@extends('public.base')
+ @extends('public.base')
 @section('head')
 <!-- include summernote css/js -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">

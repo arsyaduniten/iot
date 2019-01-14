@@ -124,6 +124,9 @@
 @yield('script')
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+	$(".dropbtn").click(function(){
+		$(this).next().find('a')[0].click();
+	});
 	// $(document).ready(function(){
 	  // var $input = $("#app input"),
 	  //     $appendHere = $(".tagHere"),
