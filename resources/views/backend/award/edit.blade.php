@@ -3,15 +3,29 @@
 <!-- include summernote css/js -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:award:update', ['award' => $award]) }}">
+<form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:award:update', ['award' => $award]) }}" enctype="multipart/form-data">
 	@csrf
 	@method('PUT')
 	<text-input :name="'title'" :data="$award->title"/>
 	<text-input :name="'awarded_by'" :data="$award->awarded_by"/>
 	<date-input :name="'date_obtained'" :data="$award->date_obtained"/>
+	<text-input :name="'file_url'" :data="$award->file_url"/>
+	<div class="flex m-2">
+		<label class="p-2">File/Award</label></label>
+	    <input type='file' name="file_upload" /><br>
+	</div>
+	<div class="flex">
+		<label class="p-2">File View</label>
+		@if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg')
+		    <img src="{{ $file_ }}" width="700" height="700">
+		@else
+			<a target="_blank" href="{{ $file_ }}">View File</a>
+		@endif
+	</div>
 	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>

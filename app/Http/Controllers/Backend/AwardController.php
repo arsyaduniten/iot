@@ -7,6 +7,9 @@ use App\Research;
 use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use ImageOptimizer;
+use Storage;
+use Illuminate\Http\File;
 
 
 class AwardController extends Controller
@@ -59,6 +62,14 @@ class AwardController extends Controller
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
         $new_p = Award::create($request->all());
+        $image = $request->file('file_upload');
+        if ($image != null){
+            ImageOptimizer::optimize($image->getRealPath());
+            $file = Storage::disk('s3')->putFile('/', new File($image->getRealPath()), 'public');
+            $url = Storage::disk('s3')->url($file);
+            $new_p->file_url_s3 = $url;
+            $new_p->save();
+        }
         $new_p->tag($tags);
         return redirect()->route('backend:awards');
     }
@@ -103,8 +114,16 @@ class AwardController extends Controller
                 $p_tags[] = $tag;
             }
         }
-
-        return view('backend.award.edit', compact('award', 'r_title', 'p_title', 'researches', 'p_tags', 'r_tags', 'projects'));
+        $ext = '';
+        $file_ = '';
+        if($award->file_url != ""){
+            $ext = pathinfo($award->file_url, PATHINFO_EXTENSION);
+            $file_ = $award->file_url;
+        } else {
+            $ext = pathinfo($award->file_url_s3, PATHINFO_EXTENSION);
+            $file_ = $award->file_url_s3;
+        }
+        return view('backend.award.edit', compact('award', 'r_title', 'p_title', 'researches', 'p_tags', 'r_tags', 'projects', 'ext', 'file_'));
     }
 
     public function in_arrayi($needle, $haystack)
@@ -122,6 +141,14 @@ class AwardController extends Controller
     public function update(Request $request, Award $award)
     {
         //
+        $image = $request->file('file_upload');
+        if ($image != null){
+            ImageOptimizer::optimize($image->getRealPath());
+            $file = Storage::disk('s3')->putFile('/', new File($image->getRealPath()), 'public');
+            $url = Storage::disk('s3')->url($file);
+            $award->file_url_s3 = $url;
+            $award->save();
+        }
         $award->update($request->all());
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);

@@ -6,10 +6,15 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:award:store') }}">
+<form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:award:store') }}" enctype="multipart/form-data">
 	@csrf
 	<text-input :name="'title'" :data=null/>
 	<text-input :name="'awarded_by'" :data=null/>
+	<text-input :name="'file_url'" :data=null/>
+	<div class="flex m-2">
+		<label class="p-2">File/Award</label></label>
+	    <input type='file' name="file_upload" /><br>
+	</div>
  	<div class="flex">
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>

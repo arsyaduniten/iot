@@ -9,7 +9,7 @@ class Award extends Model
 {
     //
     use Taggable;
-    protected $fillable = ['title', 'awarded_by', 'date_obtained', 'description'];
+    protected $fillable = ['title', 'awarded_by', 'date_obtained', 'description', 'file_url_s3', 'file_url'];
     public function user()
     {
     	return $this->belongsTo('App\User');
