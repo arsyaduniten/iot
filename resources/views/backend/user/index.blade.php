@@ -13,6 +13,7 @@
 		<label class="self-center">First Name</label>
 		<input class="m-2 p-2 bg-white shadow-md rounded" type="text" name="first_name" value="{{ $user->first_name }}">
 	</div> --}}
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 	<text-input :name="'first_name'" :data="$user->first_name"/>
 	<text-input :name="'last_name'" :data="$user->last_name"/>
 	<div class="flex m-2">
@@ -20,8 +21,6 @@
 	    <input type='file' name="image" /><br>
 	    <img src="{{ $user->profile_url }}" style="border-radius:100%">
 	</div>
-	<text-input :name="'email'" :data="$user->email"/>
-	<text-input :name="'about_short'" :data="$user->about_short"/>
 	<div class="flex">
 		<label class="pt-4">Box Description</label>
 		<textarea name="box_description" class="m-2 summernote summernote-box"></textarea>
@@ -30,7 +29,10 @@
 		<label class="pt-4">About Long</label>
 		<textarea name="about_long" class="m-2 summernote summernote-about"></textarea>
 	</div>
+	<text-input :name="'email'" :data="$user->email"/>
+	<text-input :name="'about_short'" :data="$user->about_short"/>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
+	<br><br>
 </form>
 @endsection
 
