@@ -9,7 +9,7 @@ class Researcher extends Model
 {
     //
     use Taggable;
-    protected $fillable = ['fullname', 'role', 'profile_url'];
+    protected $fillable = ['fullname', 'role', 'profile_url', 'image_url', 'bio'];
     public function projects()
     {
     	return $this->belongsToMany('App\Project');

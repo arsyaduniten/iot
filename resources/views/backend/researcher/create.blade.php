@@ -10,7 +10,11 @@
 	@csrf
 	<text-input :name="'fullname'" :data=null/>
 	<text-input :name="'profile_url'" :data=null/>
-	
+	<text-input :name="'image_url'" :data=null/>
+	<div class="flex">
+		<label class="pt-4">Bio</label>
+		<textarea name="bio" class="m-2 summernote"></textarea>
+	</div>
 	<div class="flex m-2">
     	<label class="p-2">Related Projects</label>
 	    <div id='app'>
@@ -26,10 +30,10 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-		// $('.summernote').summernote({
-	 //    	height:200,
-	 //    });
-	 //    $(".note-editor").addClass("m-2 shadow-md");
+		$('.summernote').summernote({
+	    	height:200,
+	    });
+	    $(".note-editor").addClass("m-2 shadow-md");
 
 		var p_tags = [];
 		@foreach($p_title as $title)

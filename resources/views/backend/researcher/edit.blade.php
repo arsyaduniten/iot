@@ -11,7 +11,11 @@
 	@method('PUT')
 	<text-input :name="'fullname'" :data="$researcher->fullname"/>
 	<text-input :name="'profile_url'" :data="$researcher->profile_url"/>
-
+	<text-input :name="'image_url'" :data="$researcher->image_url"/>
+	<div class="flex">
+		<label class="pt-4">Bio</label>
+		<textarea name="bio" class="m-2 summernote"></textarea>
+	</div>
 	<div class="flex">
     	<label class="p-2">Related Project</label>
 	    <div id='app'>
@@ -27,11 +31,11 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-		// $('.summernote').summernote({
-	 //    	height:200,
-	 //    });
-	 //    $(".note-editor").addClass("m-2 shadow-md");
-  //       $('.summernote').summernote("code", "<?php echo $researcher->description ?>");
+		$('.summernote').summernote({
+	    	height:200,
+	    });
+	    $(".note-editor").addClass("m-2 shadow-md");
+        $('.summernote').summernote("code", "<?php echo $researcher->bio ?>");
 
 		var p_tags = [];
 		@foreach($p_title as $title)
