@@ -112,6 +112,15 @@ Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], functio
         'update' => 'backend:gallery:update',
         'destroy' => 'backend:gallery:destroy'
     ]);
+
+    Route::resource('/blog', 'Backend\BlogController')->names([
+        'index' => 'backend:blogs',
+        'create' => 'backend:blog:create',
+        'store' =>'backend:blog:store',
+        'edit' =>'backend:blog:edit',
+        'update' => 'backend:blog:update',
+        'destroy' => 'backend:blog:destroy'
+    ]);
 });
 
 

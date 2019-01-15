@@ -9,10 +9,10 @@
 		</div>
 	</div> --}}
 	<div class="dropdown">
-	  <button class="dropbtn">Education</button>
+	  <button class="dropbtn">Blog</button>
 	  <div class="dropdown-content">
-	    	<a href="{{ route('backend:educations') }}" class="text-black font-bold no-underline p-4">All</a>
-			<a href="{{ route('backend:education:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
+	    	<a href="{{ route('backend:blogs') }}" class="text-black font-bold no-underline p-4">All</a>
+			<a href="{{ route('backend:blog:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">
