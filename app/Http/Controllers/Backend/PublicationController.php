@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Publication;
 use App\Research;
 use App\Project;
+use App\Keyword;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Sns;
 use Illuminate\Http\Request;
+use App\About;
 use App\Http\Controllers\Controller;
 
-class SnsController extends Controller
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class SnsController extends Controller
     public function index()
     {
         //
-        $data = Sns::all();
-        return view("backend.sns.index", compact('data'));
+        $data = About::all();
+        return view("backend.about.index", compact('data'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SnsController extends Controller
     public function create()
     {
         //
-        return view('backend.sns.create');
+        return view('backend.about.create');
     }
 
     /**
@@ -40,8 +40,8 @@ class SnsController extends Controller
     public function store(Request $request)
     {
         //
-        $sns = Sns::create($request->all());
-        return redirect()->route('backend:snss');
+        $b = About::create($request->all());
+        return redirect()->route('backend:abouts');
     }
 
     /**
@@ -64,8 +64,8 @@ class SnsController extends Controller
     public function edit($id)
     {
         //
-        $sns = Sns::find($id);
-        return view('backend.sns.edit', compact('sns'));
+        $about = About::find($id);
+        return view('backend.about.edit', compact('about'));
     }
 
     /**
@@ -78,9 +78,9 @@ class SnsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $sns = Sns::find($id);
-        $sns->update($request->all());
-        return redirect()->route('backend:snss');
+        $about = About::find($id);
+        $about->update($request->all());
+        return redirect()->route('backend:abouts');
     }
 
     /**

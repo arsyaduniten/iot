@@ -26,6 +26,18 @@
 		    <input type="text" name="tags-field"/>
 		</div>
 	</div>
+	<div class="flex">
+		<label class="self-center">Keyword</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
+		<button class="p-2 bg-white shadow-md rounded" id="add-btn">Add</button>
+	</div>
+    <div class="flex">
+        <label class="p-2">Keyword Lists</label>
+        <div id='app'>
+            <div class='tagHere'></div>
+            <input type="text" name="tags-field"/>
+        </div>
+    </div>
 	<input type="hidden" id="tag_values" name="tags">
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 </form>
@@ -54,6 +66,13 @@
 	    }).click(function(){
 		    $(this).autocomplete("search");
 		});
+
+		$("#add-btn").click(function(e){
+	  		 e.preventDefault();
+			 var el = $("#keyword-input").val()
+			 $("#keyword-input").val("");
+	 		 addTag(el);
+	  	});
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();

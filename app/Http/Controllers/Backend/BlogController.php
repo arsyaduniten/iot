@@ -42,6 +42,17 @@ class BlogController extends Controller
         //
         $b = Blog::create($request->all());
         $b->post_date = $b->created_at;
+        if($request->get('publish') == null){
+            $b->publish = false;
+        } else {
+            $b->publish = true;
+        }
+
+        if($request->get('event') == null){
+            $b->event = false;
+        } else {
+            $b->event = true;
+        }
         $b->save();
         return redirect()->route('backend:blogs');
     }
@@ -80,6 +91,18 @@ class BlogController extends Controller
     {
         //
         $blog->update($request->all());
+         if($request->get('publish') == null){
+            $blog->publish = false;
+        } else {
+            $blog->publish = true;
+        }
+
+        if($request->get('event') == null){
+            $blog->event = false;
+        } else {
+            $blog->event = true;
+        }
+        $blog->save();
         return redirect()->route('backend:blogs');
     }
 

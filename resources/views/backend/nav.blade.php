@@ -9,6 +9,20 @@
 		</div>
 	</div> --}}
 	<div class="dropdown">
+	  <button class="dropbtn">About Me</button>
+	  <div class="dropdown-content">
+	    	<a href="{{ route('backend:abouts') }}" class="text-black font-bold no-underline p-4">All</a>
+			<a href="{{ route('backend:about:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
+	  </div>
+	</div>
+	<div class="dropdown">
+	  <button class="dropbtn">Network</button>
+	  <div class="dropdown-content">
+	    	<a href="{{ route('backend:snss') }}" class="text-black font-bold no-underline p-4">All</a>
+			<a href="{{ route('backend:sns:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
+	  </div>
+	</div>
+	<div class="dropdown">
 	  <button class="dropbtn">Blog</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:blogs') }}" class="text-black font-bold no-underline p-4">All</a>
@@ -62,6 +76,13 @@
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:awards') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:award:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
+	  </div>
+	</div>
+	<div class="dropdown">
+	  <button class="dropbtn">Keywords</button>
+	  <div class="dropdown-content">
+	    	<a href="{{ route('backend:keywords') }}" class="text-black font-bold no-underline p-4">All</a>
+			<a href="{{ route('backend:keyword:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
 	<div class="dropdown">

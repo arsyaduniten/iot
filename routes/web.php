@@ -17,7 +17,8 @@ Route::get('/details', 'DetailsController@index')->name('details');
 Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], function() {
 	Route::get('/', 'Backend\BackendController@index')->name('backend:home');
 	Route::resource('/sns', 'Backend\SnsController')->names([
-        'index' => 'backend:sns',
+        'index' => 'backend:snss',
+        'create' => 'backend:sns:create',
         'store' =>'backend:sns:store',
         'edit' =>'backend:sns:edit',
         'update' => 'backend:sns:update',
@@ -120,6 +121,24 @@ Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], functio
         'edit' =>'backend:blog:edit',
         'update' => 'backend:blog:update',
         'destroy' => 'backend:blog:destroy'
+    ]);
+
+    Route::resource('/keyword', 'Backend\KeywordController')->names([
+        'index' => 'backend:keywords',
+        'create' => 'backend:keyword:create',
+        'store' =>'backend:keyword:store',
+        'edit' =>'backend:keyword:edit',
+        'update' => 'backend:keyword:update',
+        'destroy' => 'backend:keyword:destroy'
+    ]);
+
+    Route::resource('/about', 'Backend\AboutController')->names([
+        'index' => 'backend:abouts',
+        'create' => 'backend:about:create',
+        'store' =>'backend:about:store',
+        'edit' =>'backend:about:edit',
+        'update' => 'backend:about:update',
+        'destroy' => 'backend:about:destroy'
     ]);
 });
 

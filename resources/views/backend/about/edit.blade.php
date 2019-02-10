@@ -6,20 +6,13 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:blog:store') }}">
+<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:about:update') }}">
+	@method('PUT')
 	@csrf
-	<text-input :name="'title'" :data=null/>
+	<text-input :name="'type'" :data="$about->type"/>
 	<div class="flex">
-		<label class="pt-4">Content</label>
-		<textarea name="content" class="m-2 summernote"></textarea>
-	</div>
-	<div class="flex">
-		<label class="pt-4">Publish</label>
-		<input checked="true" class="self-center mt-4 m-2" type="checkbox" name="publish" value="true">
-	</div>
-	<div class="flex">
-		<label class="pt-4">Event</label>
-		<input class="self-center mt-4 m-2" type="checkbox" name="event" value="true">
+		<label class="pt-4">Description</label>
+		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
@@ -32,6 +25,7 @@
 	    	height:200,
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
+	    $('.summernote').summernote("code", "<?php echo $about->description ?>");
 	});
 </script>
 @endsection

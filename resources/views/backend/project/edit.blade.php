@@ -16,8 +16,13 @@
 	</div>
 	<date-input :name="'start_date'" :data="$project->start_date"/>
 	<date-input :name="'end_date'" :data="$project->end_date"/>
+	<div class="flex m-2">
+		<label class="self-center">Keyword</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
+		<button class="p-2 bg-white shadow-md rounded" id="add-btn">Add</button>
+	</div>
     <div class="flex">
-    	<label class="p-2">Related Research Areas</label>
+    	<label class="p-2">Related Research Areas & Keywords</label>
 	    <div id='app'>
 		    <div class='tagHere'></div>
 		    <input type="text" name="tags-field"/>
@@ -61,6 +66,13 @@
 	    	});
 	    	$("#editForm").submit();
 	    });
+
+	    $("#add-btn").click(function(e){
+	  		 e.preventDefault();
+			 var el = $("#keyword-input").val()
+			 $("#keyword-input").val("");
+	 		 addTag(el);
+	  	});
 
 	    @foreach($tags as $tag)
 	    addTag("{{ $tag }}");

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Sns;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Keyword;
 
-class SnsController extends Controller
+class KeywordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,8 @@ class SnsController extends Controller
     public function index()
     {
         //
-        $data = Sns::all();
-        return view("backend.sns.index", compact('data'));
+        $data = Keyword::all();
+        return view('backend.keyword.index', compact('data'));
     }
 
     /**
@@ -28,7 +29,7 @@ class SnsController extends Controller
     public function create()
     {
         //
-        return view('backend.sns.create');
+        return view('backend.keyword.create');
     }
 
     /**
@@ -40,8 +41,11 @@ class SnsController extends Controller
     public function store(Request $request)
     {
         //
-        $sns = Sns::create($request->all());
-        return redirect()->route('backend:snss');
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
+        $k = Keyword::create($request->all());
+        $k->tag($tags);
+        return redirect()->route('backend:keywords');
     }
 
     /**
@@ -64,8 +68,9 @@ class SnsController extends Controller
     public function edit($id)
     {
         //
-        $sns = Sns::find($id);
-        return view('backend.sns.edit', compact('sns'));
+        $keyword = Keyword::find($id);
+        $tags = $keyword->tagNames();
+        return view('backend.keyword.edit', compact('tags', 'keyword'));
     }
 
     /**
@@ -78,9 +83,12 @@ class SnsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $sns = Sns::find($id);
-        $sns->update($request->all());
-        return redirect()->route('backend:snss');
+        $keyword = Keyword::find($id);
+        $keyword->update($request->all());
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
+        $keyword->retag($tags);
+        return redirect()->route('backend:keywords');
     }
 
     /**
