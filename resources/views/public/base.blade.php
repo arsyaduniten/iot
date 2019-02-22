@@ -106,6 +106,22 @@
 	  padding-bottom: 5px;
 	}
 
+	.bg-blue-custom-dark{
+		background: #F6FAFD;
+	}
+
+	.bg-blue-custom-light{
+		background: #FAFBFE;
+	}
+
+	.this-black{
+		color: #47495A;
+	}
+
+	.this-white{
+		color: #FBFBFB;
+	}
+
 /*	.dropdown:hover .dropbtn {background-color: #3e8e41;}
 */	</style>
 	{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

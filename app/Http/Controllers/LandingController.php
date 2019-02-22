@@ -41,4 +41,10 @@ class LandingController extends Controller
     	}
     	return view('public.landing', compact('user', 'data'));
     }
+
+    public function index_v2(Request $request)
+    {
+        $data = null;
+        return view('public.landingv2', compact('data'));
+    }
 }
