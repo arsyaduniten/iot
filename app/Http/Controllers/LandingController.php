@@ -65,4 +65,10 @@ class LandingController extends Controller
         $data = null;
         return view('public.mycorner', compact('data'));
     }
+
+    public function contact(Request $request)
+    {
+        $data = null;
+        return view('public.contact', compact('data'));
+    }
 }

@@ -7,11 +7,11 @@
 			<p class="font-bold text-2xl this-black">Sami Hajjaj</p>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
-				<a class="">About</a>
-				<a class="">Portfolio</a>
-				<a class="">My Research</a>
+				<a class="no-underline" href="/v2">About</a>
+				<a class="no-underline" href="/v2/portfolio">Portfolio</a>
+				<a class="no-underline" href="/v2/research">My Research</a>
 				<a class="border-b-4 border-purple font-bold this-black">My Corner</a>
-				<a>Contact</a>
+				<a class="no-underline" href="/v2/contact">Contact</a>
 		</div>
 	</div>
 	<div class="flex">

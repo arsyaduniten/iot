@@ -49,6 +49,11 @@
 	    display: block;
 	}
 
+	a{
+		text-decoration: none;
+		color:inherit;
+	}
+
 	.dropdown-content a:hover {background-color: #ddd;}
 
 	.dropdown:hover .dropdown-content {display: block;}
