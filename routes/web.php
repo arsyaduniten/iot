@@ -13,6 +13,9 @@
 
 Route::get('/', 'LandingController@index')->name('home')->middleware('auth');
 Route::get('/v2', 'LandingController@index_v2')->name('homev2')->middleware('auth');
+Route::get('/v2/portfolio', 'LandingController@portfolio_v2')->name('portfoliov2')->middleware('auth');
+Route::get('/v2/research', 'LandingController@research_v2')->name('researchv2')->middleware('auth');
+Route::get('/v2/mycorner', 'LandingController@mycorner')->name('mycorner')->middleware('auth');
 Route::get('/details', 'DetailsController@index')->name('details');
 
 Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], function() {

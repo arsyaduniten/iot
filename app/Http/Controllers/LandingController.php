@@ -47,4 +47,22 @@ class LandingController extends Controller
         $data = null;
         return view('public.landingv2', compact('data'));
     }
+
+    public function portfolio_v2(Request $request)
+    {
+        $data = null;
+        return view('public.portfoliov2', compact('data'));
+    }
+
+    public function research_v2(Request $request)
+    {
+        $data = null;
+        return view('public.researchv2', compact('data'));
+    }
+
+    public function mycorner(Request $request)
+    {
+        $data = null;
+        return view('public.mycorner', compact('data'));
+    }
 }
