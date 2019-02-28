@@ -7,15 +7,15 @@
 			<p class="font-bold text-2xl this-black">Sami Hajjaj</p>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
-				<a class="no-underline" href="/v2">About</a>
-				<a class="no-underline" href="/v2/portfolio">Portfolio</a>
-				<a class="no-underline" href="/v2/research">My Research</a>
+				<a class="no-underline nav-link" href="/v2">About</a>
+				<a class="no-underline nav-link" href="/v2/portfolio">Portfolio</a>
+				<a class="no-underline nav-link" href="/v2/research">My Research</a>
 				<a class="border-b-4 border-purple font-bold this-black">My Corner</a>
-				<a class="no-underline" href="/v2/contact">Contact</a>
+				<a class="no-underline nav-link" href="/v2/contact">Contact</a>
 		</div>
 	</div>
 	<div class="flex">
-		<div class="flex flex-col px-8 bg-blue-custom-light py-6 h-full shadow-md">
+		<div class="flex flex-col px-8 bg-blue-custom-light py-6 h-full shadow-md" style="height: 100vh;">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-black text-xl">Find me on:</p>
 				<a class="pt-2 py-1 text-grey-darker">LinkedIn</a>

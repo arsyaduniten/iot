@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="flex">
-		<div class="flex flex-col px-8 bg-blue-custom-light py-6 h-full shadow-md">
+		<div class="flex flex-col px-8 bg-blue-custom-light py-6 h-full shadow-md" style="height: 100vh;">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-black text-xl">Find me on:</p>
 				<a class="pt-2 py-1 text-grey-darker">LinkedIn</a>
