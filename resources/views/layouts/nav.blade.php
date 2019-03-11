@@ -5,10 +5,10 @@
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
 				<a class="border-b-4 border-purple font-bold this-black">About</a>
-				<a>Portfolio</a>
-				<a>My Research</a>
-				<a>My Corner</a>
-				<a>Contact</a>
+				<a class="no-underline" href="/v2/portfolio">Portfolio</a>
+				<a class="no-underline" href="/v2/research">My Research</a>
+				<a class="no-underline" href="/v2/mycorner">My Corner</a>
+				<a class="no-underline" href="/v2/contact">Contact</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -31,7 +31,7 @@
 				<a class="py-1 text-grey-darker">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full">
+		<div class="flex flex-col text-center w-full">
 			<p class="text-5xl font-bold text-purple-darker pt-8">About Me</p>
 			<p class="text-xl text-purple-darker pt-4">(Career Profile)</p>
 			<p class="text-xl text-grey-darker pt-6">A short paragraph summarizes my career and highlight its key achievements<br> and milestones; it acts as a condensed version of a cover letter, to intrigue<br> to the reader/visitor to learn more about me. This should not <br>be more than 3 to 4 lines maximum.</p>
@@ -53,7 +53,7 @@
 					<p class="text-purple-dark pt-4">Indust. Projects</p>
 				</div>
 			</div>
-			<button class="px-6 py-4 bg-purple-darker text-white rounded shadow-lg">My Portfolio</button>
+			<a class="mx-auto px-6 mt-6 py-4 bg-purple-darker text-white rounded shadow-lg" href="/v2/portfolio">My Portfolio</a>
 		</div>
 	</div>
 </div>
