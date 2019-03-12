@@ -4,17 +4,6 @@
 			<p class="font-bold text-2xl">Sami Hajjaj</p>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
-<<<<<<< HEAD
-				<a class="border-b-4 border-purple font-bold this-black">About</a>
-				<a class="no-underline nav-link" href="/v2/portfolio">Portfolio</a>
-				<a class="no-underline nav-link" href="/v2/research">My Research</a>
-				<a class="no-underline nav-link" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline nav-link" href="/v2/contact">Contact</a>
-		</div>
-	</div>
-	<div class="flex">
-		<div class="flex flex-col px-8 bg-blue-custom-light py-6 h-full shadow-md" style="height: 100vh;">
-=======
 				<a class="font-bold border-b-4 border-blue-darker">About</a>
 				<a class="no-underline" href="/v2/portfolio">Academic</a>
 				<a class="no-underline" href="/v2/research">Research</a>
@@ -24,7 +13,6 @@
 	</div>
 	<div class="flex">
 		<div class="flex flex-col px-8 bg-grey-darker py-6 h-screen shadow-md">
->>>>>>> 2bba247bb3cf970b2a6fb581b9db3e569d766d58
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				<a class="pt-2 py-1 this-white">LinkedIn</a>

@@ -37,7 +37,7 @@
 		<div class="flex flex-col text-center w-full bg-grey">
 			<p class="text-5xl font-bold this-white pt-8 mt-16">Sami Salama Hussen Hajjaj</p>
 			<p class="text-xl this-white pt-6">A very short welcoming message. Needs to be editable. Probably a quote or something on my mind</p>
-			<a class="mx-auto px-6 mt-6 py-4 text-white rounded border-4 font-bold border-black" href="/v2/next">Welcome</a>
+			<a class="mx-auto px-6 mt-6 py-4 text-white rounded border-2 font-bold border-black" href="/v2/next">Welcome</a>
 		</div>
 	</div>
 </div>
