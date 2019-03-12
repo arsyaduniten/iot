@@ -7,10 +7,10 @@
 			<p class="font-bold text-2xl this-black">Sami Hajjaj</p>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
-				<a class="no-underline" href="/v2">About</a>
+				<a class="no-underline" href="/v2/next">About</a>
 				<a class="no-underline" href="/v2/portfolio">Portfolio</a>
 				<a class="no-underline" href="/v2/research">My Research</a>
-				<a class="border-b-4 border-purple font-bold this-black">My Corner</a>
+				<a class="border-b-4 border-blue-darker font-bold">My Corner</a>
 				<a class="no-underline" href="/v2/contact">Contact</a>
 		</div>
 	</div>
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="text-center w-full">
-			<p class="text-5xl font-bold text-purple-darker pt-8">Welcome to My Corner</p>
+			<p class="text-5xl font-bold text-purple-darker pt-8">My Corner</p>
 			<p class="text-xl text-grey-darker my-12">This is where I talk about research, activities, technology, family, interests and life in general</p>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">
