@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDescriptionTable extends Migration
+class CreatePagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateDescriptionTable extends Migration
      */
     public function up()
     {
-        Schema::create('description', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string("title");
+            $table->string("nav_title");
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateDescriptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('description');
+        Schema::dropIfExists('pages');
     }
 }
