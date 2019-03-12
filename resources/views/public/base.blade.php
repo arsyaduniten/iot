@@ -17,6 +17,9 @@
 	        -webkit-font-smoothing: antialiased;
 	        text-rendering: optimizeLegibility;
 	    }
+	    html, body {
+		  overflow: hidden;
+		}
 	</style>
 	<style>
 	.dropbtn {

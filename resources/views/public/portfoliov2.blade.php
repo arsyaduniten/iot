@@ -34,34 +34,34 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full">
+		<div class="text-center w-full overflow-y-auto">
 			<p class="text-5xl font-bold text-teal-dark pt-8">Academic Portfolio</p>
 			<p class="text-xl text-teal-dark pt-4">Google Scholar | Scopus | ORCID | UNITEN</p>
 			{{-- <p class="text-xl text-grey-darker pt-6">A short paragraph summarizes my career and highlight its key achievements<br> and milestones; it acts as a condensed version of a cover letter, to intrigue<br> to the reader/visitor to learn more about me. This should not <br>be more than 3 to 4 lines maximum.</p> --}}
 			<div class="flex w-full container mx-auto m-8 justify-between">
-				<button class="bg-custom-dark px-6 py-4 shadow-md">Education <br>Background</button>
-				<button class="bg-custom-dark px-6 py-4 shadow-md">Work Experience</button>
-				<button class="bg-custom-dark px-6 py-4 shadow-md">List of Publications</button>
-				<button class="bg-custom-dark px-6 py-4 shadow-md">Awards and Recognition</button>
-				<button class="bg-custom-dark px-6 py-4 shadow-md">Professional Bodies</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Education <br>Background</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Work Experience</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">List of Publications</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Awards and Recognition</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Professional Bodies</button>
 			</div>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-yellow this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
 				</div>
 				<div class="border border-grey-light mt-4"></div>
 			</div>
