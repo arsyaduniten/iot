@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNavigationTable extends Migration
+class AddPageIdToSns extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateNavigationTable extends Migration
      */
     public function up()
     {
-        Schema::create('navigation', function (Blueprint $table) {
-            $table->increments('id');
+        //
+        Schema::table('user_sns', function($table) {
             $table->integer('page_id')->unsigned();
-            $table->string('display_text');
-            $table->string('link');
-            $table->timestamps();
         });
     }
 
@@ -29,6 +26,9 @@ class CreateNavigationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('navigation');
+        //
+        Schema::table('user_sns', function($table) {
+            $table->dropColumn('page_id');
+        });
     }
 }

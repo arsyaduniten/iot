@@ -17,11 +17,6 @@ class PageController extends Controller
         //
     }
 
-    public function entry()
-    {
-        return view('backend.entry');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

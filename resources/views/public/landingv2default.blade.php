@@ -7,7 +7,7 @@
 			{{-- <p class="font-bold text-2xl">Sami Hajjaj</p> --}}
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
-				<a class="no-underline this-white">About</a>
+				<a class="no-underline" href="/v2/next">About</a>
 				<a class="no-underline" href="/v2/portfolio">Academic</a>
 				<a class="no-underline" href="/v2/research">Research</a>
 				<a class="no-underline" href="/v2/mycorner">My Corner</a>

@@ -18,4 +18,14 @@ class Page extends Model
     {
         return $this->hasMany('App\Statistic');
     }
+
+    public function navigations()
+    {
+        return $this->hasMany('App\Navigation');
+    }
+
+    public function snss()
+    {
+        return $this->hasMany('App\Sns');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNavigationTable extends Migration
+class ChangeDescDataType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateNavigationTable extends Migration
      */
     public function up()
     {
-        Schema::create('navigation', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        //
+        Schema::table('descriptions', function ($table) {
+            $table->longText("content")->change();
         });
     }
 
@@ -26,6 +26,9 @@ class CreateNavigationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('navigation');
+        //
+        Schema::table('descriptions', function ($table) {
+            $table->string("content");
+        });
     }
 }

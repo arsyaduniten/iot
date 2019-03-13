@@ -20,8 +20,10 @@ Route::get('/v2/mycorner', 'LandingController@mycorner')->name('mycorner')->midd
 Route::get('/v2/contact', 'LandingController@contact')->name('contact')->middleware('auth');
 Route::get('/details', 'DetailsController@index')->name('details');
 
-Route::group(['prefix'=>'v2/backend', 'middleware' => ['auth','is_admin']], function(){
-    Route::get('/', 'Backend\PageController@entry')->name('entry');
+Route::group(['prefix'=>'/v2/backend', 'middleware' => ['auth','is_admin']], function(){
+    Route::get('/', 'Backend\BackendController@entry')->name('entry');
+    Route::get('/layout', 'Backend\BackendController@layout')->name('layout');
+    Route::get('/getpage/{id}', 'Backend\BackendController@getpage')->name('getpage');
 });
 
 Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], function() {
