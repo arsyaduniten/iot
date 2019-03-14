@@ -35,12 +35,8 @@
 			</div>
 		</div>
 		<div class="text-center w-full overflow-y-auto">
-			<p class="text-5xl font-bold text-teal-dark pt-8">Let's Talk</p>
-			<p class="text-xl text-teal-dark pt-6">Would you like to collaborate?
-				<br>Perhaps fund a project?
-				<br>Do you want to discuss research ideas? 
-				<br>Do you want to talk about anything else? 
-				<br>Let me hear from you</p>
+			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
+			<p class="text-xl text-teal-dark pt-6"><?php echo strip_tags($data->description->content, '<br>'); ?></p>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4 m-8">
 				<div class="flex">
 					<div class="flex flex-col text-left mx-8">

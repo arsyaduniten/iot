@@ -18,11 +18,11 @@
 @endsection
 @section('content')
 @include('backend.v2nav')
-<form class="container mx-auto text-center" method="post" action="{{ route('update:page', ['id' => $p->id])}}">
+<form class="container mx-auto text-center" id="createForm" method="post" action="{{ route('update:page', ['id' => $p->id])}}">
 @csrf
 @method('PUT') 
 <div class="flex justify-left">
-	<button class="p-4 m-4 bg-green-light rounded" type="submit">Save</button>
+	<button class="p-4 m-4 bg-green-light rounded" type="submit" id="submit-btn">Save</button>
 	<button class="p-4 m-4 bg-yellow-light rounded" type="reset">Reset</button>
 </div>
 <div class="flex flex-col">
@@ -34,7 +34,7 @@
 			@foreach($snss as $sns)
 				<div class="flex flex-col">
 					<input class="text-teal-dark text-center" value="{{ $sns->display_name }}" name="sns-{{ $sns->id }}">
-					<input class="text-grey text-center m-2" value="{{ $sns->url }}" name="sns_url_{{ $sns->id }}">
+					<input class="text-grey-darker text-center m-2" value="{{ $sns->url }}" name="sns_url_{{ $sns->id }}">
 				</div>
 				<span class="border border-teal-dark"></span>
 			@endforeach
@@ -45,6 +45,22 @@
 		<div class="mt-12">
 			<textarea name="description" class="text-xl text-grey-darker pt-6 summernote"></textarea>
 		</div>
+	@endif
+
+	@if($p->has_keywords)
+	<div class="flex m-2">
+		<label class="self-center">Keyword</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
+		<button class="p-2 bg-white shadow-md rounded" id="add-btn">Add</button>
+	</div>
+    <div class="flex">
+        <label class="p-2">Keyword Lists</label>
+        <div id='app'>
+            <div class='tagHere'></div>
+            <input type="text" name="tags-field"/>
+        </div>
+    </div>
+	<input type="hidden" id="tag_values" name="tags">
 	@endif
 
 	@if(!is_null($stats))
@@ -68,8 +84,58 @@
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
 	    @if(!is_null($desc))
-	    $('.summernote').summernote("code", "<?php echo $desc->content ?>");
+	    $('.summernote').summernote("code", `<?php echo $desc->content ?>`);
 	    @endif
+
+	    $( "input[name=tags-field]" ).autocomplete({
+	      minLength: 0,
+	      select: function (e, ui) {
+		        var el = ui.item.label;
+		        e.preventDefault();
+		        addTag(el);
+		  },
+	    }).click(function(){
+		    $(this).autocomplete("search");
+		});
+
+	    $("#submit-btn").click(function(e){
+	    	e.preventDefault();
+	    	$(".selected_items").each(function(){
+	    		// $("#tag_values").append($(this).text()+",");
+	    		var tag_text = $(this).text()+",";
+			    $('#tag_values').val($('#tag_values').val() + tag_text);
+	    	});
+	    	$("#createForm").submit();
+	    });
+
+	    $("#add-btn").click(function(e){
+	  		 e.preventDefault();
+			 var el = $("#keyword-input").val()
+			 $("#keyword-input").val("");
+	 		 addTag(el);
+	  	});
+
+	  	@foreach($tags as $tag)
+		addTag("{{ $tag }}");
+		@endforeach  
+
+
+	    function addTag(element) {
+		    $appendHere = $(".tagHere");
+		    var $tag = $("<div />"), $a = $("<a href='#' />"), $span = $("<span />");
+		    $tag.addClass('tag rounded-full');
+		    $('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
+		    $span.addClass('selected_items');
+		    $span.text(element);
+		    $a.bind('click', function(){
+		      $(this).parent().remove();
+		      $(this).unbind('click');
+		    });
+		    $a.appendTo($tag);
+		    $span.appendTo($tag);
+		    $tag.appendTo($appendHere);
+		    $("#app input").val('');
+		}
 	});
 </script>
 @endsection

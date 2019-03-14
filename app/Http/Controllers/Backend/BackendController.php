@@ -35,13 +35,17 @@ class BackendController extends Controller
         $desc = $p->description;
         $stats = $p->statistics;
         $snss = $p->snss;
-        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'snss'));
+        $tags = $p->tagNames();
+        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'snss', 'tags'));
     }
 
     public function update($id, Request $request)
     {
         $p = Page::find($id);
         $p->update($request->all());
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
+        $p->retag($tags);
         if($p->description()->exists()){
             $p->description()->update(["content"=>$request->get('description')]);
         }
