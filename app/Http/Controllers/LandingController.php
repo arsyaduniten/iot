@@ -8,6 +8,7 @@ use App\Work;
 use App\Research;
 use App\Project;
 use App\Award;
+use App\Page;
 
 class LandingController extends Controller
 {
@@ -44,37 +45,38 @@ class LandingController extends Controller
 
     public function index_v2_default(Request $request)
     {
-        $data = null;
-        return view('public.landingv2default', compact('data'));
+        $data = Page::find(2);
+        $pages = Page::all();
+        return view('public.landingv2default', compact('data', 'pages'));
     }
 
     public function index_v2(Request $request)
     {
-        $data = null;
+        $data = Page::find(1);
         return view('public.landingv2', compact('data'));
     }
 
     public function portfolio_v2(Request $request)
     {
-        $data = null;
+        $data = Page::find(3);
         return view('public.portfoliov2', compact('data'));
     }
 
     public function research_v2(Request $request)
     {
-        $data = null;
+        $data = Page::find(4);
         return view('public.researchv2', compact('data'));
     }
 
     public function mycorner(Request $request)
     {
-        $data = null;
+        $data = Page::find(5);
         return view('public.mycorner', compact('data'));
     }
 
     public function contact(Request $request)
     {
-        $data = null;
+        $data = Page::find(6);
         return view('public.contact', compact('data'));
     }
 }

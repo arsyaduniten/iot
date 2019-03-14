@@ -32,26 +32,23 @@
 			</div>
 		</div>
 		<div class="flex flex-col text-center w-full">
-			<p class="text-5xl font-bold text-teal-dark pt-8">Professional Profile</p>
-			<p class="text-xl text-teal-dark pt-4">LinkedIn | IMeche | IEEE | BEM | IEM</p>
-			<p class="text-xl text-grey-darker pt-6">A short paragraph summarizes my career and highlight its key achievements<br> and milestones; it acts as a condensed version of a cover letter, to intrigue<br> to the reader/visitor to learn more about me. This should not <br>be more than 3 to 4 lines maximum.</p>
+			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
+			@if(!is_null($data->snss))
+			<div class="flex justify-center">
+			@foreach($data->snss as $sns)
+				<a class="text-xl text-teal-dark pt-4 p-4" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+				<span class="border border-teal-dark my-4"></span>
+			@endforeach
+			</div>
+			@endif
+			<p class="text-xl text-grey-darker pt-6"><?php echo $data->description->content ?></p>
 			<div class="flex w-full container mx-auto justify-around m-8">
+				@foreach($data->statistics as $stat)
 				<div class="flex flex-col bg-blue-custom-dark shadow p-6 m-4 rounded">
-					<p class="text-2xl font-bold text-orange-dark">12</p>
-					<p class="text-orange-dark pt-4">Years of Experience</p>
+					<p class="text-2xl font-bold text-orange-dark">{{ $stat->content }}</p>
+					<p class="text-orange-dark pt-4">{{ $stat->description }}</p>
 				</div>
-				<div class="flex flex-col bg-blue-custom-dark shadow p-6 m-4 rounded">
-					<p class="text-2xl font-bold text-orange-dark">30</p>
-					<p class="text-orange-dark pt-4">Publications</p>
-				</div>
-				<div class="flex flex-col bg-blue-custom-dark shadow p-6 m-4 rounded">
-					<p class="text-2xl font-bold text-orange-dark">10,000</p>
-					<p class="text-orange-dark pt-4">In Funding</p>
-				</div>
-				<div class="flex flex-col bg-blue-custom-dark shadow p-6 m-4 rounded">
-					<p class="text-2xl font-bold text-orange-dark">5</p>
-					<p class="text-orange-dark pt-4">Indust. Projects</p>
-				</div>
+				@endforeach
 			</div>
 			<a class="mx-auto px-6 mt-6 py-4 bg-grey-darker text-white border-2 border-black" href="/v2/portfolio">Academic Portfolio</a>
 		</div>

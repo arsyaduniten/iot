@@ -35,8 +35,8 @@
 			</div>
 		</div>
 		<div class="text-center w-full overflow-y-auto">
-			<p class="text-5xl font-bold text-teal-dark pt-8">Research & Development</p>
-			<p class="text-xl text-teal-dark pt-6">I'm currently involved in the following projects, click on a box to see the projects</p>
+			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
+			<p class="text-xl text-teal-dark pt-6"><?php echo $data->description->content ?></p>
 			<div class="flex w-full container mx-auto m-8 justify-between">
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey">Research<br>Areas</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey">Active Projects</button>

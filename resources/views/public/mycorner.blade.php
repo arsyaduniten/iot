@@ -35,8 +35,8 @@
 			</div>
 		</div>
 		<div class="text-center w-full overflow-y-auto">
-			<p class="text-5xl font-bold text-teal-dark pt-8">My Corner</p>
-			<p class="text-xl text-teal-dark my-12">This is where I talk about research, activities, technology, family, interests and life in general</p>
+			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
+			<p class="text-xl text-teal-dark my-12"><?php echo $data->description->content ?></p>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">
 					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>

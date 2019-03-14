@@ -24,6 +24,7 @@ Route::group(['prefix'=>'/v2/backend', 'middleware' => ['auth','is_admin']], fun
     Route::get('/', 'Backend\BackendController@entry')->name('entry');
     Route::get('/layout', 'Backend\BackendController@layout')->name('layout');
     Route::get('/getpage/{id}', 'Backend\BackendController@getpage')->name('getpage');
+    Route::put('/update/{id}', 'Backend\BackendController@update')->name('update:page');
 });
 
 Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], function() {

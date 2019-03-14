@@ -35,8 +35,15 @@
 			</div>
 		</div>
 		<div class="text-center w-full overflow-y-auto">
-			<p class="text-5xl font-bold text-teal-dark pt-8">Academic Portfolio</p>
-			<p class="text-xl text-teal-dark pt-4">Google Scholar | Scopus | ORCID | UNITEN</p>
+			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
+			@if(!is_null($data->snss))
+			<div class="flex justify-center">
+			@foreach($data->snss as $sns)
+				<a class="text-xl text-teal-dark pt-4 p-4" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+				<span class="border border-teal-dark my-4"></span>
+			@endforeach
+			</div>
+			@endif
 			{{-- <p class="text-xl text-grey-darker pt-6">A short paragraph summarizes my career and highlight its key achievements<br> and milestones; it acts as a condensed version of a cover letter, to intrigue<br> to the reader/visitor to learn more about me. This should not <br>be more than 3 to 4 lines maximum.</p> --}}
 			<div class="flex w-full container mx-auto m-8 justify-between">
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Education <br>Background</button>
