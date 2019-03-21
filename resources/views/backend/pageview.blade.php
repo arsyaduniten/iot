@@ -12,6 +12,10 @@
 	button:focus {
 	    outline: none;
 	}
+
+	html, body {
+	  overflow: scroll !important;
+	}
 </style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
@@ -49,24 +53,42 @@
 	@if(!is_null($sub_navs))
 		<div class="flex w-full container mx-auto m-8 justify-center">
 			@foreach($sub_navs as $sub_nav)
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="{{ $sub_nav->content_id }}">{{ $sub_nav->display_text }}</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav-btn" content-id="{{ $sub_nav->content_id }}">{{ $sub_nav->display_text }}</button>
 			@endforeach
 		</div>
+	@endif
 	@if($p->has_keywords)
 	<div class="flex m-2">
 		<label class="self-center">Keyword</label>
-		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
-		<button class="p-2 bg-white shadow-md rounded" id="add-btn">Add</button>
+		<input class="self-center m-2 p-2 bg-white rounded border border-grey" type="text" id="keyword-input"/>
+		<button class="p-2 bg-white rounded border border-grey" id="add-btn">Add</button>
 	</div>
     <div class="flex">
         <label class="p-2">Keyword Lists</label>
-        <div id='app'>
+        <div id='app' class="border border-grey">
             <div class='tagHere'></div>
             <input type="text" name="tags-field"/>
         </div>
     </div>
 	<input type="hidden" id="tag_values" name="tags">
+	<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4 my-4">
+		<div class="flex flex-wrap">
+			@foreach($tags as $tag)
+			<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</button>
+			@endforeach
+		</div>
+		<div class="border border-grey-light mt-4"></div>
+		<div class="m-6">
+			@foreach($sub_navs as $sub_nav)
+			<div class="flex">
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/{{ $sub_nav->content_id }}" id="create-btn-{{ $sub_nav->content_id }}">View All {{ ucfirst($sub_nav->content_id) }}</a>
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/{{ $sub_nav->content_id }}/create" id="add-btn-{{ $sub_nav->content_id }}">Create New {{ ucfirst($sub_nav->content_id) }}</a>
+			</div>
+			@endforeach
+		</div>
+	</div>
 	@endif
+
 
 	@if(!is_null($stats))
 		<div class="flex justify-center mt-6">
@@ -83,6 +105,22 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		$(".sub-nav-btn").click(function(e){
+			e.preventDefault();
+			$(".sub-nav-btn").each(function(){
+				$(this).removeClass('bg-green text-white');
+				$(this).addClass('bg-grey-lighter text-teal-dark');
+			});
+			$(this).removeClass('bg-grey-lighter text-teal-dark');
+			$(this).addClass('bg-green text-white');
+			$(".action-btns").each(function(){
+				$(this).addClass('hidden');
+			});
+			$("#create-btn-"+$(this).attr('content-id')).removeClass('hidden');
+			$("#add-btn-"+$(this).attr('content-id')).removeClass('hidden');
+		});
+
 		$('.summernote').summernote({
 	    	height:200,
 	    	width: 800,

@@ -6,6 +6,10 @@
 @endsection
 @section('content')
 @include('backend.nav')
+<div class="flex container mx-auto">
+    <a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/4">Back to Layout</a>
+    <a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/collaborator">View All</a>
+</div>
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:collaborator:store') }}">
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>

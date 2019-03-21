@@ -68,7 +68,7 @@
 	  height: auto;
 	  background: #fff;
 	  border-radius: 4px;
-	  box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);
+	  /*box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);*/
 	  outline: none;
 	  font-size: 1em;
 	}

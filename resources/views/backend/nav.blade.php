@@ -1,4 +1,4 @@
-<div class="container mx-auto flex m-2">
+<!-- <div class="container mx-auto flex m-2">
 	<a href="{{ route('backend:home') }}" class="text-black font-bold no-underline p-4">Home</a>
 	<a href="{{ route('backend:users') }}" class="text-black font-bold no-underline p-4">Profile</a>
 	{{-- <div>
@@ -92,4 +92,4 @@
 			<a href="{{ route('backend:gallery:create') }}" class="text-black font-bold no-underline p-4">Add New</a>
 	  </div>
 	</div>
-</div>
+</div> -->
