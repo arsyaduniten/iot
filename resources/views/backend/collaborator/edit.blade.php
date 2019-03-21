@@ -9,6 +9,7 @@
 <form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:collaborator:update', ['collaborator' => $collaborator]) }}">
 	@csrf
 	@method('PUT')
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'name'" :data="$collaborator->name"/>
 	<text-input :name="'logo_url'" :data="$collaborator->logo_url"/>
 	<text-input :name="'company_url'" :data="$collaborator->company_url"/>

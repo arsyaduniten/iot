@@ -8,6 +8,7 @@
 @include('backend.nav')
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:award:store') }}" enctype="multipart/form-data">
 	@csrf
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'title'" :data=null/>
 	<text-input :name="'awarded_by'" :data=null/>
 	<text-input :name="'file_url'" :data=null/>

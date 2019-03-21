@@ -13,6 +13,7 @@
 		<label class="self-center">First Name</label>
 		<input class="m-2 p-2 bg-white shadow-md rounded" type="text" name="first_name" value="{{ $user->first_name }}">
 	</div> --}}
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'institution'" :data="$edu->institution"/>
 	<text-input :name="'degree'" :data="$edu->degree"/>
 	<div class="flex">

@@ -8,6 +8,7 @@
 @include('backend.nav')
 <form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:sns:store') }}">
 	@csrf
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'display_name'" :data=null/>
 	<text-input :name="'url'" :data=null />
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>

@@ -12,6 +12,7 @@
 		<label class="self-center">User</label>
 		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="user_id" value="{{ $user->id }}">
 	</div> --}}
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'title'" :data=null/>
 	<div class="flex">
 		<label class="pt-4">Description</label>

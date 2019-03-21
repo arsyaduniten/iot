@@ -9,6 +9,7 @@
 <form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:sns:update', ['sns' => $sns]) }}">
 	@method('PUT')
 	@csrf
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'display_name'" :data="$sns->display_name"/>
 	<text-input :name="'url'" :data="$sns->url" />
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>

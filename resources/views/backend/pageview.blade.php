@@ -47,6 +47,14 @@
 		</div>
 	@endif
 
+	@if(!is_null($sub_navs))
+		<div class="flex w-full container mx-auto m-8 justify-center">
+			@foreach($sub_navs as $sub_nav)
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="{{ $sub_nav->content_id }}">{{ $sub_nav->display_text }}</button>
+			@endforeach
+		</div>
+	@endif
+
 	@if(!is_null($stats))
 		<div class="flex justify-center mt-6">
 		@foreach($stats as $stat)

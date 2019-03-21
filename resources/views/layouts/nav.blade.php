@@ -1,7 +1,7 @@
 <div class="flex flex-col w-full">
 	<div class="flex w-full bg-grey-dark shadow-md this-white">
 		<div class="flex mx-8 py-6">
-			<p class="font-bold text-2xl">Sami Hajjaj</p>
+			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
 				<a class="font-bold border-b-4 border-blue-darker">About</a>

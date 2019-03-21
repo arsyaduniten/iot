@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Blog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Project;
 
 class BlogController extends Controller
 {
@@ -28,7 +29,13 @@ class BlogController extends Controller
     public function create()
     {
         //
-        return view('backend.blog.create');
+        $p_title = [];
+        $projects = Project::all();
+        foreach ($projects as $p) {
+            # code...
+            $p_title[] = $p->title;
+        }
+        return view('backend.blog.create', compact('projects','p_title'));
     }
 
     /**
@@ -40,7 +47,10 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
         $b = Blog::create($request->all());
+        $b->tag($tags);
         $b->post_date = $b->created_at;
         if($request->get('publish') == null){
             $b->publish = false;
@@ -77,7 +87,20 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         //
-        return view('backend.blog.edit', compact('blog'));
+        $p_title = [];
+        $projects = Project::all();
+        foreach ($projects as $p) {
+            # code...
+            $p_title[] = $p->title;
+        }
+        $p_tags = [];
+        $tags = $blog->tagNames();
+        foreach ($tags as $tag) {
+            if ($this->in_arrayi($tag, $p_title)){
+                $p_tags[] = $tag;
+            }
+        }
+        return view('backend.blog.edit', compact('blog', 'p_title', 'p_tags', 'projects'));
     }
 
     /**
@@ -103,6 +126,9 @@ class BlogController extends Controller
             $blog->event = true;
         }
         $blog->save();
+        $tags = explode(",",$request->get('tags'));
+        array_pop($tags);
+        $blog->retag($tags);
         return redirect()->route('backend:blogs');
     }
 
@@ -115,5 +141,10 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         //
+    }
+
+    public function in_arrayi($needle, $haystack)
+    {
+        return in_array(strtolower($needle), array_map('strtolower', $haystack));
     }
 }

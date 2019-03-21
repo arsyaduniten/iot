@@ -35,7 +35,8 @@ class BackendController extends Controller
         $desc = $p->description;
         $stats = $p->statistics;
         $snss = $p->snss;
-        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'snss'));
+        $sub_navs = $p->sub_navigations;
+        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'snss', 'sub_navs'));
     }
 
     public function update($id, Request $request)

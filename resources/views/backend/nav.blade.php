@@ -23,7 +23,7 @@
 	  </div>
 	</div>
 	<div class="dropdown">
-	  <button class="dropbtn">Blog</button>
+	  <button class="dropbtn">My Corner</button>
 	  <div class="dropdown-content">
 	    	<a href="{{ route('backend:blogs') }}" class="text-black font-bold no-underline p-4">All</a>
 			<a href="{{ route('backend:blog:create') }}" class="text-black font-bold no-underline p-4">Add New</a>

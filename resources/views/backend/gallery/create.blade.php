@@ -8,6 +8,7 @@
 @include('backend.nav')
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:gallery:store') }}" enctype="multipart/form-data">
 	@csrf
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<div class="flex m-2">
 		<label class="p-2">Image</label></label>
 	    <input type='file' name="image" />

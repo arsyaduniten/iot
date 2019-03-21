@@ -9,6 +9,7 @@
 @include('backend.nav')
 <form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:award:update', ['award' => $award]) }}" enctype="multipart/form-data">
 	@csrf
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	@method('PUT')
 	<text-input :name="'title'" :data="$award->title"/>
 	<text-input :name="'awarded_by'" :data="$award->awarded_by"/>

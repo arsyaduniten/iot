@@ -4,7 +4,7 @@
 <div class="flex flex-col w-full">
 	<div class="flex w-full bg-grey-dark shadow-md this-white">
 		<div class="flex mx-8 py-6">
-			<p class="font-bold text-2xl">Sami Hajjaj</p>
+			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
 				<a class="no-underline" href="/v2/next">About</a>
@@ -37,7 +37,7 @@
 		<div class="text-center w-full overflow-y-auto">
 			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
 			<p class="text-xl text-teal-dark pt-6"><?php echo $data->description->content ?></p>
-			<div class="flex w-full container mx-auto m-8 justify-between">
+			<div class="flex w-full container mx-auto m-8 justify-center">
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey">Research<br>Areas</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey">Active Projects</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey">Industrial<br>Collaboration</button>

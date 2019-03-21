@@ -60,6 +60,7 @@
 	.dropdown-content a:hover {background-color: #ddd;}
 
 	.dropdown:hover .dropdown-content {display: block;}
+	button:focus {outline:0;}
 
 	#app {
 	  padding: 20px;

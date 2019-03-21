@@ -4,7 +4,7 @@
 <div class="flex flex-col w-full">
 	<div class="flex w-full bg-grey-dark shadow-md this-white">
 		<div class="flex mx-8 py-6">
-			<p class="font-bold text-2xl">Sami Hajjaj</p>
+			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
 				<a class="no-underline" href="/v2/next">About</a>
@@ -45,12 +45,13 @@
 			</div>
 			@endif
 			{{-- <p class="text-xl text-grey-darker pt-6">A short paragraph summarizes my career and highlight its key achievements<br> and milestones; it acts as a condensed version of a cover letter, to intrigue<br> to the reader/visitor to learn more about me. This should not <br>be more than 3 to 4 lines maximum.</p> --}}
-			<div class="flex w-full container mx-auto m-8 justify-between">
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Education <br>Background</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Work Experience</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">List of Publications</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Awards and Recognition</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark">Professional Bodies</button>
+			<div class="flex w-full container mx-auto m-8 justify-center">
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="education">Education <br>Background</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="bodies">Professional Bodies</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="experience">Work Experience</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="fundings">Fundings</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="publications">List of Publications</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="awards">Awards and Recognition</button>
 			</div>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">

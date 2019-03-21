@@ -9,6 +9,7 @@
 <form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:researcher:update', ['researcher' => $researcher]) }}">
 	@csrf
 	@method('PUT')
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'fullname'" :data="$researcher->fullname"/>
 	<text-input :name="'profile_url'" :data="$researcher->profile_url"/>
 	<text-input :name="'image_url'" :data="$researcher->image_url"/>
