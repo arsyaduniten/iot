@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Conner\Tagging\Taggable;
 
 class Page extends Model
 {
     //
-    protected $fillable = ['title', 'nav_title'];
+    use Taggable;
+    protected $fillable = ['title', 'nav_title', 'has_keywords'];
 
     public function description()
     {

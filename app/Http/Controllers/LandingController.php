@@ -59,19 +59,22 @@ class LandingController extends Controller
     public function portfolio_v2(Request $request)
     {
         $data = Page::find(3);
-        return view('public.portfoliov2', compact('data'));
+        $tags = $data->tagNames();
+        return view('public.portfoliov2', compact('data', 'tags'));
     }
 
     public function research_v2(Request $request)
     {
         $data = Page::find(4);
-        return view('public.researchv2', compact('data'));
+        $tags = $data->tagNames();
+        return view('public.researchv2', compact('data', 'tags'));
     }
 
     public function mycorner(Request $request)
     {
         $data = Page::find(5);
-        return view('public.mycorner', compact('data'));
+        $tags = $data->tagNames();
+        return view('public.mycorner', compact('data', 'tags'));
     }
 
     public function contact(Request $request)

@@ -46,21 +46,9 @@
 			</div>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
-					<button class="rounded-full bg-inherit border border-grey this-black px-4 py-2 mx-4 my-2 text-sm">#keyword1</button>
+					@foreach($tags as $tag)
+					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</button>
+					@endforeach
 				</div>
 				<div class="border border-grey-light mt-4"></div>
 			</div>
