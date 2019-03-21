@@ -63,6 +63,8 @@
 	button:focus {outline:0;}
 
 	#app {
+	  border: 2px solid;
+	  border-color: grey;
 	  padding: 20px;
 	  width: 600px;
 	  height: auto;
