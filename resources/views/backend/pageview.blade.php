@@ -81,6 +81,8 @@
 		<div class="m-6">
 			@foreach($sub_navs as $sub_nav)
 			<div class="flex">
+				@if($sub_nav->content_id == 'bodies' or $sub_nav->content_id == 'education' or $sub_nav->content_id == 'experience')
+				@else
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/<?php echo $sub_nav->content_id == 'education' ? 'about' : $sub_nav->content_id == 'bodies' ? 'about' : $sub_nav->content_id == 'experience' ? 'about' :  $sub_nav->content_id ?>" id="create-btn-{{ $sub_nav->content_id }}">View All <?php echo $sub_nav->content_id == 'education' ? 'Description' : $sub_nav->content_id == 'bodies' ? 'Description' : $sub_nav->content_id == 'experience' ? 'Description' :  ucfirst($sub_nav->content_id) ?></a>
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/<?php echo $sub_nav->content_id == 'education' ? 'about' : $sub_nav->content_id == 'bodies' ? 'about' : $sub_nav->content_id == 'experience' ? 'about' :  $sub_nav->content_id ?>/create" id="add-btn-{{ $sub_nav->content_id }}">Create New <?php echo $sub_nav->content_id == 'education' ? 'Description' : $sub_nav->content_id == 'bodies' ? 'Description' : $sub_nav->content_id == 'experience' ? 'Description' :  ucfirst($sub_nav->content_id)?></a>
 			</div>

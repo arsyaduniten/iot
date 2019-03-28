@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 @include('backend.nav')
-<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:about:update') }}">
+<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:about:update', ['about' => $about]) }}">
 	@method('PUT')
 	@csrf
 	<text-input :name="'type'" :data="$about->type"/>
