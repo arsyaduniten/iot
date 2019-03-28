@@ -4,6 +4,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
+<style type="text/css">
+	html, body {
+	  overflow: scroll !important;
+	}
+</style>
 @endsection
 @section('content')
 @include('backend.nav')
