@@ -61,7 +61,7 @@
 				</div>
 				<div class="border border-grey-light mt-4"></div>
 				@foreach($about as $desc)
-				<div class="hidden desc-content text-left" id="{{ $desc->type }}"><?php echo strip_tags($desc->description) ?></div>
+				<div class="hidden desc-content text-left p-6" id="{{ $desc->type }}"><?php echo $desc->description ?></div>
 				@endforeach
 			</div>
 		</div>

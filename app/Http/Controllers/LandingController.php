@@ -10,6 +10,11 @@ use App\Project;
 use App\Award;
 use App\Page;
 use App\About;
+use App\Funding;
+use App\Publication;
+use App\Collaborator;
+use App\Researcher;
+
 
 class LandingController extends Controller
 {
@@ -65,14 +70,34 @@ class LandingController extends Controller
         $bodies = About::where('type', 'bodies')->first();
         $experience = About::where('type', 'experience')->first();
         $about = [$education, $bodies, $experience];
-        return view('public.portfoliov2', compact('data', 'tags', 'education', 'bodies', 'experience', 'about'));
+        $fundings = Funding::all();
+        $publications = Publication::all();
+        $awards = Award::all();
+        return view('public.portfoliov2', compact('data', 'tags', 'education', 'bodies', 'experience', 'about', 'fundings', 'publications', 'awards'));
     }
 
     public function research_v2(Request $request)
     {
         $data = Page::find(4);
         $tags = $data->tagNames();
-        return view('public.researchv2', compact('data', 'tags'));
+        $projects = Project::all()->toArray();
+        $projects_2 = [];
+        $researches = Research::all();
+        $colleagues = Researcher::all();
+        foreach ($colleagues as $colleague) {
+            $tags = $colleague->tagNames();
+            foreach ($projects as $key => $project) {
+                foreach ($tags as $tag) {
+                    if(strtolower($project['title']) == strtolower($tag)){
+                        $projects[$key]['researchers'][] = $colleague;
+                    }
+                }
+                // array_push($projects_2, $project);
+            }
+            
+        }
+        $collaborators = Collaborator::all();
+        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators'));
     }
 
     public function mycorner(Request $request)
