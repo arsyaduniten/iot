@@ -101,7 +101,7 @@
 				@endif
 				@if(!is_null($researches))
 				<div class="hidden content mx-auto" id="researches">
-					<div class="flex hidden mt-6">
+					<div class="flex mt-6">
 						<div class="flex flex-col flex-wrap">
 							<div class="bg-grey p-5 text-center">
 								<p class="this-black font-bold">AREAS</p>
@@ -147,14 +147,16 @@
 				@endif
 				@if(!is_null($collaborators))
 				<div class="hidden content mx-auto" id="collaborators">
-					<div class="flex hidden mt-6">
-						<div class="flex flex-col flex-wrap">
+					<div class="flex mt-6">
+						<div class="flex flex-col flex-wrap bg-grey-lightest">
 							<div class="bg-grey p-5 text-center">
 								<p class="this-black font-bold">LOGO</p>
 							</div>
-							@foreach($collaborators as collaborator)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ collaborator->research_area }}</p>
+							@foreach($collaborators as $collaborator)
+							<div class="text-left bg-grey-lightest p-4">
+								@if($collaborator->logo_url != NULL)
+								<img width="50" height="50" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') }}">
+								@endif
 							</div>
 							@endforeach
 						</div>
@@ -162,9 +164,9 @@
 							<div class="bg-grey p-5 text-center">
 								<p class="this-black font-bold">NAME</p>
 							</div>
-							@foreach($collaborators as collaborator)
+							@foreach($collaborators as $collaborator)
 							<div class="flex mx-auto bg-grey-lightest p-5">
-								<div class="this black"><?php echo collaborator->description ?></div>
+								<div class="this black"><?php echo $collaborator->name ?></div>
 							</div>
 							@endforeach
 						</div>
@@ -172,9 +174,9 @@
 							<div class="bg-grey p-5 text-center">
 								<p class="this-black font-bold">DESCRIPTION</p>
 							</div>
-							@foreach($collaborators as collaborator)
+							@foreach($collaborators as $collaborator)
 							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ collaborator->start_date }}</p>
+								<p class="this-black"><?php echo $collaborator->description ?></p>
 							</div>
 							@endforeach
 						</div>

@@ -61,8 +61,126 @@
 				</div>
 				<div class="border border-grey-light mt-4"></div>
 				@foreach($about as $desc)
-				<div class="hidden desc-content text-left p-6" id="{{ $desc->type }}"><?php echo $desc->description ?></div>
+				<div class="hidden content p-6" id="{{ $desc->type }}"><?php echo $desc->description ?></div>
 				@endforeach
+				@if(!is_null($fundings))
+				<div class="hidden content mx-auto" id="fundings">
+					<div class="flex mt-6">
+						<div class="flex flex-col flex-wrap bg-grey-lightest">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">AMOUNT</p>
+							</div>
+							@foreach($fundings as $funding)
+							<div class="text-left bg-grey-lightest p-5">
+								<p class="this-black">MYR<?php echo number_format($funding->amount) ?></p>
+							</div>
+							@endforeach
+						</div>
+						<div class="flex flex-col flex-wrap bg-grey-lightest">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">GRANTED YEAR</p>
+							</div>
+							@foreach($fundings as $funding)
+							<div class="flex mx-auto bg-grey-lightest p-5">
+								<div class="this black">{{ \Carbon\Carbon::parse($funding->start_date)->year }}</div>
+							</div>
+							@endforeach
+						</div>
+						<div class="flex flex-col flex-wrap">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">GRANTED BY</p>
+							</div>
+							@foreach($fundings as $funding)
+							<div class="text-left bg-grey-lightest p-5">
+								<p class="this-black"><?php echo $funding->granted_by ?></p>
+							</div>
+							@endforeach
+						</div>
+					</div>
+				</div>
+				@endif
+				@if(!is_null($awards))
+				<div class="hidden content mx-auto" id="awards">
+					<div class="flex mt-6">
+						<div class="flex flex-col flex-wrap bg-grey-lightest">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">TITLE</p>
+							</div>
+							@foreach($awards as $award)
+							<div class="text-left bg-grey-lightest p-5">
+								<p class="this-black"><?php echo $award->title ?></p>
+							</div>
+							@endforeach
+						</div>
+						<div class="flex flex-col flex-wrap bg-grey-lightest">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">BY</p>
+							</div>
+							@foreach($awards as $award)
+							<div class="flex mx-auto bg-grey-lightest p-5">
+								<div class="this black">{{ $award->awarded_by }}</div>
+							</div>
+							@endforeach
+						</div>
+						<div class="flex flex-col flex-wrap">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">YEAR</p>
+							</div>
+							@foreach($awards as $award)
+							<div class="text-left bg-grey-lightest p-5">
+								<p class="this-black">{{ \Carbon\Carbon::parse($award->date_obtained)->year }}</p>
+							</div>
+							@endforeach
+						</div>
+					</div>
+				</div>
+				@endif
+				@if(!is_null($publications))
+				<div class="hidden content mx-auto" id="publications">
+					<div class="flex mt-6">
+						<div class="flex flex-col flex-wrap bg-grey-lightest">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">TITLE</p>
+							</div>
+							@foreach($publications as $publication)
+							<div class="text-left bg-grey-lightest p-5">
+								<p class="this-black"><?php echo $publication->title ?></p>
+							</div>
+							@endforeach
+						</div>
+						<div class="flex flex-col flex-wrap bg-grey-lightest">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">CONFERENCE/JOURNAL</p>
+							</div>
+							@foreach($publications as $publication)
+							<div class="flex mx-auto bg-grey-lightest p-5">
+								<div class="this black">{{ $publication->conference }}</div>
+							</div>
+							@endforeach
+						</div>
+						<div class="flex flex-col flex-wrap">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">PUBLICATION DATE</p>
+							</div>
+							@foreach($publications as $publication)
+							<div class="text-left bg-grey-lightest p-5">
+								<p class="this-black">{{ \Carbon\Carbon::parse($award->date_obtained) }}</p>
+							</div>
+							@endforeach
+						</div>
+						<div class="flex flex-col flex-wrap">
+							<div class="bg-grey p-5 text-center">
+								<p class="this-black font-bold">CITATIONS</p>
+							</div>
+							@foreach($publications as $publication)
+							<div class="text-left bg-grey-lightest p-5">
+								<p class="this-black">{{ $publication->citations }}</p>
+							</div>
+							@endforeach
+						</div>
+					</div>
+				</div>
+				@endif
 			</div>
 		</div>
 	</div>
@@ -85,7 +203,7 @@
     		});
 			$(this).removeClass('bg-grey-lighter text-teal-dark');
     		$(this).addClass('bg-green text-white');
-    		$(".desc-content").each(function(){
+    		$(".content").each(function(){
     			$(this).addClass('hidden');
     		});
     		$("#"+$(this).attr('content-id')).removeClass('hidden');
