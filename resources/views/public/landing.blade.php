@@ -36,6 +36,9 @@
 	#about-me{
 
 	}
+	html, body {
+	  overflow: scroll !important;
+	}
 
 	.avatar-upload .avatar-preview {
 	  width: 100px;

@@ -79,12 +79,27 @@
 		</div>
 		<div class="border border-grey-light mt-4"></div>
 		<div class="m-6">
+			@if($p->title == "My Corner")
+			<div class="flex">
+				<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/blogs">View All Post</a>
+				<a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/blog/create">Create New Post</a>
+			</div>
+			@endif
 			@foreach($sub_navs as $sub_nav)
 			<div class="flex">
-				@if($sub_nav->content_id == 'bodies' or $sub_nav->content_id == 'education' or $sub_nav->content_id == 'experience')
+				@if($sub_nav->content_id == 'bodies')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/3/edit">Edit Professional Bodies</a>
+				@elseif($sub_nav->content_id == 'education')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/2/edit">Edit Education Background</a>
+				@elseif($sub_nav->content_id == 'experience')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/1/edit">Edit Work Experience</a>
+				@elseif($sub_nav->content_id == 'event')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/blogs" id="create-btn-{{ $sub_nav->content_id }}">View All Event</a>
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/blog/create" id="add-btn-{{ $sub_nav->content_id }}">Create New Event</a>
 				@else
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/<?php echo $sub_nav->content_id == 'education' ? 'about' : $sub_nav->content_id == 'bodies' ? 'about' : $sub_nav->content_id == 'experience' ? 'about' :  $sub_nav->content_id ?>" id="create-btn-{{ $sub_nav->content_id }}">View All <?php echo $sub_nav->content_id == 'education' ? 'Description' : $sub_nav->content_id == 'bodies' ? 'Description' : $sub_nav->content_id == 'experience' ? 'Description' :  ucfirst($sub_nav->content_id) ?></a>
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/<?php echo $sub_nav->content_id == 'education' ? 'about' : $sub_nav->content_id == 'bodies' ? 'about' : $sub_nav->content_id == 'experience' ? 'about' :  $sub_nav->content_id ?>/create" id="add-btn-{{ $sub_nav->content_id }}">Create New <?php echo $sub_nav->content_id == 'education' ? 'Description' : $sub_nav->content_id == 'bodies' ? 'Description' : $sub_nav->content_id == 'experience' ? 'Description' :  ucfirst($sub_nav->content_id)?></a>
+				@endif
 			</div>
 			@endforeach
 		</div>
@@ -107,7 +122,6 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-
 		$(".sub-nav-btn").click(function(e){
 			e.preventDefault();
 			$(".sub-nav-btn").each(function(){
@@ -119,8 +133,13 @@
 			$(".action-btns").each(function(){
 				$(this).addClass('hidden');
 			});
-			$("#create-btn-"+$(this).attr('content-id')).removeClass('hidden');
-			$("#add-btn-"+$(this).attr('content-id')).removeClass('hidden');
+			var about = ['bodies', 'education', 'experience'];
+			if(about.includes($(this).attr('content-id'))){
+				$("#edit-btn-"+$(this).attr('content-id')).removeClass('hidden');
+			} else {
+				$("#create-btn-"+$(this).attr('content-id')).removeClass('hidden');
+				$("#add-btn-"+$(this).attr('content-id')).removeClass('hidden');
+			}
 		});
 
 		$('.summernote').summernote({

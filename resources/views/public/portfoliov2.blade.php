@@ -46,12 +46,12 @@
 			@endif
 			{{-- <p class="text-xl text-grey-darker pt-6">A short paragraph summarizes my career and highlight its key achievements<br> and milestones; it acts as a condensed version of a cover letter, to intrigue<br> to the reader/visitor to learn more about me. This should not <br>be more than 3 to 4 lines maximum.</p> --}}
 			<div class="flex w-full container mx-auto m-8 justify-center">
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="education">Education <br>Background</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="bodies">Professional Bodies</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="experience">Work Experience</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="fundings">Fundings</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="publications">List of Publications</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark" content-id="awards">Awards and Recognition</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="education">Education <br>Background</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="bodies">Professional Bodies</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="experience">Work Experience</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="fundings">Fundings</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="publications">List of Publications</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="awards">Awards and Recognition</button>
 			</div>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">
@@ -60,6 +60,9 @@
 					@endforeach
 				</div>
 				<div class="border border-grey-light mt-4"></div>
+				@foreach($about as $desc)
+				<div class="hidden desc-content text-left" id="{{ $desc->type }}"><?php echo strip_tags($desc->description) ?></div>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -74,7 +77,19 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
-    	
+    	$('.sub-nav').click(function(e){
+    		e.preventDefault();
+    		$('.sub-nav').each(function(){
+    			$(this).removeClass('bg-green text-white');
+				$(this).addClass('bg-grey-lighter text-teal-dark');
+    		});
+			$(this).removeClass('bg-grey-lighter text-teal-dark');
+    		$(this).addClass('bg-green text-white');
+    		$(".desc-content").each(function(){
+    			$(this).addClass('hidden');
+    		});
+    		$("#"+$(this).attr('content-id')).removeClass('hidden');
+    	});
     });
 </script>
 

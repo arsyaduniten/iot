@@ -6,7 +6,11 @@
 @endsection
 @section('content')
 @include('backend.nav')
+<div class="flex container mx-auto">
+	<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/3">Back to Layout</a>
+</div>
 <form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:about:update', ['about' => $about]) }}">
+	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 	@method('PUT')
 	@csrf
 	<text-input :name="'type'" :data="$about->type"/>
@@ -14,7 +18,6 @@
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection
 

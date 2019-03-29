@@ -9,6 +9,7 @@ use App\Research;
 use App\Project;
 use App\Award;
 use App\Page;
+use App\About;
 
 class LandingController extends Controller
 {
@@ -60,7 +61,11 @@ class LandingController extends Controller
     {
         $data = Page::find(3);
         $tags = $data->tagNames();
-        return view('public.portfoliov2', compact('data', 'tags'));
+        $education = About::where('type', 'education')->first();
+        $bodies = About::where('type', 'bodies')->first();
+        $experience = About::where('type', 'experience')->first();
+        $about = [$education, $bodies, $experience];
+        return view('public.portfoliov2', compact('data', 'tags', 'education', 'bodies', 'experience', 'about'));
     }
 
     public function research_v2(Request $request)

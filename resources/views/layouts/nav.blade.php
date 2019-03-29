@@ -42,7 +42,7 @@
 			</div>
 			@endif
 			<p class="text-xl text-grey-darker pt-6"><?php echo $data->description->content ?></p>
-			<div class="flex w-full container mx-auto justify-around m-8">
+			<div class="flex w-full container justify-center mx-auto m-8">
 				@foreach($data->statistics as $stat)
 				<div class="flex flex-col bg-blue-custom-dark shadow p-6 m-4 rounded">
 					<p class="text-2xl font-bold text-orange-dark">{{ $stat->content }}</p>
