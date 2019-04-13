@@ -14,10 +14,14 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data = Blog::all();
+        if($request->get('q') == 'event'){
+            $data = Blog::where('event', 1)->get();
+        } else {
+            $data = Blog::all();
+        }
         return view("backend.blog.index", compact('data'));
     }
 
@@ -29,13 +33,13 @@ class BlogController extends Controller
     public function create()
     {
         //
-        $p_title = [];
-        $projects = Project::all();
-        foreach ($projects as $p) {
-            # code...
-            $p_title[] = $p->title;
-        }
-        return view('backend.blog.create', compact('projects','p_title'));
+        // $p_title = [];
+        // $projects = Project::all();
+        // foreach ($projects as $p) {
+        //     # code...
+        //     $p_title[] = $p->title;
+        // }
+        return view('backend.blog.create', compact('projects'));
     }
 
     /**
@@ -87,20 +91,9 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         //
-        $p_title = [];
-        $projects = Project::all();
-        foreach ($projects as $p) {
-            # code...
-            $p_title[] = $p->title;
-        }
-        $p_tags = [];
+        
         $tags = $blog->tagNames();
-        foreach ($tags as $tag) {
-            if ($this->in_arrayi($tag, $p_title)){
-                $p_tags[] = $tag;
-            }
-        }
-        return view('backend.blog.edit', compact('blog', 'p_title', 'p_tags', 'projects'));
+        return view('backend.blog.edit', compact('blog', 'tags'));
     }
 
     /**

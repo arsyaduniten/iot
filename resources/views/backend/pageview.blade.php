@@ -81,9 +81,25 @@
 		<div class="m-6">
 			@if($p->title == "My Corner")
 			<div class="flex">
-				<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/blogs">View All Post</a>
+				<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/blog">View All Post</a>
 				<a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/blog/create">Create New Post</a>
 			</div>
+			@endif
+			@if($p->id == 6)
+			<table class="content mx-auto mt-6">
+		        <tr class="bg-grey p-5 text-center">
+		            <th class="this-black py-5 px-6">NAME</th>
+		            <th class="this-black py-5 px-6">EMAIL</th>
+		            <th class="this-black py-5 px-6">MESSAGE</th>
+		        </tr>
+		        @foreach($enquiries as $contact)
+		        <tr class="bg-grey-lightest p-5 text-center">
+		            <td class="this-black py-5 px-6">{{ $contact->name }}</td>
+		            <td class="this-black py-5 px-6">{{ $contact->email }}</td>
+		            <td class="this-black py-5 px-6">{{ $contact->message }}</td>
+		        </tr>
+		        @endforeach
+		    </table>
 			@endif
 			@foreach($sub_navs as $sub_nav)
 			<div class="flex">
@@ -94,7 +110,7 @@
 				@elseif($sub_nav->content_id == 'experience')
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/1/edit">Edit Work Experience</a>
 				@elseif($sub_nav->content_id == 'event')
-				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/blogs" id="create-btn-{{ $sub_nav->content_id }}">View All Event</a>
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/blog?q=event" id="create-btn-{{ $sub_nav->content_id }}">View All Event</a>
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/blog/create" id="add-btn-{{ $sub_nav->content_id }}">Create New Event</a>
 				@else
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/backend/<?php echo $sub_nav->content_id == 'education' ? 'about' : $sub_nav->content_id == 'bodies' ? 'about' : $sub_nav->content_id == 'experience' ? 'about' :  $sub_nav->content_id ?>" id="create-btn-{{ $sub_nav->content_id }}">View All <?php echo $sub_nav->content_id == 'education' ? 'Description' : $sub_nav->content_id == 'bodies' ? 'Description' : $sub_nav->content_id == 'experience' ? 'Description' :  ucfirst($sub_nav->content_id) ?></a>

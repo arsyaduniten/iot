@@ -44,6 +44,18 @@
 					@endforeach
 				</div>
 				<div class="border border-grey-light mt-4"></div>
+				<table class="content mx-auto mt-6">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">Title</th>
+			            <th class="this-black py-5 px-6">Posted On</th>
+			        </tr>
+			        @foreach($posts as $post)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6">{{ $post->title }}</td>
+			            <td class="this-black py-5 px-6">{{ $post->post_date }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
 			</div>
 		</div>
 	</div>

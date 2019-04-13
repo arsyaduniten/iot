@@ -52,11 +52,31 @@ class PublicationController extends Controller
     public function store(Request $request)
     {
         //
+        $current_rank = Publication::where('rank', '!=', null)->pluck('rank')->sort()->last();
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
         $new_p = Publication::create($request->all());
         $new_p->tag($tags);
+        $rank = $request->get('rank');
+        if($request->get('highlight') == null){
+            $new_p->highlight = false;
+        } else {
+            $new_p->highlight = true;
+            $new_p->rank = $rank == "null" ? $current_rank + 1 : $this->arrange_rank($rank);
+        }
+        $new_p->save();
         return redirect()->route('backend:publications');
+    }
+
+    public function arrange_rank($rank)
+    {
+        foreach (Publication::where('highlight', 1)->get() as $key => $publication) {
+            if($publication->rank >= $rank){
+                $publication->rank = $publication->rank + 1;
+                $publication->save();
+            }
+        }
+        return $rank;
     }
 
     /**
@@ -112,10 +132,19 @@ class PublicationController extends Controller
     public function update(Request $request, Publication $publication)
     {
         //
+        $current_rank = Publication::where('rank', '!=', null)->pluck('rank')->sort()->last();
         $publication->update($request->all());
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
         $publication->retag($tags);
+        $rank = $request->get('rank');
+        if($request->get('highlight') == null){
+            $publication->highlight = false;
+        } else {
+            $publication->highlight = true;
+            $publication->rank = $rank == "null" ? $current_rank + 1 : $this->arrange_rank($rank);
+        }
+        $publication->save();
         return redirect()->route('backend:publications');
     }
 

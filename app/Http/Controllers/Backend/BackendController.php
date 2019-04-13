@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Page;
 use App\Sns;
 use App\Statistic;
-
+use App\Enquiry;
 
 class BackendController extends Controller
 {
@@ -37,7 +37,8 @@ class BackendController extends Controller
         $snss = $p->snss;
         $sub_navs = $p->sub_navigations;
         $tags = $p->tagNames();
-        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'snss', 'tags', 'sub_navs'));
+        $enquiries = Enquiry::orderBy('created_at', 'desc')->get();
+        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'snss', 'tags', 'sub_navs', 'enquiries'));
     }
 
     public function update($id, Request $request)

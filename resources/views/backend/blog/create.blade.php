@@ -23,13 +23,6 @@
 		<label class="pt-4">Content</label>
 		<textarea name="content" class="m-2 summernote"></textarea>
 	</div>
-	<div class="flex m-2">
-    	<label class="p-2">Related Projects</label>
-	    <div id='app'>
-		    <div class='tagHere project'></div>
-		    <input type="text" name="ptags-field"/>
-		</div>
-	</div>
 	<div class="flex">
 		<label class="self-center">Keyword</label>
 		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
@@ -61,22 +54,6 @@
 	    	height:200,
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
-	    var p_tags = [];
-		@foreach($p_title as $title)
-		p_tags.push("{{ $title }}");
-		@endforeach
-
-	    $( "input[name=ptags-field]" ).autocomplete({
-	      source: p_tags,
-	      minLength: 0,
-	      select: function (e, ui) {
-		        var el = ui.item.label;
-		        e.preventDefault();
-		        addTag(el, ".project");
-		  },
-	    }).click(function(){
-		    $(this).autocomplete("search");
-		});
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();

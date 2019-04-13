@@ -14,6 +14,7 @@ use App\Funding;
 use App\Publication;
 use App\Collaborator;
 use App\Researcher;
+use App\Blog;
 
 
 class LandingController extends Controller
@@ -71,9 +72,10 @@ class LandingController extends Controller
         $experience = About::where('type', 'experience')->first();
         $about = [$education, $bodies, $experience];
         $fundings = Funding::all();
-        $publications = Publication::all();
+        $publications = Publication::orderBy('publication_date', 'desc')->get();
+        $highlighted = Publication::where('highlight', 1)->orderBy('rank', 'asc')->get();
         $awards = Award::all();
-        return view('public.portfoliov2', compact('data', 'tags', 'education', 'bodies', 'experience', 'about', 'fundings', 'publications', 'awards'));
+        return view('public.portfoliov2', compact('data', 'tags', 'education', 'bodies', 'experience', 'about', 'fundings', 'publications', 'awards', 'highlighted'));
     }
 
     public function research_v2(Request $request)
@@ -82,8 +84,9 @@ class LandingController extends Controller
         $tags = $data->tagNames();
         $projects = Project::all()->toArray();
         $projects_2 = [];
-        $researches = Research::all();
+        $researches = Research::orderBy('start_date', 'desc')->get();
         $colleagues = Researcher::all();
+        $events = Blog::where('event', 1)->get();
         foreach ($colleagues as $colleague) {
             $tags = $colleague->tagNames();
             foreach ($projects as $key => $project) {
@@ -97,14 +100,15 @@ class LandingController extends Controller
             
         }
         $collaborators = Collaborator::all();
-        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators'));
+        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'events'));
     }
 
     public function mycorner(Request $request)
     {
         $data = Page::find(5);
         $tags = $data->tagNames();
-        return view('public.mycorner', compact('data', 'tags'));
+        $posts = Blog::where('publish',1)->orderBy('post_date', 'desc')->get();
+        return view('public.mycorner', compact('data', 'tags', 'posts'));
     }
 
     public function contact(Request $request)

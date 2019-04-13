@@ -29,6 +29,17 @@ class DetailsController extends Controller
             				'publications' => $research->publications->all(),
             				'researchers' => $research->researchers->all()
             			  ])->all();
+            break;
+            case 'project':
+                $project = Project::find($request->get('id'));
+                $data = $project;
+                $title = "Project";
+                $r_data = collect([
+                            'research_areas' => Research::whereIn('research_area', $project->tagNames())->get(),
+                            'publications' => Publication::withAnyTag($project->title)->get(),
+                            'fundings' => Funding::withAnyTag($project->title)->get(),
+                            'collaborator' => Collaborator::withAnyTag($project->title)->get(),
+                          ])->all();
         }
         return view('component.details', compact('data', 'r_data', 'title'));
     }

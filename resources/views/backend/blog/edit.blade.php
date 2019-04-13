@@ -15,7 +15,7 @@
     <a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/4">Back to Layout</a>
     <a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/blog">View All</a>
 </div>
-<form class="container mx-auto flex flex-col w-1/2" method="POST" id="createForm" action="{{ route('backend:blog:update', ['blog' => $blog]) }}">
+<form class="container mx-auto flex flex-col w-1/2" method="POST" id="editForm" action="{{ route('backend:blog:update', ['blog' => $blog]) }}">
 	@method('PUT')
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
@@ -24,13 +24,18 @@
 		<label class="pt-4">Content</label>
 		<textarea name="content" class="m-2 summernote"></textarea>
 	</div>
-	<div class="flex m-2">
-    	<label class="p-2">Related Projects</label>
-	    <div id='app'>
-		    <div class='tagHere project'></div>
-		    <input type="text" name="ptags-field"/>
-		</div>
+	<div class="flex">
+		<label class="self-center">Keyword</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
+		<button class="p-2 bg-white shadow-md rounded" id="add-btn">Add</button>
 	</div>
+	<div class="flex">
+        <label class="p-2">Keyword Lists</label>
+        <div id='app'>
+            <div class='tagHere keyword'></div>
+            <input type="text" name="tags-field"/>
+        </div>
+    </div>
 	<div class="flex">
 		<label class="pt-4">Publish</label>
 		<input class="self-center mt-4 m-2" type="checkbox" name="publish" value="true">
@@ -64,23 +69,6 @@
         	$('input[name=event').prop('checked', false);
         @endif
 
-        var p_tags = [];
-		@foreach($p_title as $title)
-		p_tags.push("{{ $title }}");
-		@endforeach
-
-		$( "input[name=ptags-field]" ).autocomplete({
-	      source: p_tags,
-	      minLength: 0,
-	      select: function (e, ui) {
-		        var el = ui.item.label;
-		        e.preventDefault();
-		        addTag(el, ".project");
-		  },
-	    }).click(function(){
-		    $(this).autocomplete("search");
-		});
-
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
 	    	$(".selected_items").each(function(){
@@ -91,10 +79,16 @@
 	    	$("#editForm").submit();
 	    });
 
-	    @foreach($p_tags as $tag)
-	    addTag("{{ $tag }}", '.project');
+	    @foreach($tags as $tag)
+	    addTag("{{ $tag }}", '.keyword');
 	    @endforeach
 
+	    $("#add-btn").click(function(e){
+	  		 e.preventDefault();
+			 var el = $("#keyword-input").val()
+			 $("#keyword-input").val("");
+	 		 addTag(el, ".keyword");
+	  	});
 
 	    function addTag(element, className) {
 		    $appendHere = $(".tagHere"+className);

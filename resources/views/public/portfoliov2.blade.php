@@ -53,7 +53,7 @@
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="publications">List of Publications</button>
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="awards">Awards and Recognition</button>
 			</div>
-			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
+			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto mb-12 p-4">
 				<div class="flex flex-wrap">
 					@foreach($tags as $tag)
 					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</button>
@@ -64,121 +64,75 @@
 				<div class="hidden content p-6" id="{{ $desc->type }}"><?php echo $desc->description ?></div>
 				@endforeach
 				@if(!is_null($fundings))
-				<div class="hidden content mx-auto" id="fundings">
-					<div class="flex mt-6">
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">AMOUNT</p>
-							</div>
-							@foreach($fundings as $funding)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">MYR<?php echo number_format($funding->amount) ?></p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">GRANTED YEAR</p>
-							</div>
-							@foreach($fundings as $funding)
-							<div class="flex mx-auto bg-grey-lightest p-5">
-								<div class="this black">{{ \Carbon\Carbon::parse($funding->start_date)->year }}</div>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">GRANTED BY</p>
-							</div>
-							@foreach($fundings as $funding)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black"><?php echo $funding->granted_by ?></p>
-							</div>
-							@endforeach
-						</div>
-					</div>
-				</div>
+				<table class="hidden content mx-auto mt-6" id="fundings">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">AMOUNT</th>
+			            <th class="this-black py-5 px-6">YEAR</th>
+			            <th class="this-black py-5 px-6">GRANTED BY</th>
+			            <th class="this-black py-5 px-6">RELATED PROJECT(S)</th>
+			        </tr>
+			        @foreach($fundings as $funding)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6">MYR<?php echo number_format($funding->amount) ?></td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($funding->start_date)->year }}</td>
+			            <td class="this-black py-5 px-6"><?php echo $funding->granted_by ?></td>
+			            <td class="this-black py-5 px-6">{{ implode(", ", $funding->tagNames()) }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
 				@endif
 				@if(!is_null($awards))
-				<div class="hidden content mx-auto" id="awards">
-					<div class="flex mt-6">
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">TITLE</p>
-							</div>
-							@foreach($awards as $award)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black"><?php echo $award->title ?></p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">BY</p>
-							</div>
-							@foreach($awards as $award)
-							<div class="flex mx-auto bg-grey-lightest p-5">
-								<div class="this black">{{ $award->awarded_by }}</div>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">YEAR</p>
-							</div>
-							@foreach($awards as $award)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ \Carbon\Carbon::parse($award->date_obtained)->year }}</p>
-							</div>
-							@endforeach
-						</div>
-					</div>
-				</div>
+				<table class="hidden content mx-auto mt-6" id="awards">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">TITLE</th>
+			            <th class="this-black py-5 px-6">BY</th>
+			            <th class="this-black py-5 px-6">YEAR</th>
+			        </tr>
+			        @foreach($awards as $award)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6"><?php echo $award->title ?></td>
+			            <td class="this-black py-5 px-6">{{ $award->awarded_by }}</td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($award->date_obtained)->year }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
 				@endif
 				@if(!is_null($publications))
 				<div class="hidden content mx-auto" id="publications">
-					<div class="flex mt-6">
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">TITLE</p>
-							</div>
-							@foreach($publications as $publication)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black"><?php echo $publication->title ?></p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">CONFERENCE/JOURNAL</p>
-							</div>
-							@foreach($publications as $publication)
-							<div class="flex mx-auto bg-grey-lightest p-5">
-								<div class="this black">{{ $publication->conference }}</div>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">PUBLICATION DATE</p>
-							</div>
-							@foreach($publications as $publication)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ \Carbon\Carbon::parse($award->date_obtained) }}</p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">CITATIONS</p>
-							</div>
-							@foreach($publications as $publication)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ $publication->citations }}</p>
-							</div>
-							@endforeach
-						</div>
-					</div>
+					<p class="text-3xl text-center m-4">Highlighted Publications</p>
+					<table class="mt-6">
+				        <tr class="bg-grey p-5 text-center">
+				            <th class="this-black py-5 px-6">TITLE</th>
+				            <th class="this-black py-5 px-6">PUBLISHED ON</th>
+				            <th class="this-black py-5 px-6">CONFERENCE/JOURNAL</th>
+				            <th class="this-black py-5 px-6">CITATIONS</th>
+				        </tr>
+				        @foreach($highlighted as $publication)
+				        <tr class="bg-grey-lightest p-5 text-center">
+				            <td class="this-black py-5 px-6"><?php echo $publication->title ?></td>
+				            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($publication->publication_date)->toDateString() }}</td>
+				            <td class="this-black py-5 px-6">{{ $publication->conference }}</td>
+				            <td class="this-black py-5 px-6">{{ $publication->citations }}</td>
+				        </tr>
+				        @endforeach
+				    </table>
+					<p class="text-3xl text-center m-4">All Publications</p>
+					<table class="mt-6">
+				        <tr class="bg-grey p-5 text-center">
+				            <th class="this-black py-5 px-6">TITLE</th>
+				            <th class="this-black py-5 px-6">PUBLISHED ON</th>
+				            <th class="this-black py-5 px-6">CONFERENCE/JOURNAL</th>
+				            <th class="this-black py-5 px-6">CITATIONS</th>
+				        </tr>
+				        @foreach($publications as $publication)
+				        <tr class="bg-grey-lightest p-5 text-center">
+				            <td class="this-black py-5 px-6"><?php echo $publication->title ?></td>
+				            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($publication->publication_date)->toDateString() }}</td>
+				            <td class="this-black py-5 px-6">{{ $publication->conference }}</td>
+				            <td class="this-black py-5 px-6">{{ $publication->citations }}</td>
+				        </tr>
+				        @endforeach
+				    </table>
 				</div>
 				@endif
 			</div>

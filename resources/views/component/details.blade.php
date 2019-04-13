@@ -93,10 +93,13 @@
 	  content: "";
 	}
 
+	html, body {
+	  overflow: scroll !important;
+	}
 </style>
 <div class="container mx-auto m-4 rounded-t-lg z-20">
 	<div class="flex p-8 rounded-t-lg">
-		<a class="pr-8" href="#"><i class="fas fa-2x fa-arrow-left text-black"></i></a>
+		<a class="pr-8" href="/v2/research"><i class="fas fa-2x fa-arrow-left text-black"></i></a>
 		<div>
 			<p class="text-xl font-bold text-grey-dark">{{ $title }}</p>
 			<p class="text-4xl font-bold -my-2 text-black">{{ $data->title }}</p>
@@ -112,18 +115,48 @@
 		@if(array_key_exists('projects', $r_data))
 			<related type="Projects" :data="$r_data['projects']" />
 		@endif
+		@if(array_key_exists('research_areas', $r_data))
+			<div class="bg-grey-lighter shadow-lg flex-1 p-4">
+				<p class="font-bold text-base p-4">Research Areas</p>
+				<ul class="list-reset flex flex-col">
+				@foreach($r_data['research_areas'] as $item)
+					<li class="m-2 mx-4">
+						<button href="" class="w-full shadow border-l-8 border-black p-2 no-underline text-black bg-white hover:bg-teal-lighter hover:border-teal">{{ $item->research_area }}</button>
+					</li>
+				@endforeach
+				</ul>
+			</div>
+		@endif
 		<space-between/>
 		@if(array_key_exists('publications', $r_data))
 			<related type="Publications" :data="$r_data['publications']" />
 		@endif
 	</div>
 	<div class="flex m-4 p-4 pt-0">
-		@if(array_key_exists('researchers', $r_data))
-			<related-avatar type="Researchers Team" :data="$r_data['researchers']" />
+		@if(array_key_exists('fundings', $r_data))
+			<div class="bg-grey-lighter shadow-lg flex-1 p-4">
+				<p class="font-bold text-base p-4">Fundings</p>
+				<ul class="list-reset flex flex-col">
+				@foreach($r_data['fundings'] as $item)
+					<li class="m-2 mx-4">
+						<button href="" class="w-full shadow border-l-8 border-black p-2 no-underline text-black bg-white hover:bg-teal-lighter hover:border-teal">{{ $item->granted_by }} MYR{{ number_format($item->amount) }}</button>
+					</li>
+				@endforeach
+				</ul>
+			</div>
 		@endif
 		<space-between/>
-		@if(array_key_exists('publications', $r_data))
-			<related type="Publications" :data="$r_data['publications']" />
+		@if(array_key_exists('collaborators', $r_data))
+			<div class="bg-grey-lighter shadow-lg flex-1 p-4">
+				<p class="font-bold text-base p-4">Collaborators</p>
+				<div class="m-2 mx-4">
+				@foreach($r_data['collaborators'] as $item)
+				@if($collaborator->logo_url != NULL)
+				<img width="50" height="50" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') }}">
+				@endif
+				@endforeach
+				</div>
+			</div>
 		@endif
 	</div>
 </div>

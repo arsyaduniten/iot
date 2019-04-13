@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Blog;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Enquiry;
 
-class BlogController extends Controller
+class EnquiryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,6 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $data = Blog::all();
-        return view("backend.blog.index", compact('data'));
     }
 
     /**
@@ -27,7 +26,6 @@ class BlogController extends Controller
     public function create()
     {
         //
-        return view('backend.blog.create');
     }
 
     /**
@@ -39,20 +37,18 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //
-        $new_b = Blog::create($request->all());
-        $tags = explode(",",$request->get('tags'));
-        array_pop($tags);
-        $new_b->tag($tags);
-        return redirect()->route('backend:blogs');
+        $e = Enquiry::create($request->all());
+        return "true";
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show($id)
     {
         //
     }
@@ -60,41 +56,33 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
         //
-        $tags = $blog->tagNames();
-        dd($tags);
-        return view('backend.blog.edit', compact('blog', 'tags'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
         //
-        $blog->update($request->all());
-        $tags = explode(",",$request->get('tags'));
-        array_pop($tags);
-        $blog->retag($tags);
-        return redirect()->route('backend:blogs');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
         //
     }

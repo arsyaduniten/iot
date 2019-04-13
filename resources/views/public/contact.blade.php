@@ -36,23 +36,23 @@
 		</div>
 		<div class="text-center w-full overflow-y-auto">
 			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
-			<p class="text-xl text-teal-dark pt-6"><?php echo strip_tags($data->description->content, '<br>'); ?></p>
+			<p class="text-xl text-teal-dark pt-6"><?php echo ($data->description->content); ?></p>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4 m-8">
 				<div class="flex">
 					<div class="flex flex-col text-left mx-8">
 						<label class="py-2">Full Name</label>
-						<input class="bg-whoite border border-grey-dark px-4 py-2" type="text" name="fullname" placeholder="John Doe">
+						<input class="bg-whoite border border-grey-dark px-4 py-2" type="text" name="name" id="name" placeholder="John Doe">
 					</div>
 					<div class="flex flex-col text-left mx-8">
 						<label class="py-2">Email</label>
-						<input class="bg-whoite border border-grey-dark px-4 py-2" type="text" name="email" placeholder="john@example.com">
+						<input class="bg-whoite border border-grey-dark px-4 py-2" type="text" name="email" id="email" placeholder="john@example.com">
 					</div>
 				</div>
 				<div class="flex flex-col text-left mx-8">
 					<label class="py-2">Message</label>
-					<textarea class="bg-whoite border border-grey-dark px-4 py-2" name="message" style="height: 200px;"></textarea>
+					<textarea class="bg-whoite border border-grey-dark px-4 py-2" name="message" id="message" style="height: 200px;"></textarea>
 				</div>
-				<a class="mx-auto px-6 mt-6 py-4 bg-purple-darker text-white rounded shadow-lg" href="/v2/portfolio">Submit</a>
+				<button class="mx-auto px-6 mt-6 py-4 bg-purple-darker text-white rounded shadow-lg" id="submitBtn">Submit</button>
 			</div>
 		</div>
 	</div>
@@ -67,7 +67,31 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
-    	
+    	$.ajaxSetup({
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    }
+		});
+
+		$("#submitBtn").click(function(e){
+			e.preventDefault();
+			var name = $('#name').val();
+			var email = $('#email').val();
+			var message = $('#message').val();
+			$.ajax({
+			  type: "POST",
+			  url: "/enquiry",
+			  data: {'name': name, 'email':email, 'message':message},
+			  success: function(){
+			  	swal("Thank You!", "Your enquiry has been submitted!", "success");
+			  	$('#name').val("");
+				$('#email').val("");
+				$('#message').val("");
+			  },
+			});
+		});
+
+
     });
 </script>
 

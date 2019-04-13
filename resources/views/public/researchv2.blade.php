@@ -41,7 +41,7 @@
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="researches">Research<br>Areas</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="projects">Active Projects</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="collaborators">Industrial<br>Collaboration</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="researchers">Research<br>Colleagues</button>
+				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="colleagues">Research<br>Colleagues</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="events">Events &<br>Activities</button>
 			</div>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
@@ -52,136 +52,90 @@
 				</div>
 				<div class="border border-grey-light mt-4"></div>
 				@if(!is_null($projects))
-				<div class="hidden mx-auto content" id="projects">
-					<div class="flex mt-6 content">
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">TITLE</p>
-							</div>
-							@foreach($projects as $project)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ $project['title'] }}</p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">COLLEAGUES</p>
-							</div>
-							@foreach($projects as $project)
-							<div class="flex mx-auto bg-grey-lightest">
-								@foreach($project['researchers'] as $researcher)
-								<img class="text-xs pt-4 -mx-1" src="{{ Avatar::create($researcher->fullname)->setDimension(40)->setFontSize(15)->toBase64() }}">
-								@endforeach
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">FROM</p>
-							</div>
-							@foreach($projects as $project)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ $project['start_date'] }}</p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">TO</p>
-							</div>
-							@foreach($projects as $project)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ $project['end_date'] }}</p>
-							</div>
-							@endforeach
-						</div>
-					</div>
-				</div>
+				<table class="hidden content mx-auto mt-6" id="projects">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">TITLE</th>
+			            <th class="this-black py-5 px-6">FROM</th>
+			            <th class="this-black py-5 px-6">TO</th>
+			        </tr>
+			        @foreach($projects as $project)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6"><a target="_blank" href="/details?type=project&id={{ $project['id'] }}">{{ $project['title'] }}</a></td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($project['start_date'])->year }}</td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($project['end_date'])->gte(\Carbon\Carbon::today()) ? "Present" : \Carbon\Carbon::parse($project['end_date'])->year }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
 				@endif
 				@if(!is_null($researches))
-				<div class="hidden content mx-auto" id="researches">
-					<div class="flex mt-6">
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">AREAS</p>
-							</div>
-							@foreach($researches as $research)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ $research->research_area }}</p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">DESCRIPTION</p>
-							</div>
-							@foreach($researches as $research)
-							<div class="flex mx-auto bg-grey-lightest p-5">
-								<div class="this black"><?php echo $research->description ?></div>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">FROM</p>
-							</div>
-							@foreach($researches as $research)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ $research->start_date }}</p>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">TO</p>
-							</div>
-							@foreach($researches as $research)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black">{{ $research->end_date }}</p>
-							</div>
-							@endforeach
-						</div>
-					</div>
-				</div>
+				<table class="hidden content mx-auto mt-6" id="researches">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">AREAS</th>
+			            <th class="this-black py-5 px-6">DESCRIPTION</th>
+			            <th class="this-black py-5 px-6">FROM</th>
+			            <th class="this-black py-5 px-6">TO</th>
+			        </tr>
+			        @foreach($researches as $research)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6">{{ $research->research_area }}</td>
+			            <td class="this-black py-5 px-6"><?php echo $research->description ?></td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($research->start_date)->year }}</td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($research->end_date)->gte(\Carbon\Carbon::today()) ? "Present" : \Carbon\Carbon::parse($research->end_date)->year }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
 				@endif
 				@if(!is_null($collaborators))
-				<div class="hidden content mx-auto" id="collaborators">
-					<div class="flex mt-6">
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">LOGO</p>
-							</div>
-							@foreach($collaborators as $collaborator)
-							<div class="text-left bg-grey-lightest p-4">
-								@if($collaborator->logo_url != NULL)
+				<table class="hidden content mx-auto mt-6" id="collaborators">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">LOGO</th>
+			            <th class="this-black py-5 px-6">NAME</th>
+			            <th class="this-black py-5 px-6">DESCRIPTION</th>
+			        </tr>
+			        @foreach($collaborators as $collaborator)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6">
+			            		@if($collaborator->logo_url != NULL)
 								<img width="50" height="50" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') }}">
 								@endif
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap bg-grey-lightest">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">NAME</p>
-							</div>
-							@foreach($collaborators as $collaborator)
-							<div class="flex mx-auto bg-grey-lightest p-5">
-								<div class="this black"><?php echo $collaborator->name ?></div>
-							</div>
-							@endforeach
-						</div>
-						<div class="flex flex-col flex-wrap">
-							<div class="bg-grey p-5 text-center">
-								<p class="this-black font-bold">DESCRIPTION</p>
-							</div>
-							@foreach($collaborators as $collaborator)
-							<div class="text-left bg-grey-lightest p-5">
-								<p class="this-black"><?php echo $collaborator->description ?></p>
-							</div>
-							@endforeach
-						</div>
-					</div>
-				</div>
+						</td>
+			            <td class="this-black py-5 px-6"><?php echo $collaborator->name ?></td>
+			            <td class="this-black py-5 px-6"><?php echo $collaborator->description ?></td>
+			        </tr>
+			        @endforeach
+			    </table>
+				@endif
+				@if(!is_null($colleagues))
+				<table class="hidden content mx-auto mt-6" id="colleagues">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">IMAGE</th>
+			            <th class="this-black py-5 px-6">NAME</th>
+			            <th class="this-black py-5 px-6">RELATED PROJECTS</th>
+			        </tr>
+			        @foreach($colleagues as $colleague)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6">
+			            		@if($colleague->image_url != NULL)
+								<img width="50" height="50" class="" src="{{ \Image::make($colleague->image_url)->greyscale()->encode('data-url') }}">
+								@endif
+						</td>
+			            <td class="this-black py-5 px-6"><?php echo $colleague->fullname?></td>
+			            <td class="this-black py-5 px-6">{{ implode(", ", $colleague->tagNames()) }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
+				@endif
+				@if(!is_null($events))
+				<table class="hidden content mx-auto mt-6" id="events">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">TITLE</th>
+			        </tr>
+			        @foreach($events as $event)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6">{{ $event->title }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
 				@endif
 			</div>
 		</div>

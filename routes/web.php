@@ -20,6 +20,8 @@ Route::get('/v2/mycorner', 'LandingController@mycorner')->name('mycorner')->midd
 Route::get('/v2/contact', 'LandingController@contact')->name('contact')->middleware('auth');
 Route::get('/details', 'DetailsController@index')->name('details');
 
+Route::post('/enquiry', 'Backend\EnquiryController@store')->name('enquiry');
+
 Route::group(['prefix'=>'/v2/backend', 'middleware' => ['auth','is_admin']], function(){
     Route::get('/', 'Backend\BackendController@entry')->name('entry');
     Route::get('/layout', 'Backend\BackendController@layout')->name('layout');

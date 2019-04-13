@@ -41,6 +41,11 @@
 		    <input type="text" name="ptags-field"/>
 		</div>
 	</div>
+	<div class="flex">
+		<label class="pt-4">Highlight</label>
+		<input class="self-center mt-4 m-2" type="checkbox" name="highlight" value="true">
+		<input class="self-center mt-4 m-2 border border-grey" type="text" name="rank" value="{{ $publication->rank }}" placeholder="Rank">
+	</div>
 	<input type="hidden" id="tag_values" name="tags">
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 </form>
@@ -55,6 +60,11 @@
 	    $(".note-editor").addClass("m-2 shadow-md");
         $('.summernote').summernote("code", "<?php echo $publication->description ?>");
 
+        @if($publication->highlight == 1)
+        	$('input[name=highlight').prop('checked', true);
+        @else
+        	$('input[name=highlight').prop('checked', false);
+        @endif
 		var p_tags = [];
 		@foreach($p_title as $title)
 		p_tags.push("{{ $title }}");
