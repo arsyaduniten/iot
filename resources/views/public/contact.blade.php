@@ -47,6 +47,10 @@
 						<label class="py-2">Email</label>
 						<input class="bg-whoite border border-grey-dark px-4 py-2" type="text" name="email" id="email" placeholder="john@example.com">
 					</div>
+					<div class="flex flex-col text-left mx-8">
+						<label class="py-2">Phone (optional)</label>
+						<input class="bg-whoite border border-grey-dark px-4 py-2" type="number" name="phone" id="phone" placeholder="012-3456789">
+					</div>
 				</div>
 				<div class="flex flex-col text-left mx-8">
 					<label class="py-2">Message</label>
@@ -78,15 +82,17 @@
 			var name = $('#name').val();
 			var email = $('#email').val();
 			var message = $('#message').val();
+			var phone = $('#phone').val();
 			$.ajax({
 			  type: "POST",
 			  url: "/enquiry",
-			  data: {'name': name, 'email':email, 'message':message},
+			  data: {'name': name, 'email':email, 'message':message, 'phone':phone},
 			  success: function(){
 			  	swal("Thank You!", "Your enquiry has been submitted!", "success");
 			  	$('#name').val("");
 				$('#email').val("");
 				$('#message').val("");
+				$('#phone').val("");
 			  },
 			});
 		});

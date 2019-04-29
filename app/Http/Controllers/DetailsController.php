@@ -11,6 +11,7 @@ use App\Collaborator;
 use App\Funding;
 use App\Project;
 use App\Researcher;
+use App\Blog;
 
 class DetailsController extends Controller
 {
@@ -42,5 +43,11 @@ class DetailsController extends Controller
                           ])->all();
         }
         return view('component.details', compact('data', 'r_data', 'title'));
+    }
+
+    public function view(Request $request)
+    {
+        $blog = Blog::find($request->get('id'));
+        return view('public.post', compact('blog'));
     }
 }

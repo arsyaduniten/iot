@@ -19,6 +19,7 @@ Route::get('/v2/research', 'LandingController@research_v2')->name('researchv2')-
 Route::get('/v2/mycorner', 'LandingController@mycorner')->name('mycorner')->middleware('auth');
 Route::get('/v2/contact', 'LandingController@contact')->name('contact')->middleware('auth');
 Route::get('/details', 'DetailsController@index')->name('details');
+Route::get('/post', 'DetailsController@view')->name('details');
 
 Route::post('/enquiry', 'Backend\EnquiryController@store')->name('enquiry');
 

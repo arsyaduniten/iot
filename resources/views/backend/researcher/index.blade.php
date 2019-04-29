@@ -3,6 +3,11 @@
 <!-- include summernote css/js -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+<style type="text/css">
+    html, body {
+      overflow: scroll !important;
+    }
+</style>
 @endsection
 @section('content')
 @include('backend.nav')

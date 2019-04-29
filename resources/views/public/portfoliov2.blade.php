@@ -90,7 +90,7 @@
 			        </tr>
 			        @foreach($awards as $award)
 			        <tr class="bg-grey-lightest p-5 text-center">
-			            <td class="this-black py-5 px-6"><?php echo $award->title ?></td>
+			            <td class="this-black py-5 px-6"><a class="underline" target="_blank" href='{{ is_null($award->file_url_s3) ? $award->file_url : $award->file_url_s3 }}'><?php echo $award->title ?></a></td>
 			            <td class="this-black py-5 px-6">{{ $award->awarded_by }}</td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($award->date_obtained)->year }}</td>
 			        </tr>

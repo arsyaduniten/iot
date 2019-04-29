@@ -34,29 +34,18 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full overflow-y-auto">
-			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
-			<p class="text-xl text-teal-dark my-12"><?php echo $data->description->content ?></p>
-			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
-				<div class="flex flex-wrap">
-					@foreach($tags as $tag)
-					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</button>
-					@endforeach
-				</div>
-				<div class="border border-grey-light mt-4"></div>
-				<table class="content mx-auto mt-6">
-			        <tr class="bg-grey p-5 text-center">
-			            <th class="this-black py-5 px-6">Title</th>
-			            <th class="this-black py-5 px-6">Posted On</th>
-			        </tr>
-			        @foreach($posts as $post)
-			        <tr class="bg-grey-lightest p-5 text-center">
-			            <td class="this-black py-5 px-6"><a class="underline" href="/post?id={{ $post->id }}">{{ $post->title }}</a></td>
-			            <td class="this-black py-5 px-6">{{ $post->post_date }}</td>
-			        </tr>
-			        @endforeach
-			    </table>
+		<div class="text-center flex flex-col items-center w-full overflow-y-scroll h-screen">
+			<div class="flex items-center justify-center">
+				<a href="/v2/mycorner" class="border border-black p-4 rounded mt-8  hover:text-white hover:bg-black w-1/7">Back</a>
+				<p class="text-5xl p-4 pt-12 font-bold w-2/3">{{ $blog->title }}</p>
 			</div>
+			<p class="text-xl font-bold text-grey-dark p-4">{{ \Carbon\Carbon::parse($blog->created_at)->toFormattedDateString() }} - Sami Hajjaj</p>
+			<div class="flex pt-4">
+				@foreach($blog->tagNames() as $tag)
+					<div class="border border-grey rounded-full p-2 px-4 mx-2">#{{ $tag }}</div>
+				@endforeach
+			</div>
+			<p class="pt-10"><?php echo $blog->content ?></p>
 		</div>
 	</div>
 </div>

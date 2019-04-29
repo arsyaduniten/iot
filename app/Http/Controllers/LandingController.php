@@ -116,4 +116,5 @@ class LandingController extends Controller
         $data = Page::find(6);
         return view('public.contact', compact('data'));
     }
+
 }
