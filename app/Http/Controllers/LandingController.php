@@ -107,7 +107,11 @@ class LandingController extends Controller
     {
         $data = Page::find(5);
         $tags = $data->tagNames();
-        $posts = Blog::where('publish',1)->orderBy('post_date', 'desc')->get();
+        if(is_null($request->get('keyword'))){
+            $posts = Blog::where('publish',1)->orderBy('post_date', 'desc')->get();
+        } else {
+            $posts = Blog::withAnyTag($request->get('keyword'))->where('publish',1)->orderBy('post_date', 'desc')->get();
+        }
         return view('public.mycorner', compact('data', 'tags', 'posts'));
     }
 
