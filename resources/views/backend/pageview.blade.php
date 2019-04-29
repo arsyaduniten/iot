@@ -71,6 +71,7 @@
         </div>
     </div>
 	<input type="hidden" id="tag_values" name="tags">
+	@endif
 	<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4 my-4">
 		<div class="flex flex-wrap">
 			@foreach($tags as $tag)
@@ -120,7 +121,6 @@
 			@endforeach
 		</div>
 	</div>
-	@endif
 
 
 	@if(!is_null($stats))
