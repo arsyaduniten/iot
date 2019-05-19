@@ -63,7 +63,6 @@
 </style>
 
 
-
 <div class="topcontent shadow-md">
 	<nav class="flex items-center justify-between flex-wrap p-6" id="navbar">
 	    <div class="flex items-center flex-no-shrink text-black mr-6">
