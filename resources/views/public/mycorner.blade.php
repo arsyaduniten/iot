@@ -18,14 +18,9 @@
 		<div class="flex flex-col px-8 bg-grey-darker py-6 h-screen shadow-md" style="height: 100vh;">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
-				<a class="pt-2 py-1 this-white">LinkedIn</a>
-				<a class="py-1 this-white">Google Scholar</a>
-				<a class="py-1 this-white">Facebook</a>
-				<a class="py-1 this-white">IEEE</a>
-				<a class="py-1 this-white">IMeche</a>
-				<a class="py-1 this-white">BEM</a>
-				<a class="py-1 this-white">IEM</a>
-				<a class="py-1 this-white">Others</a>
+				@foreach(\App\Sns::all() as $sns)
+					<a class="py-1 this-white" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">
 				<p class="font-bold this-white text-xl">Recent Activity:</p>
@@ -40,6 +35,8 @@
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">
 					<a href='/v2/mycorner' class="rounded-full bg-inherit border border-grey cursor-pointer this-black px-4 py-2 mx-4 my-2 text-sm">#All</a>
+					<a href='/v2/mycorner?filter=recent' class="{{ Request::get('filter') == 'recent' ? 'bg-teal-dark text-white' : 'this-black bg-inherit'}} rounded-full border border-grey cursor-pointer px-4 py-2 mx-4 my-2 text-sm">#Recent</a>
+					<a href='/v2/mycorner?filter=oldest' class="{{ Request::get('filter') == 'oldest' ? 'bg-teal-dark text-white' : 'this-black bg-inherit'}} rounded-full border border-grey cursor-pointer px-4 py-2 mx-4 my-2 text-sm">#Oldest</a>
 					@foreach($tags as $tag)
 					<a href='/v2/mycorner?keyword={{ $tag }}' class="{{ Request::get('keyword') == $tag ? 'bg-teal-dark text-white' : 'this-black bg-inherit'}} rounded-full border border-grey cursor-pointer px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</a>
 					@endforeach
@@ -52,7 +49,7 @@
 			        </tr>
 			        @foreach($posts as $post)
 			        <tr class="bg-grey-lightest p-5 text-center">
-			            <td class="this-black py-5 px-6"><a class="underline" href="/post?id={{ $post->id }}">{{ $post->title }}</a></td>
+			            <td class="this-black py-5 px-6"><a class="no-underline font-bold text-blue-dark" href="/post?id={{ $post->id }}">{{ $post->title }}</a></td>
 			            <td class="this-black py-5 px-6">{{ $post->post_date }}</td>
 			        </tr>
 			        @endforeach

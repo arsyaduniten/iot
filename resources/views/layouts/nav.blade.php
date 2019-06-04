@@ -15,14 +15,9 @@
 		<div class="flex flex-col px-8 bg-grey-darker py-6 h-screen shadow-md">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
-				<a class="pt-2 py-1 this-white">LinkedIn</a>
-				<a class="py-1 this-white">Google Scholar</a>
-				<a class="py-1 this-white">Facebook</a>
-				<a class="py-1 this-white">IEEE</a>
-				<a class="py-1 this-white">IMeche</a>
-				<a class="py-1 this-white">BEM</a>
-				<a class="py-1 this-white">IEM</a>
-				<a class="py-1 this-white">Others</a>
+				@foreach(\App\Sns::all() as $sns)
+					<a class="py-1 this-white" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">
 				<p class="font-bold this-white text-xl">Recent Activity:</p>

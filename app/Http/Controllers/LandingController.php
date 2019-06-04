@@ -109,8 +109,15 @@ class LandingController extends Controller
         $tags = $data->tagNames();
         if(is_null($request->get('keyword'))){
             $posts = Blog::where('publish',1)->orderBy('post_date', 'desc')->get();
-        } else {
+        } else if(is_null($request->get('filter'))) {
             $posts = Blog::withAnyTag($request->get('keyword'))->where('publish',1)->orderBy('post_date', 'desc')->get();
+        } else {
+            $f = $request->get('filter');
+            if($f == 'recent'){
+                $posts = Blog::where('publish',1)->latest()->get();
+            } else {
+                $posts = Blog::where('publish',1)->oldest()->get();
+            }
         }
         return view('public.mycorner', compact('data', 'tags', 'posts'));
     }

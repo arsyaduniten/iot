@@ -18,14 +18,9 @@
 		<div class="flex flex-col px-8 bg-grey-darker py-6 h-screen shadow-md">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
-				<a class="pt-2 py-1 this-white">LinkedIn</a>
-				<a class="py-1 this-white">Google Scholar</a>
-				<a class="py-1 this-white">Facebook</a>
-				<a class="py-1 this-white">IEEE</a>
-				<a class="py-1 this-white">IMeche</a>
-				<a class="py-1 this-white">BEM</a>
-				<a class="py-1 this-white">IEM</a>
-				<a class="py-1 this-white">Others</a>
+				@foreach(\App\Sns::all() as $sns)
+					<a class="py-1 this-white" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">
 				<p class="font-bold this-white text-xl">Recent Activity:</p>
@@ -60,7 +55,7 @@
 			        </tr>
 			        @foreach($projects as $project)
 			        <tr class="bg-grey-lightest p-5 text-center">
-			            <td class="this-black py-5 px-6"><a target="_blank" href="/details?type=project&id={{ $project['id'] }}">{{ $project['title'] }}</a></td>
+			            <td class="this-black py-5 px-6"><a class="text-blue-dark font-bold" target="_blank" href="/details?type=project&id={{ $project['id'] }}">{{ $project['title'] }}</a></td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($project['start_date'])->year }}</td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($project['end_date'])->gte(\Carbon\Carbon::today()) ? "Present" : \Carbon\Carbon::parse($project['end_date'])->year }}</td>
 			        </tr>
@@ -77,7 +72,7 @@
 			        </tr>
 			        @foreach($researches as $research)
 			        <tr class="bg-grey-lightest p-5 text-center">
-			            <td class="this-black py-5 px-6">{{ $research->research_area }}</td>
+			            <td class="this-black py-5 px-6"><a class="text-blue-dark font-bold" target="_blank" href="/details?type=research&id={{ $research['id'] }}">{{ $research['research_area'] }}</a></td>
 			            <td class="this-black py-5 px-6"><?php echo $research->description ?></td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($research->start_date)->year }}</td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($research->end_date)->gte(\Carbon\Carbon::today()) ? "Present" : \Carbon\Carbon::parse($research->end_date)->year }}</td>
@@ -132,7 +127,7 @@
 			        </tr>
 			        @foreach($events as $event)
 			        <tr class="bg-grey-lightest p-5 text-center">
-			            <td class="this-black py-5 px-6">{{ $event->title }}</td>
+			            <td class="this-black py-5 px-6"><a class="no-underline font-bold text-blue-dark" href="/post?id={{ $event->id }}">{{ $event->title }}</a></td>
 			        </tr>
 			        @endforeach
 			    </table>
