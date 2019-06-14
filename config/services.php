@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => "https://api.mailgun.net/v3/mg.samihajjaj.com",
+        'secret' => "c96c106ca25411341a6257dc8ec7f0a2-6140bac2-29188d99",
     ],
 
     'ses' => [

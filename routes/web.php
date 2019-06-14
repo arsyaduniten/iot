@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'LandingController@index')->name('home')->middleware('auth');
+Route::get('/', 'LandingController@index')->name('home');
 Route::get('/v2', 'LandingController@index_v2_default')->name('homev2')->middleware('auth');
 Route::get('/v2/next', 'LandingController@index_v2')->name('homev2')->middleware('auth');
 Route::get('/v2/portfolio', 'LandingController@portfolio_v2')->name('portfoliov2')->middleware('auth');
@@ -22,6 +22,7 @@ Route::get('/details', 'DetailsController@index')->name('details');
 Route::get('/post', 'DetailsController@view')->name('details');
 
 Route::post('/enquiry', 'Backend\EnquiryController@store')->name('enquiry');
+Route::post('/landing/enquiry', 'Backend\EnquiryController@notify')->name('landing:enquiry');
 
 Route::group(['prefix'=>'/v2/backend', 'middleware' => ['auth','is_admin']], function(){
     Route::get('/', 'Backend\BackendController@entry')->name('entry');

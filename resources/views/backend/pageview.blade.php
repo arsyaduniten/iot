@@ -73,11 +73,13 @@
 	<input type="hidden" id="tag_values" name="tags">
 	@endif
 	<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4 my-4">
+		@if($p->has_keywords)
 		<div class="flex flex-wrap">
 			@foreach($tags as $tag)
 			<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</button>
 			@endforeach
 		</div>
+		@endif
 		<div class="border border-grey-light mt-4"></div>
 		<div class="m-6">
 			@if($p->title == "My Corner")

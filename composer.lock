@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bda659b5a6fec10479f7fd0f3e69bb89",
+    "content-hash": "3563deda9465e730a5f850d9be5fa327",
     "packages": [
         {
             "name": "aws/aws-sdk-php",

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Enquiry;
+use App\Mail\Enquiry as EnquiryMail;
+use Illuminate\Support\Facades\Mail;
 
 class EnquiryController extends Controller
 {
@@ -16,6 +18,14 @@ class EnquiryController extends Controller
     public function index()
     {
         //
+    }
+
+    public function notify(Request $request)
+    {   
+        $message = $request->get('message');
+        $email = $request->get('email');
+        Mail::to("arsyad.ndk@gmail.com")->send(new EnquiryMail($message, $email));
+        return back()->with('status', 'success');
     }
 
     /**
