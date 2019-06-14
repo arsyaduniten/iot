@@ -22,7 +22,7 @@ Route::get('/details', 'DetailsController@index')->name('details');
 Route::get('/post', 'DetailsController@view')->name('details');
 
 Route::post('/enquiry', 'Backend\EnquiryController@store')->name('enquiry');
-Route::post('/landing/enquiry', 'Backend\EnquiryController@notify')->name('landing:enquiry');
+Route::post('/landing/enquiry', 'Backend\EnquiryController@notify')->name('landing_enquiry');
 
 Route::group(['prefix'=>'/v2/backend', 'middleware' => ['auth','is_admin']], function(){
     Route::get('/', 'Backend\BackendController@entry')->name('entry');

@@ -17,7 +17,7 @@
 	<p class="font-bold text-black" style="font-size: 80px">Thank you for visiting</p>
 	<p class="text-4xl this-black pt-8">The website is currently under maintenance. Please leave a message and I will get back to you.</p>
 	<p class="text-3xl this-black font-bold italic pt-8">- Sami Hajjaj -</p>
-	<form method="post" id="enquiryForm" action="/landing/enquiry/" class="flex flex-col items-center pt-8">
+	<form id="enquiryForm" action="/landing/enquiry" method="post" class="flex flex-col items-center pt-8">
 		@csrf
 		<input class="p-4 px-5 my-2 border border-black" style="width:350px" type="text" name="email" placeholder="Your Email">
 		<p class="text-red text-sm hidden" id="emailError">* Email is required</p>
@@ -34,30 +34,47 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 
 @section('script')
 <script type="text/javascript">
-	$(".submit-btn").on('click', function(e){
-		e.preventDefault();
-		var email = $("input[name=email]").val();
-		var message = $("textarea[name=message]").val();
-		var isError = false;
-		if(email == ""){
-			$("#emailError").show();
-			isError = true;
-		} else {
-			$("#emailError").hide();
-		}
-		if(message == ""){
-			$("#messageError").show();
-			isError = true;
-		} else {
-			$("#messageError").hide();
-		}
-		if(!isError){
-			$("#enquiryForm").submit();
-		}
-	});
-	@if(session()->has('status'))
-	swal("Thank You!", "Your enquiry has been submitted!", "success");
-	@endif
+	$(document).ready(function(){
+    	$.ajaxSetup({
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    }
+		});
+
+		$(".submit-btn").on('click', function(e){
+			e.preventDefault();
+			var email = $("input[name=email]").val();
+			var message = $("textarea[name=message]").val();
+			var isError = false;
+			if(email == ""){
+				$("#emailError").show();
+				isError = true;
+			} else {
+				$("#emailError").hide();
+			}
+			if(message == ""){
+				$("#messageError").show();
+				isError = true;
+			} else {
+				$("#messageError").hide();
+			}
+			if(!isError){
+				$.ajax({
+				  type: "POST",
+				  url: "/landing/enquiry",
+				  data: {'email':email, 'message':message},
+				  success: function(){
+				  	swal("Thank You!", "Your enquiry has been submitted!", "success");
+				  	$('input[name=email]').val("");
+					$('textarea[name=message]').val("");
+				  },
+				});
+			}
+		});
+		@if(session()->has('status'))
+		swal("Thank You!", "Your enquiry has been submitted!", "success");
+		@endif
+    });
 </script>
 @endsection
 
