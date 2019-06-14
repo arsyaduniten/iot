@@ -17,7 +17,7 @@
 	<p class="font-bold text-black" style="font-size: 80px">Thank you for visiting</p>
 	<p class="text-4xl this-black pt-8">The website is currently under maintenance. Please leave a message and I will get back to you.</p>
 	<p class="text-3xl this-black font-bold italic pt-8">- Sami Hajjaj -</p>
-	<form method="POST" id="enquiryForm" action="/landing/enquiry/" class="flex flex-col items-center pt-8">
+	<form method="post" id="enquiryForm" action="/landing/enquiry/" class="flex flex-col items-center pt-8">
 		@csrf
 		<input class="p-4 px-5 my-2 border border-black" style="width:350px" type="text" name="email" placeholder="Your Email">
 		<p class="text-red text-sm hidden" id="emailError">* Email is required</p>
