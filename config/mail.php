@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => 'mailgun',
+    'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => 'smtp.mailgun.org',
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => 587,
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'enquiry@samihajjaj.com'),
-        'name' => env('MAIL_FROM_NAME', 'Enquiry System'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*

@@ -68,6 +68,10 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 				  	$('input[name=email]').val("");
 					$('textarea[name=message]').val("");
 				  },
+				  error: function(jqXHR, exception){
+				  	console.log(exception);
+				  	console.log(jqXHR.responseText);
+				  },
 				});
 			}
 		});

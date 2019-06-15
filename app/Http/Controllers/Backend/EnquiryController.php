@@ -24,7 +24,7 @@ class EnquiryController extends Controller
     {   
         $message = $request->get('message');
         $email = $request->get('email');
-        Mail::to("arsyad.ndk@gmail.com")->send(new EnquiryMail($message, $email));
+        Mail::to("sami.s.hajjaj@gmail.com")->send(new EnquiryMail($message, $email));
         return redirect('/')->with('status', 'success');
     }
 
