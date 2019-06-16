@@ -28,10 +28,10 @@
 		font-size: 40px;
 	  }
 	  .input-el{
-		width: 250px;
+		width: 70%;
 	  }
 	  .submit-btn{
-		width:100%; 
+		width:70%; 
 		background-color: #276EF1; 
 		transition: 0.6s;
 	  }
