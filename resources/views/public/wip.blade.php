@@ -10,18 +10,44 @@
 	.submit-btn:hover{
 		background-color: black;
 	}
+	html, body {
+	  overflow: visible !important;
+	}
+	.h-title{
+		font-size: 80px;
+	}
+	.input-el{
+		width: 350px;
+	}
+	.textarea-input{
+		height: 120px;
+	}
+	@media only screen and (max-width: 768px) {
+	  /* For mobile phones: */
+	  .h-title {
+		font-size: 40px;
+	  }
+	  .input-el{
+		width: 250px;
+	  }
+	  .submit-btn{
+		width:100%; 
+		background-color: #276EF1; 
+		transition: 0.6s;
+	  }
+	}
 </style>
 @endsection
 @section('content')
 <div class="container mx-auto text-center mt-20">
-	<p class="font-bold text-black" style="font-size: 80px">Thank you for visiting</p>
-	<p class="text-4xl this-black pt-8">The website is currently under maintenance. Please leave a message and I will get back to you.</p>
-	<p class="text-3xl this-black font-bold italic pt-8">- Sami Hajjaj -</p>
+	<p class="font-bold text-black h-title">Thank you for visiting</p>
+	<p class="text-xl mx-8 md:text-4xl md:mx-0 this-black pt-8">The website is currently under maintenance. Please leave a message and I will get back to you.</p>
+	<p class="text-xl md:text-3xl this-black font-bold italic pt-8">- Sami Hajjaj -</p>
 	<form id="enquiryForm" action="/landing/enquiry" method="post" class="flex flex-col items-center pt-8">
 		@csrf
-		<input class="p-4 px-5 my-2 border border-black" style="width:350px" type="text" name="email" placeholder="Your Email">
+		<input class="p-4 px-5 my-2 border border-black input-el" type="text" name="email" placeholder="Your Email">
 		<p class="text-red text-sm hidden" id="emailError">* Email is required</p>
-		<textarea class="p-4 my-2 border border-black" style="width:350px; height: 120px;" name="message" placeholder="Message"></textarea>
+		<textarea class="p-4 my-2 border border-black input-el textarea-input" name="message" placeholder="Message"></textarea>
 		<p class="text-red text-sm text-left hidden" id="messageError">* Message is required</p>
 		<button class="p-4 flex text-white font-bold my-2 text-3xl submit-btn"><span class="self-center w-full pb-1">Submit</span><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="50" height="50"
