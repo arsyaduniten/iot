@@ -138,5 +138,7 @@ class ResearcherController extends Controller
     public function destroy(Researcher $researcher)
     {
         //
+        $researcher->delete();
+        return redirect()->route('backend:researchers');
     }
 }

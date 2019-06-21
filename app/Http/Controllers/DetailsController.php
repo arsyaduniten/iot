@@ -24,6 +24,7 @@ class DetailsController extends Controller
             	$research = Research::find($request->get('id'));
             	$data = $research;
             	$title = "Research";
+                $h_title = $data->research_area;
             	$projects = Project::withAnyTag($research->research_area)->get();
             	$r_data = collect([
             				'projects' => $projects,
@@ -35,6 +36,7 @@ class DetailsController extends Controller
                 $project = Project::find($request->get('id'));
                 $data = $project;
                 $title = "Project";
+                $h_title = $data->title;
                 $r_data = collect([
                             'research_areas' => Research::whereIn('research_area', $project->tagNames())->get(),
                             'publications' => Publication::withAnyTag($project->title)->get(),
@@ -42,7 +44,7 @@ class DetailsController extends Controller
                             'collaborator' => Collaborator::withAnyTag($project->title)->get(),
                           ])->all();
         }
-        return view('component.details', compact('data', 'r_data', 'title'));
+        return view('component.details', compact('data', 'r_data', 'title', 'h_title'));
     }
 
     public function view(Request $request)

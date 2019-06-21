@@ -92,5 +92,8 @@ class SnsController extends Controller
     public function destroy($id)
     {
         //
+        $item = Sns::find($id);
+        $item->delete();
+        return redirect()->route('backend:snss');
     }
 }

@@ -60,7 +60,9 @@ class LandingController extends Controller
     public function index_v2(Request $request)
     {
         $data = Page::find(1);
-        return view('public.landingv2', compact('data'));
+        $about = About::where('type', 'bodies')->first();
+        $awards = Award::all();
+        return view('public.landingv2', compact('data', 'about', 'awards'));
     }
 
     public function portfolio_v2(Request $request)
@@ -68,14 +70,12 @@ class LandingController extends Controller
         $data = Page::find(3);
         $tags = $data->tagNames();
         $education = About::where('type', 'education')->first();
-        $bodies = About::where('type', 'bodies')->first();
         $experience = About::where('type', 'experience')->first();
-        $about = [$education, $bodies, $experience];
-        $fundings = Funding::all();
-        $publications = Publication::orderBy('publication_date', 'desc')->get();
-        $highlighted = Publication::where('highlight', 1)->orderBy('rank', 'asc')->get();
-        $awards = Award::all();
-        return view('public.portfoliov2', compact('data', 'tags', 'education', 'bodies', 'experience', 'about', 'fundings', 'publications', 'awards', 'highlighted'));
+        $qualification = About::where('type', 'qualifications')->first();
+        $teaching = About::where('type', 'teaching')->first();
+        $administrative = About::where('type', 'administrative')->first();
+        $about = [$education, $experience, $qualification, $teaching, $administrative];
+        return view('public.portfoliov2', compact('data', 'tags', 'education', 'experience', 'about'));
     }
 
     public function research_v2(Request $request)
@@ -86,7 +86,6 @@ class LandingController extends Controller
         $projects_2 = [];
         $researches = Research::orderBy('start_date', 'desc')->get();
         $colleagues = Researcher::all();
-        $events = Blog::where('event', 1)->get();
         foreach ($colleagues as $colleague) {
             $tags = $colleague->tagNames();
             foreach ($projects as $key => $project) {
@@ -100,14 +99,21 @@ class LandingController extends Controller
             
         }
         $collaborators = Collaborator::all();
-        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'events'));
+        $fundings = Funding::all();
+        $publications = Publication::orderBy('publication_date', 'desc')->get();
+        $highlighted = Publication::where('highlight', 1)->orderBy('rank', 'asc')->get();
+        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'fundings', 'publications', 'highlighted'));
     }
 
     public function mycorner(Request $request)
     {
         $data = Page::find(5);
         $tags = $data->tagNames();
-        if(is_null($request->get('keyword'))){
+        $keyword = $request->get('keyword');
+        if($keyword == 'events'){
+            $posts = Blog::where('event', 1)->get();
+        }
+        else if(is_null($request->get('keyword'))){
             $posts = Blog::where('publish',1)->orderBy('post_date', 'desc')->get();
         } else if(is_null($request->get('filter'))) {
             $posts = Blog::withAnyTag($request->get('keyword'))->where('publish',1)->orderBy('post_date', 'desc')->get();

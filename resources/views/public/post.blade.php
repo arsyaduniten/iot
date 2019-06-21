@@ -7,11 +7,11 @@
 			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
 		<div class="container mx-auto flex justify-between py-6">
-				<a class="no-underline" href="/v2/next">About</a>
-				<a class="no-underline" href="/v2/portfolio">Academic</a>
-				<a class="no-underline" href="/v2/research">Research</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/next">Profile</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/research">Research</a>
 				<a class="border-b-4 border-blue-darker font-bold">My Corner</a>
-				<a class="no-underline" href="/v2/contact">Contact</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -19,7 +19,7 @@
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				@foreach(\App\Sns::all() as $sns)
-					<a class="py-1 this-white" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
 				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">

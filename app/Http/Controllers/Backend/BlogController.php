@@ -134,6 +134,8 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         //
+        $blog->delete();
+        return redirect()->route('backend:blogs');
     }
 
     public function in_arrayi($needle, $haystack)

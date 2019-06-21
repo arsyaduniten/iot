@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Statistic;
 
 class StatisticController extends Controller
 {
@@ -15,6 +16,8 @@ class StatisticController extends Controller
     public function index()
     {
         //
+        $data = Statistic::all();
+        return view("backend.statistic.index", compact('data'));
     }
 
     /**
@@ -25,6 +28,7 @@ class StatisticController extends Controller
     public function create()
     {
         //
+        return view('backend.statistic.create');
     }
 
     /**
@@ -36,6 +40,8 @@ class StatisticController extends Controller
     public function store(Request $request)
     {
         //
+        $statistic = Statistic::create($request->all());
+        return redirect()->route('backend:statistics');
     }
 
     /**
@@ -58,6 +64,8 @@ class StatisticController extends Controller
     public function edit($id)
     {
         //
+        $statistic = Statistic::find($id);
+        return view('backend.statistic.edit', compact('statistic'));
     }
 
     /**
@@ -70,6 +78,9 @@ class StatisticController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $statistic = Statistic::find($id);
+        $statistic->update($request->all());
+        return redirect()->route('backend:statistics');
     }
 
     /**
@@ -81,5 +92,8 @@ class StatisticController extends Controller
     public function destroy($id)
     {
         //
+        $item = Statistic::find($id);
+        $item->delete();
+        return redirect()->route('backend:statistics');
     }
 }

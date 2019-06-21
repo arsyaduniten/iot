@@ -165,5 +165,7 @@ class AwardController extends Controller
     public function destroy(Award $award)
     {
         //
+        $award->delete();
+        return redirect()->route('backend:awards');
     }
 }

@@ -26,6 +26,9 @@
 		  -webkit-appearance: none; 
 		  margin: 0; 
 		}
+		select {
+		  -webkit-appearance: none !important;
+		}
 	</style>
 	<style>
 	.dropbtn {

@@ -11,6 +11,10 @@
 @endsection
 @section('content')
 @include('backend.nav')
+<div class="flex container mx-auto">
+    <a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/8">Back to Layout</a>
+    <a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/sns">View All</a>
+</div>
 <form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:sns:update', ['sns' => $sns]) }}">
 	@method('PUT')
 	@csrf

@@ -125,5 +125,7 @@ class FundingController extends Controller
     public function destroy(Funding $funding)
     {
         //
+        $funding->delete();
+        return redirect()->route('backend:fundings');
     }
 }

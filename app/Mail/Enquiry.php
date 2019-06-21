@@ -12,17 +12,19 @@ class Enquiry extends Mailable
     use Queueable, SerializesModels;
     public $messages;
     public $email;
+    public $type;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($messages, $email)
+    public function __construct($messages, $email, $type='landing')
     {
         //
         $this->messages = $messages;
         $this->email = $email;
+        $this->type = $type;
     }
 
     /**

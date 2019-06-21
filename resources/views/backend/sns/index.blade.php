@@ -7,6 +7,10 @@
 @section('content')
 @include('backend.nav')
 <div class="container mx-auto">
+    <div class="flex container mx-auto">
+        <a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/8">Back to Layout</a>
+        <a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/sns/create">Create New</a>
+    </div>
     <table class="border border-grey-dark m-2">
         <tr>
             <th class="p-2">Display Name</th>

@@ -42,6 +42,15 @@ Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], functio
         'destroy' => 'backend:sns:destroy'
     ]);
 
+    Route::resource('/statistic', 'Backend\StatisticController')->names([
+        'index' => 'backend:statistics',
+        'create' => 'backend:statistic:create',
+        'store' =>'backend:statistic:store',
+        'edit' =>'backend:statistic:edit',
+        'update' => 'backend:statistic:update',
+        'destroy' => 'backend:statistic:destroy'
+    ]);
+
     Route::resource('/education', 'Backend\EducationController')->names([
         'index' => 'backend:educations',
         'create' => 'backend:education:create',

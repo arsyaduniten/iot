@@ -139,5 +139,7 @@ class CollaboratorController extends Controller
     public function destroy(Collaborator $collaborator)
     {
         //
+        $collaborator->delete();
+        return redirect()->route('backend:collaborators');
     }
 }

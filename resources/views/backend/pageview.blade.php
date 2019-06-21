@@ -33,7 +33,7 @@
 	<input type="text" class="text-3xl font-bold text-teal-dark text-center" name="nav_title" value="{{ $p->nav_title }}">
 	<input type="text" class="text-5xl font-bold text-teal-dark pt-2 text-center" name="title" value="{{ $p->title }}">
 </div>
-	@if(!is_null($snss))
+	{{-- @if(!is_null($snss))
 		<div class="flex justify-center mt-4">
 			@foreach($snss as $sns)
 				<div class="flex flex-col">
@@ -43,7 +43,7 @@
 				<span class="border border-teal-dark"></span>
 			@endforeach
 		</div>
-	@endif
+	@endif --}}
 
 	@if(!is_null($desc))
 		<div class="mt-12">
@@ -110,6 +110,12 @@
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/3/edit">Edit Professional Bodies</a>
 				@elseif($sub_nav->content_id == 'education')
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/2/edit">Edit Education Background</a>
+				@elseif($sub_nav->content_id == 'qualification')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/4/edit">Edit Qualification & Skills</a>
+				@elseif($sub_nav->content_id == 'teaching')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/5/edit">Edit Teaching Experience</a>
+				@elseif($sub_nav->content_id == 'administrative')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/6/edit">Edit Administrative Experience</a>
 				@elseif($sub_nav->content_id == 'experience')
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/1/edit">Edit Work Experience</a>
 				@elseif($sub_nav->content_id == 'event')
@@ -151,7 +157,7 @@
 			$(".action-btns").each(function(){
 				$(this).addClass('hidden');
 			});
-			var about = ['bodies', 'education', 'experience'];
+			var about = ['bodies', 'education', 'experience', 'qualification', 'teaching', 'administrative'];
 			if(about.includes($(this).attr('content-id'))){
 				$("#edit-btn-"+$(this).attr('content-id')).removeClass('hidden');
 			} else {

@@ -157,5 +157,7 @@ class PublicationController extends Controller
     public function destroy(Publication $publication)
     {
         //
+        $publication->delete();
+        return redirect()->route('backend:publications');
     }
 }

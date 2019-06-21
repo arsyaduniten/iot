@@ -48,6 +48,12 @@ class EnquiryController extends Controller
     {
         //
         $e = Enquiry::create($request->all());
+        $name = $request->get('name');
+        $message = $request->get('message');
+        $email = $request->get('email');
+        $phone = $request->get('phone');
+        $type = $request->get('type');
+        Mail::to("arsyad.ndk@gmail.com")->send(new EnquiryMail($message, $email, $type));
         return "true";
 
     }

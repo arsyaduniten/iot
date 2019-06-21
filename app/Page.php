@@ -30,9 +30,4 @@ class Page extends Model
     {
         return $this->hasMany('App\SubNavigation');
     }
-
-    public function snss()
-    {
-        return $this->hasMany('App\Sns');
-    }
 }

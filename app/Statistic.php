@@ -8,6 +8,9 @@ class Statistic extends Model
 {
     //
     protected $fillable = ['page_id', 'content', 'description'];
+    protected $attributes = [
+       'page_id' => 1,
+    ];
 
     public function page()
     {

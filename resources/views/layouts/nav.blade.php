@@ -1,14 +1,14 @@
 <div class="flex flex-col w-full">
 	<div class="flex w-full bg-grey-dark shadow-md this-white">
-		<div class="flex mx-8 py-6">
+		<div class="flex flex-no-shrink mx-6 py-6">
 			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
-		<div class="container mx-auto flex justify-between py-6">
-				<a class="font-bold border-b-4 border-blue-darker">About</a>
-				<a class="no-underline" href="/v2/portfolio">Academic</a>
-				<a class="no-underline" href="/v2/research">Research</a>
-				<a class="no-underline" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline" href="/v2/contact">Contact</a>
+		<div class="container mx-auto flex justify-between py-6 px-12">
+				<a class="font-bold border-b-4 border-blue-darker">Profile</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/research">Research</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/mycorner">My Corner</a>
+				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -16,7 +16,7 @@
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				@foreach(\App\Sns::all() as $sns)
-					<a class="py-1 this-white" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
 				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">
@@ -26,8 +26,8 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="flex flex-col text-center w-full">
-			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
+		<div class="text-center w-full overflow-y-auto">
+			{{-- <p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
 			@if(!is_null($data->snss))
 			<div class="flex justify-center">
 			@foreach($data->snss as $sns)
@@ -35,7 +35,7 @@
 				<span class="border border-teal-dark my-4"></span>
 			@endforeach
 			</div>
-			@endif
+			@endif --}}
 			<p class="text-xl text-grey-darker pt-6"><?php echo $data->description->content ?></p>
 			<div class="flex w-full container justify-center mx-auto m-8">
 				@foreach($data->statistics as $stat)
@@ -45,10 +45,36 @@
 				</div>
 				@endforeach
 			</div>
+			<div class="flex w-full container mx-auto m-8 justify-center">
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="bodies">Professional Bodies</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="awards">Awards and Recognition</button>
+			</div>
+			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto mb-12 p-4">
+				<div class="border border-grey-light mt-4"></div>
+				<p class="container mx-auto my-8 mt-12 font-bold text-5xl text-grey-darker landing-message">Click on above buttons to get started.</p>
+				<div class="hidden content p-6" id="{{ $about->type }}"><?php echo $about->description ?></div>
+				@if(!is_null($awards))
+				<table class="hidden content mx-auto mt-6" id="awards">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">TITLE</th>
+			            <th class="this-black py-5 px-6">BY</th>
+			            <th class="this-black py-5 px-6">YEAR</th>
+			        </tr>
+			        @foreach($awards as $award)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6"><a class="no-underline text-blue-dark font-bold" target="_blank" href='{{ is_null($award->file_url_s3) ? $award->file_url : $award->file_url_s3 }}'><?php echo $award->title ?></a></td>
+			            <td class="this-black py-5 px-6">{{ $award->awarded_by }}</td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($award->date_obtained)->year }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
+				@endif
+			</div>
 			<a class="mx-auto px-6 mt-6 py-4 bg-grey-darker text-white border-2 border-black" href="/v2/portfolio">Academic Portfolio</a>
 		</div>
 	</div>
 </div>
+
 
 
 

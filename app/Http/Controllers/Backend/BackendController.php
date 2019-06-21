@@ -34,11 +34,10 @@ class BackendController extends Controller
         $p = Page::find($id);
         $desc = $p->description;
         $stats = $p->statistics;
-        $snss = $p->snss;
         $sub_navs = $p->sub_navigations;
         $tags = $p->tagNames();
         $enquiries = Enquiry::orderBy('created_at', 'desc')->get();
-        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'snss', 'tags', 'sub_navs', 'enquiries'));
+        return view('backend.pageview', compact('pages','p', 'desc', 'stats', 'tags', 'sub_navs', 'enquiries'));
     }
 
     public function update($id, Request $request)

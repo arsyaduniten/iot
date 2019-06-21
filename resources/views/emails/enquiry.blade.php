@@ -1,7 +1,7 @@
 <body>
 	<div>
-		From {{ $email }}, 
-
+		From {{ $email }},
+		Enquiry type: {{ $type }}<br>
 		{{ $messages }}
 	</div>
 </body>

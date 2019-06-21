@@ -91,5 +91,7 @@ class ResearchController extends Controller
     public function destroy(Research $research)
     {
         //
+        $research->delete();
+        return redirect()->route('backend:researches');
     }
 }

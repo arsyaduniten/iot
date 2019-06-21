@@ -92,5 +92,8 @@ class AboutController extends Controller
     public function destroy($id)
     {
         //
+        $about = About::find($id);
+        $about->delete();
+        return redirect()->route('backend:abouts');
     }
 }
