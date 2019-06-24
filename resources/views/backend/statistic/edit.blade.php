@@ -20,7 +20,7 @@
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'display_name'" :data="$statistic->content"/>
-	<text-input :name="'url'" :data="$statistic->description" />
+	<text-input :name="'description'" :data="$statistic->description" />
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection
