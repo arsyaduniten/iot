@@ -27,7 +27,13 @@
             <td class="p-2">{{ $blog->title }}</td>
             <td class="p-2">{{ \Carbon\Carbon::parse($blog->created_at)->toDateString() }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:blog:edit', ['blog' => $blog]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
-            <td class="p-2 py-4"><a href="{{ route('backend:blog:destroy', ['blog' => $blog]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
+            <td class="p-2 py-4">
+                <form id="delete-form-{{ $blog->id }}" action="{{ route('backend:blog:destroy', ['blog' => $blog]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-white font-bold no-underline p-2 bg-red delete-btn" data-id="{{ $blog->id }}" type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>
@@ -35,4 +41,24 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete-btn').on('click', function(e){
+            const formId = $(this).attr('data-id');
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this data!",
+                icon: "warning",
+                buttons: ['Cancel', 'Yes, delete it!'],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $('#delete-form-'+formId).submit();
+                }
+            });
+        });
+    });
+</script>
 @endsection

@@ -28,12 +28,38 @@
             <td class="p-2">{{ $award->date_obtained }}</td>
             <td class="p-2">{{ implode(", ", $award->tagNames()) }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:award:edit', ['award' => $award]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
-            <td class="p-2 py-4"><a href="{{ route('backend:award:destroy', ['award' => $award]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
+            <td class="p-2 py-4">
+                <form id="delete-form-{{ $award->id }}" action="{{ route('backend:award:destroy', ['award' => $award]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-white font-bold no-underline p-2 bg-red delete-btn" data-id="{{ $award->id }}" type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>
 </div>
 @endsection
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete-btn').on('click', function(e){
+            const formId = $(this).attr('data-id');
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this data!",
+                icon: "warning",
+                buttons: ['Cancel', 'Yes, delete it!'],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $('#delete-form-'+formId).submit();
+                }
+            });
+        });
+    });
+</script>
 
 @section('script')
 @endsection

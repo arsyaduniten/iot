@@ -39,7 +39,13 @@
             <td class="p-2"><a href="{{ $researcher->profile_url }}" target="_blank">{{ $researcher->profile_url }}</a></td>
             <td class="p-2">{{ implode(", ", $researcher->tagNames()) }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:researcher:edit', ['researcher' => $researcher]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
-            <td class="p-2 py-4"><a href="{{ route('backend:researcher:destroy', ['researcher' => $researcher]) }}" class="text-white font-bold no-underline p-2 bg-red">Delete</a></td>
+            <td class="p-2 py-4">
+                <form  id="delete-form-{{ $researcher->id }}" action="{{ route('backend:researcher:destroy', ['researcher' => $researcher]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-white font-bold no-underline p-2 bg-red delete-btn" data-id="{{ $researcher->id }}" type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>
@@ -47,4 +53,24 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete-btn').on('click', function(e){
+            const formId = $(this).attr('data-id');
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this data!",
+                icon: "warning",
+                buttons: ['Cancel', 'Yes, delete it!'],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $('#delete-form-'+formId).submit();
+                }
+            });
+        });
+    });
+</script>
 @endsection
