@@ -50,7 +50,7 @@
 	    	height:200,
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
-        $('.summernote').summernote("code", "<?php echo $project->description ?>");
+        $('.summernote').summernote("code", `<?php echo $project->description ?>`);
         var tags = [];
 		@foreach($r_title as $title)
 		tags.push("{{ $title }}");
