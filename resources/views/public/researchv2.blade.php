@@ -147,7 +147,7 @@
 			        <tr class="bg-grey-lightest p-5 text-center">
 			            <td class="this-black py-5 px-6">
 			            		@if($collaborator->logo_url != NULL)
-								<img width="50" height="50" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') ?? ""}}">
+								<img width="50" height="50" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') }}">
 								@endif
 						</td>
 			            <td class="this-black py-5 px-6"><?php echo $collaborator->name ?></td>
