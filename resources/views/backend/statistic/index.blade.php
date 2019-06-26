@@ -17,6 +17,7 @@
             <th class="p-2">Description</th>
             <th></th><th></th>
         </tr>
+        @if(!$data->isEmpty())
         @foreach($data as $statistic)
         <tr class="">
             <td class="p-2">{{ $statistic->content }}</td>
@@ -31,6 +32,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </table>
 </div>
 @endsection

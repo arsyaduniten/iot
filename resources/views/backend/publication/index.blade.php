@@ -26,6 +26,7 @@
             <th class="p-2">Related Projects</th>
             <th></th><th></th>
         </tr>
+        @if(!$data->isEmpty())
         @foreach($data as $publication)
         <tr class="">
             <td class="p-2"><a target="_blank" href="{{ $publication->conference_url }}">{{ $publication->conference }}</a></td>
@@ -43,6 +44,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </table>
 </div>
 @endsection

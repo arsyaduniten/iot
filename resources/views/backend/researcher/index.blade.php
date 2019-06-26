@@ -26,6 +26,7 @@
             <th class="p-2">Related Projects</th>
             <th></th><th></th>
         </tr>
+        @if(!$data->isEmpty())
         @foreach($data as $researcher)
         <tr class="">
             <td class="p-2"><img width="50" height="50" class="border-white shadow-md border-2 rounded-full" src="{{ Avatar::create($researcher->fullname)->setDimension(200)->toBase64() }}"></td>
@@ -48,6 +49,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </table>
 </div>
 @endsection

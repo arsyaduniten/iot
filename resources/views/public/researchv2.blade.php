@@ -136,7 +136,7 @@
 				    </table>
 				</div>
 				@endif
-				@if(!is_null($collaborators))
+				@if(!$collaborators->isEmpty())
 				<table class="hidden content mx-auto mt-6" id="collaborators">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">LOGO</th>
@@ -156,7 +156,7 @@
 			        @endforeach
 			    </table>
 				@endif
-				@if(!is_null($colleagues))
+				@if(!$colleagues->isEmpty())
 				<table class="hidden content mx-auto mt-6" id="colleagues">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">IMAGE</th>

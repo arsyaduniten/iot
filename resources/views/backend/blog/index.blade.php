@@ -22,6 +22,7 @@
             <th class="p-2">Post Date</th>
             <th></th><th></th>
         </tr>
+        @if(!$data->isEmpty())
         @foreach($data as $blog)
         <tr class="">
             <td class="p-2">{{ $blog->title }}</td>
@@ -36,6 +37,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </table>
 </div>
 @endsection

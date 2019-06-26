@@ -26,6 +26,7 @@
 			<th></th>
 			<th></th>
 		</tr>
+        @if(!$data->isEmpty())
 		@foreach($data as $research)
 		<tr class="">
 			<td class="p-2">{{ $research->research_area }}</td>
@@ -43,6 +44,7 @@
             </td>
 		</tr>
 		@endforeach
+        @endif
 	</table>
 </div>
 @endsection

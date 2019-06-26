@@ -26,6 +26,7 @@
             <th class="p-2">Related Projects</th>
             <th></th><th></th>
         </tr>
+        @if(!$data->isEmpty())
         @foreach($data as $collaborator)
         <tr class="">
             <td class="p-2">
@@ -48,6 +49,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </table>
 </div>
 @endsection

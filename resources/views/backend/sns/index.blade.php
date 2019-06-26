@@ -17,6 +17,7 @@
             <th class="p-2">Url</th>
             <th></th><th></th>
         </tr>
+        @if(!$data->isEmpty())
         @foreach($data as $sns)
         <tr class="">
             <td class="p-2">{{ $sns->display_name }}</td>
@@ -31,6 +32,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </table>
 </div>
 @endsection

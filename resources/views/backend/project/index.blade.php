@@ -25,6 +25,7 @@
             <th class="p-2">Related Research Areas</th>
             <th></th><th></th>
         </tr>
+        @if(!$data->isEmpty())
         @foreach($data as $project)
         <tr class="">
             <td class="p-2">{{ $project->title }}</td>
@@ -42,6 +43,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </table>
 </div>
 @endsection
