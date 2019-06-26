@@ -57,7 +57,7 @@
 	    	height:200,
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
-        $('.summernote').summernote("code", "<?php echo $publication->description ?>");
+        $('.summernote').summernote("code", `<?php echo $publication->description ?>`);
 
         @if($publication->highlight == 1)
         	$('input[name=highlight').prop('checked', true);
