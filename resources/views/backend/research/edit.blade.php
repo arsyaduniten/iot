@@ -30,7 +30,6 @@
 	</div>
 	<date-input :name="'start_date'" :data="$research->start_date"/>
 	<date-input :name="'end_date'" :data="$research->end_date"/>
-	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Update</button>
 </form>
 @endsection
 

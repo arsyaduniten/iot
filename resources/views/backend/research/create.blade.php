@@ -29,7 +29,6 @@
 	</div>
 	<date-input :name="'start_date'" :data=null/>
 	<date-input :name="'end_date'" :data=null/>
-	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection
 

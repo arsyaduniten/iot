@@ -47,7 +47,6 @@
 		<input class="self-center mt-4 m-2 border border-grey" type="text" name="rank" value="{{ $publication->rank }}" placeholder="Rank">
 	</div>
 	<input type="hidden" id="tag_values" name="tags">
-	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 </form>
 @endsection
 

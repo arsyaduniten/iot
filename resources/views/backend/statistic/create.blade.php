@@ -20,7 +20,6 @@
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'content'" :data=null/>
 	<text-input :name="'description'" :data=null />
-	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection
 

@@ -34,7 +34,6 @@
 		</div>
 	</div>
 	<input type="hidden" id="tag_values" name="tags">
-	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 </form>
 @endsection
 
