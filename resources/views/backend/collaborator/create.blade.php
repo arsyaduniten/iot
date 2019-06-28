@@ -19,7 +19,13 @@
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'name'" :data=null/>
-	<text-input :name="'logo_url'" :data=null/>
+	<div class="flex">
+		<label class="self-center">Logo Url</label>
+		<div>
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="logo_url">
+			<p class="text-xs text-red hidden" id="warning_logo">Logo URL is not valid</p>
+		</div>
+	</div>
 	<text-input :name="'company_url'" :data=null/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
@@ -63,12 +69,20 @@
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
-	    	$(".selected_items").each(function(){
-	    		// $("#tag_values").append($(this).text()+",");
-	    		var tag_text = $(this).text()+",";
-    		    $('#tag_values').val($('#tag_values').val() + tag_text);
-	    	});
-	    	$("#createForm").submit();
+	    	var logoURL = $('input[name=logo_url]').val();
+	    	var isValid = ImageExist(logoURL);
+	    	// var isValid = imageExists(imageURL);
+	    	if(isValid){
+		    	$(".selected_items").each(function(){
+		    		// $("#tag_values").append($(this).text()+",");
+		    		var tag_text = $(this).text()+",";
+	    		    $('#tag_values').val($('#tag_values').val() + tag_text);
+		    	});
+		    	$("#createForm").submit();
+		    } else {
+		    	$('#warning_logo').show();
+		    	return;
+		    }
 	    });
 
 	    function addTag(element, className) {
@@ -87,6 +101,10 @@
 		    $tag.appendTo($appendHere);
 		    $("#app input").val('');
 		 }
+
+		function ImageExist(url) {
+		     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+		}
 	});
 </script>
 @endsection

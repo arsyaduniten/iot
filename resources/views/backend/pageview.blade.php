@@ -108,6 +108,8 @@
 			<div class="flex">
 				@if($sub_nav->content_id == 'bodies')
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/3/edit">Edit Professional Bodies</a>
+				@elseif($sub_nav->content_id == 'recognition')
+				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/7/edit">Edit Academic Recognition</a>
 				@elseif($sub_nav->content_id == 'education')
 				<a class="hidden p-4 m-4 rounded text-black text-xl bg-yellow action-btns" id="edit-btn-{{ $sub_nav->content_id }}" href="/backend/about/2/edit">Edit Education Background</a>
 				@elseif($sub_nav->content_id == 'qualification')
@@ -157,7 +159,7 @@
 			$(".action-btns").each(function(){
 				$(this).addClass('hidden');
 			});
-			var about = ['bodies', 'education', 'experience', 'qualification', 'teaching', 'administrative'];
+			var about = ['bodies', 'education', 'experience', 'qualification', 'teaching', 'administrative', 'recognition'];
 			if(about.includes($(this).attr('content-id'))){
 				$("#edit-btn-"+$(this).attr('content-id')).removeClass('hidden');
 			} else {

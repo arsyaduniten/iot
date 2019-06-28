@@ -7,6 +7,7 @@ use App\Research;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Illuminate\Support\Arr;
 
 class ProjectController extends Controller
 {
@@ -52,8 +53,21 @@ class ProjectController extends Controller
         //
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
+        $ktags = explode(",",$request->get('ktags'));
+        array_pop($ktags);
         $new_p = Project::create($request->all());
         $new_p->tag($tags);
+        $new_p->tag($ktags);
+        foreach ($new_p->tags as $tag) {
+            $relatedProjects = $this->in_arrayi($tag->name, $tags);
+            $keywords = $this->in_arrayi($tag->name, $ktags);
+            if($relatedProjects){
+                $tag->setGroup('RelatedProjectsTagGroup');
+            }
+            if($keywords){
+                $tag->setGroup('KeywordsTagGroup');
+            }
+        }
         // $research = Research::find($request->get('related_r'));
         // $research->projects()->attach($new_p->id);
         return redirect()->route('backend:projects');
@@ -86,8 +100,17 @@ class ProjectController extends Controller
             # code...
             $r_title[] = $r->research_area;
         }
-        $tags = $project->tagNames();
-        return view('backend.project.edit', compact('project', 'r_title', 'researches', 'tags'));
+        $tags = $ktags = [];
+        foreach ($project->tags as $tag) {
+            if($tag->isInGroup('RelatedProjectsTagGroup')){
+                $tags[] = $tag->name;
+            }
+            if($tag->isInGroup('KeywordsTagGroup')){
+                $ktags[] = $tag->name;
+            }
+        }
+
+        return view('backend.project.edit', compact('project', 'r_title', 'researches', 'tags', 'ktags'));
     }
 
     /**
@@ -100,12 +123,26 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         //
-        $project->researches()->detach();
-        $project->researches()->attach($request->get('related_r'));
+        // $project->researches()->detach();
+        // $project->researches()->attach($request->get('related_r'));
         $project->update($request->all());
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
-        $project->retag($tags);
+        $ktags = explode(",",$request->get('ktags'));
+        array_pop($ktags);
+        $project->untag();
+        $project->tag($tags);
+        $project->tag($ktags);
+        foreach ($project->tags as $tag) {
+            $relatedProjects = $this->in_arrayi($tag->name, $tags);
+            $keywords = $this->in_arrayi($tag->name, $ktags);
+            if($relatedProjects){
+                $tag->setGroup('RelatedProjectsTagGroup');
+            }
+            if($keywords){
+                $tag->setGroup('KeywordsTagGroup');
+            }
+        }
         return redirect()->route('backend:projects');
     }
 
@@ -120,5 +157,10 @@ class ProjectController extends Controller
         //
         $project->delete();
         return redirect()->route('backend:projects');
+    }
+
+    public function in_arrayi($needle, $haystack)
+    {
+        return in_array(strtolower($needle), array_map('strtolower', $haystack));
     }
 }

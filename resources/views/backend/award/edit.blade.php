@@ -13,7 +13,7 @@
 @section('content')
 @include('backend.nav')
 <div class="flex container mx-auto">
-	<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/3">Back to Layout</a>
+	<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/4">Back to Layout</a>
 	<a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/award">View All</a>
 </div>
 <form class="container mx-auto flex flex-col w-1/2" id="editForm" method="POST" action="{{ route('backend:award:update', ['award' => $award]) }}" enctype="multipart/form-data">

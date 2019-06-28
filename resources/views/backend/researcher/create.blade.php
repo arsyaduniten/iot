@@ -20,7 +20,13 @@
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'fullname'" :data=null/>
 	<text-input :name="'profile_url'" :data=null/>
-	<text-input :name="'image_url'" :data=null/>
+	<div class="flex">
+		<label class="self-center">Image Url</label>
+		<div>
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="image_url">
+			<p class="text-xs text-red hidden" id="warning_image">Image URL is not valid</p>
+		</div>
+	</div>
 	<div class="flex">
 		<label class="pt-4">Bio</label>
 		<textarea name="bio" class="m-2 summernote"></textarea>
@@ -61,15 +67,23 @@
 		    $(this).autocomplete("search");
 		});
 
-
+	    var status = '';
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
-	    	$(".selected_items").each(function(){
-	    		// $("#tag_values").append($(this).text()+",");
-	    		var tag_text = $(this).text()+",";
-    		    $('#tag_values').val($('#tag_values').val() + tag_text);
-	    	});
-	    	$("#createForm").submit();
+	    	var imageURL = $('input[name=image_url]').val();
+	    	var isValid = ImageExist(imageURL);
+	    	// var isValid = imageExists(imageURL);
+	    	if(isValid){
+		    	$(".selected_items").each(function(){
+		    		// $("#tag_values").append($(this).text()+",");
+		    		var tag_text = $(this).text()+",";
+	    		    $('#tag_values').val($('#tag_values').val() + tag_text);
+		    	});
+		    	$("#createForm").submit();
+		    } else {
+		    	$('#warning_image').show();
+		    	return;
+		    }
 	    });
 
 	    function addTag(element, className) {
@@ -87,7 +101,11 @@
 		    $span.appendTo($tag);
 		    $tag.appendTo($appendHere);
 		    $("#app input").val('');
-		 }
+		}
+
+		function ImageExist(url) {
+		     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+		}
 	});
 </script>
 @endsection

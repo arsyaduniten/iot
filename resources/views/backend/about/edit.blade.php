@@ -12,7 +12,7 @@
 @section('content')
 @include('backend.nav')
 <div class="flex container mx-auto">
-	<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/3">Back to Layout</a>
+	<a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/{{ $about->parent_page }}">Back to Layout</a>
 </div>
 <form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:about:update', ['about' => $about]) }}">
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>

@@ -12,7 +12,7 @@
 @section('content')
 @include('backend.nav')
 <div class="flex container mx-auto">
-    <a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/4">Back to Layout</a>
+    <a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/5">Back to Layout</a>
     <a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/blog/create">Create New</a>
 </div>
 <div class="container mx-auto">

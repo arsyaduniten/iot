@@ -26,19 +26,27 @@
 	</div>
 	<date-input :name="'start_date'" :data="$project->start_date"/>
 	<date-input :name="'end_date'" :data="$project->end_date"/>
-	<div class="flex m-2">
-		<label class="self-center">Keyword</label>
-		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
-		<button class="p-2 bg-white shadow-md rounded" id="add-btn">Add</button>
-	</div>
-    <div class="flex">
-    	<label class="p-2">Related Research Areas & Keywords</label>
+	<div class="flex">
+    	<label class="p-2">Related Research Areas</label>
 	    <div id='app'>
 		    <div class='tagHere'></div>
 		    <input type="text" name="tags-field"/>
 		</div>
 	</div>
+	<div class="flex">
+		<label class="self-center">Keyword</label>
+		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" id="keyword-input"/>
+		<button class="p-2 bg-white shadow-md rounded" id="add-btn">Add</button>
+	</div>
+    <div class="flex">
+        <label class="p-2">Keyword Lists</label>
+        <div id='app'>
+            <div class='ktagHere'></div>
+            <input type="text" name="ktags-field"/>
+        </div>
+    </div>
 	<input type="hidden" id="tag_values" name="tags">
+	<input type="hidden" id="ktag_values" name="ktags">
 </form>
 @endsection
 
@@ -60,7 +68,7 @@
 	      select: function (e, ui) {
 		        var el = ui.item.label;
 		        e.preventDefault();
-		        addTag(el);
+		        addTag(el, '.tagHere');
 		  },
 	    }).click(function(){
 		    $(this).autocomplete("search");
@@ -73,6 +81,11 @@
 	    		var tag_text = $(this).text()+",";
     		    $('#tag_values').val($('#tag_values').val() + tag_text);
 	    	});
+	    	$(".kselected_items").each(function(){
+	    		// $("#tag_values").append($(this).text()+",");
+	    		var tag_text = $(this).text()+",";
+    		    $('#ktag_values').val($('#ktag_values').val() + tag_text);
+	    	});
 	    	$("#editForm").submit();
 	    });
 
@@ -80,19 +93,27 @@
 	  		 e.preventDefault();
 			 var el = $("#keyword-input").val()
 			 $("#keyword-input").val("");
-	 		 addTag(el);
+	 		 addTag(el, '.ktagHere');
 	  	});
 
 	    @foreach($tags as $tag)
-	    addTag("{{ $tag }}");
+	    addTag("{{ $tag }}", '.tagHere');
 	    @endforeach
 
-	    function addTag(element) {
-		    $appendHere = $(".tagHere");
+	    @foreach($ktags as $tag)
+	    addTag("{{ $tag }}", '.ktagHere');
+	    @endforeach
+
+	    function addTag(element, id) {
+		    $appendHere = $(id);
 		    var $tag = $("<div />"), $a = $("<a href='#' />"), $span = $("<span />");
 		    $tag.addClass('tag rounded-full');
 		    $('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
-		    $span.addClass('selected_items');
+		    if(id == '.tagHere'){
+			    $span.addClass('selected_items');
+			} else {
+			    $span.addClass('kselected_items');
+			}
 		    $span.text(element);
 		    $a.bind('click', function(){
 		      $(this).parent().remove();
@@ -102,7 +123,7 @@
 		    $span.appendTo($tag);
 		    $tag.appendTo($appendHere);
 		    $("#app input").val('');
-		 }
+		}
 	});
 </script>
 @endsection
