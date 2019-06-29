@@ -47,28 +47,13 @@
 			</div>
 			<div class="flex w-full container mx-auto m-8 justify-center">
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="bodies">Professional Bodies</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="awards">Awards and Recognition</button>
+				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="recognition">Academic Recognition</button>
 			</div>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto mb-12 p-4">
 				<div class="border border-grey-light mt-4"></div>
 				<p class="container mx-auto my-8 mt-12 font-bold text-5xl text-grey-darker landing-message">Click on above buttons to get started.</p>
 				<div class="hidden content p-6" id="{{ $about->type }}"><?php echo $about->description ?></div>
-				@if(!is_null($awards))
-				<table class="hidden content mx-auto mt-6" id="awards">
-			        <tr class="bg-grey p-5 text-center">
-			            <th class="this-black py-5 px-6">TITLE</th>
-			            <th class="this-black py-5 px-6">BY</th>
-			            <th class="this-black py-5 px-6">YEAR</th>
-			        </tr>
-			        @foreach($awards as $award)
-			        <tr class="bg-grey-lightest p-5 text-center">
-			            <td class="this-black py-5 px-6"><a class="no-underline text-blue-dark font-bold" target="_blank" href='{{ is_null($award->file_url_s3) ? $award->file_url : $award->file_url_s3 }}'><?php echo $award->title ?></a></td>
-			            <td class="this-black py-5 px-6">{{ $award->awarded_by }}</td>
-			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($award->date_obtained)->year }}</td>
-			        </tr>
-			        @endforeach
-			    </table>
-				@endif
+				<div class="hidden content p-6" id="{{ $recognition->type }}"><?php echo $recognition->description ?></div>
 			</div>
 			<a class="mx-auto px-6 mt-6 py-4 bg-grey-darker text-white border-2 border-black" href="/v2/portfolio">Academic Portfolio</a>
 		</div>

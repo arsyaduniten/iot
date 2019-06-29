@@ -61,8 +61,8 @@ class LandingController extends Controller
     {
         $data = Page::find(1);
         $about = About::where('type', 'bodies')->first();
-        $awards = Award::all();
-        return view('public.landingv2', compact('data', 'about', 'awards'));
+        $recognition = About::where('type', 'recognition')->first();
+        return view('public.landingv2', compact('data', 'about', 'awards', 'recognition'));
     }
 
     public function portfolio_v2(Request $request)
@@ -86,6 +86,7 @@ class LandingController extends Controller
         $projects_2 = [];
         $researches = Research::orderBy('start_date', 'desc')->get();
         $colleagues = Researcher::all();
+        $awards = Award::all();
         foreach ($colleagues as $colleague) {
             $tags = $colleague->tagNames();
             foreach ($projects as $key => $project) {
@@ -102,7 +103,7 @@ class LandingController extends Controller
         $fundings = Funding::all();
         $publications = Publication::orderBy('publication_date', 'desc')->get();
         $highlighted = Publication::where('highlight', 1)->orderBy('rank', 'asc')->get();
-        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'fundings', 'publications', 'highlighted'));
+        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'fundings', 'publications', 'highlighted', 'awards'));
     }
 
     public function mycorner(Request $request)

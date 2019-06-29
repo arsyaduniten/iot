@@ -31,6 +31,7 @@
 		</div>
 		<div class="text-center w-full overflow-y-auto">
 			<div class="flex w-full container mx-auto m-8 justify-center">
+				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="awards">Innovation<br>Awards</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="researches">Research<br>Areas</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="projects">Active Projects</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="collaborators">Industrial<br>Collaboration</button>
@@ -76,6 +77,22 @@
 			            <td class="this-black py-5 px-6"><?php echo $research->description ?></td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($research->start_date)->year }}</td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($research->end_date)->gte(\Carbon\Carbon::today()) ? "Present" : \Carbon\Carbon::parse($research->end_date)->year }}</td>
+			        </tr>
+			        @endforeach
+			    </table>
+				@endif
+				@if(!is_null($awards))
+				<table class="hidden content mx-auto mt-6" id="awards">
+			        <tr class="bg-grey p-5 text-center">
+			            <th class="this-black py-5 px-6">TITLE</th>
+			            <th class="this-black py-5 px-6">BY</th>
+			            <th class="this-black py-5 px-6">YEAR</th>
+			        </tr>
+			        @foreach($awards as $award)
+			        <tr class="bg-grey-lightest p-5 text-center">
+			            <td class="this-black py-5 px-6"><a class="no-underline text-blue-dark font-bold" target="_blank" href='{{ is_null($award->file_url_s3) ? $award->file_url : $award->file_url_s3 }}'><?php echo $award->title ?></a></td>
+			            <td class="this-black py-5 px-6">{{ $award->awarded_by }}</td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($award->date_obtained)->year }}</td>
 			        </tr>
 			        @endforeach
 			    </table>
