@@ -41,6 +41,6 @@ class Enquiry extends Mailable
      */
     public function build()
     {
-        return $this->subject('{$this->name} left an enquiry on samihajjaj.com - {$this->type}')->view("emails.enquiry");
+        return $this->subject(echo '{$this->name} left an enquiry on samihajjaj.com - {$this->type}')->view("emails.enquiry");
     }
 }
