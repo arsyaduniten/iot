@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="flex flex-col w-full">
-	<div class="flex w-full bg-grey-dark shadow-md this-white">
+	<div class="flex w-full fixed pin-t bg-grey-dark shadow-md this-white">
 		<div class="flex flex-no-shrink mx-6 py-6">
 			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
@@ -15,11 +15,25 @@
 		</div>
 	</div>
 	<div class="flex">
-		<div class="flex flex-col px-8 bg-grey-darker py-6 h-screen shadow-md">
+		<div class="flex flex-col px-6 bg-grey-darker py-6 h-screen shadow-md fixed left-nav">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'professional')
 					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
+				@endforeach
+				<div class="border border-blue-lighter my-2 mr-2"></div>
+				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'academic')
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
+				@endforeach
+				<div class="border border-blue-lighter my-2 mr-2"></div>
+				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'training')
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
 				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">
@@ -29,15 +43,15 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full overflow-y-auto">
+		<div class="text-center w-full h-screen mt-16" style="margin-left:15%">
 			<div class="flex w-full container mx-auto m-8 justify-center">
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="awards">Innovation<br>Awards</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="researches">Research<br>Areas</button>
+				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav default" content-id="researches">Research Areas</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="projects">Active Projects</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="collaborators">Industrial<br>Collaboration</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="fundings">Grants &<br>Funding</button>
+				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="fundings">Grants & Funding</button>
+				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="collaborators">Industrial Collaboration</button>
+				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="colleagues">Colleagues</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="publications">Publications</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="colleagues">Research<br>Colleagues</button>
+				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="awards">Innovation Awards</button>
 			</div>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
 				<div class="flex flex-wrap">
@@ -221,6 +235,7 @@
     		});
     		$("#"+$(this).attr('content-id')).removeClass('hidden');
     	});
+    	$('.default').trigger('click');
     });
 </script>
 

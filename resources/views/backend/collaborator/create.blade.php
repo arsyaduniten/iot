@@ -18,18 +18,33 @@
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:collaborator:store') }}">
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
-	<text-input :name="'name'" :data=null/>
 	<div class="flex">
+		<label class="self-center">Name</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="name">
+			<p class="name-required hidden text-red text-base">*Name is required</p>
+		</div>
+	</div>
+	{{-- <div class="flex">
 		<label class="self-center">Logo Url</label>
 		<div>
 			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="logo_url">
 			<p class="text-xs text-red hidden" id="warning_logo">Logo URL is not valid</p>
 		</div>
+	</div> --}}
+	<div class="flex">
+		<label class="self-center">Company Background URL</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="company_url">
+			<p class="company-required hidden text-red text-base">*Company Background URL is required</p>
+		</div>
 	</div>
-	<text-input :name="'company_url'" :data=null/>
 	<div class="flex">
 		<label class="pt-4">Description</label>
-		<textarea name="description" class="m-2 summernote"></textarea>
+		<div class="flex flex-col">
+			<textarea name="description" class="m-2 summernote"></textarea>
+			<p class="description-required hidden text-red text-base">*Description is required</p>
+		</div>
 	</div>
 	<div class="flex m-2">
     	<label class="p-2">Related Projects</label>
@@ -69,20 +84,35 @@
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
-	    	var logoURL = $('input[name=logo_url]').val();
-	    	var isValid = ImageExist(logoURL);
+	    	var incomplete = false;
+	    	var name = $('input[name=name]').val();
+	    	var company = $('input[name=company_url]').val();
+	    	var description = $('textarea[name=description]').val();
+	    	if(name == ''){
+	    		$('.name-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(description == ''){
+	    		$('.description-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(company == ''){
+	    		$('.company-required').show();
+	    		incomplete = true;
+	    	}
+	    	$(".selected_items").each(function(){
+	    		// $("#tag_values").append($(this).text()+",");
+	    		var tag_text = $(this).text()+",";
+    		    $('#tag_values').val($('#tag_values').val() + tag_text);
+	    	});
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		$('#createForm').submit();
+	    	}
+	    	// var logoURL = $('input[name=logo_url]').val();
+	    	// var isValid = ImageExist(logoURL);
 	    	// var isValid = imageExists(imageURL);
-	    	if(isValid){
-		    	$(".selected_items").each(function(){
-		    		// $("#tag_values").append($(this).text()+",");
-		    		var tag_text = $(this).text()+",";
-	    		    $('#tag_values').val($('#tag_values').val() + tag_text);
-		    	});
-		    	$("#createForm").submit();
-		    } else {
-		    	$('#warning_logo').show();
-		    	return;
-		    }
 	    });
 
 	    function addTag(element, className) {
@@ -102,9 +132,9 @@
 		    $("#app input").val('');
 		 }
 
-		function ImageExist(url) {
-		     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
-		}
+		// function ImageExist(url) {
+		//      return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+		// }
 	});
 </script>
 @endsection

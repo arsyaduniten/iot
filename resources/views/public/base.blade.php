@@ -18,9 +18,6 @@
 	        -webkit-font-smoothing: antialiased;
 	        text-rendering: optimizeLegibility;
 	    }
-	    html, body {
-		  overflow: hidden;
-		}
 		input[type=number]::-webkit-inner-spin-button, 
 		input[type=number]::-webkit-outer-spin-button { 
 		  -webkit-appearance: none; 
@@ -38,6 +35,10 @@
 	    font-size: 16px;
 	    border: none;
 	    font-weight: bold;
+	}
+
+	.left-nav{
+		top:74px;
 	}
 
 	.dropdown {

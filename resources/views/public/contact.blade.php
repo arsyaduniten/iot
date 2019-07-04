@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="flex flex-col w-full">
-	<div class="flex w-full bg-grey-dark this-white shadow-md">
+	<div class="flex fixed pin-t w-full bg-grey-dark this-white shadow-md">
 		<div class="flex flex-no-shrink mx-6 py-6">
 			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
@@ -15,11 +15,25 @@
 		</div>
 	</div>
 	<div class="flex">
-		<div class="flex flex-col px-8 bg-grey-darker py-6 h-screen shadow-md">
+		<div class="flex flex-col px-6 bg-grey-darker py-6 h-screen shadow-md fixed left-nav">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'professional')
 					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
+				@endforeach
+				<div class="border border-blue-lighter my-2 mr-2"></div>
+				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'academic')
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
+				@endforeach
+				<div class="border border-blue-lighter my-2 mr-2"></div>
+				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'training')
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
 				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">
@@ -29,7 +43,7 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full overflow-y-auto">
+		<div class="text-center w-full mt-16" style="margin-left: 15%">
 			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
 			<p class="text-xl text-teal-dark pt-6"><?php echo ($data->description->content); ?></p>
 			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4 m-8">

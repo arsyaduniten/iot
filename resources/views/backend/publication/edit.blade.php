@@ -19,11 +19,20 @@
 	@csrf
 	@method('PUT')
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
-	<text-input :name="'title'" :data="$publication->title"/>
+	<div class="flex">
+		<label class="self-center">Title</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="title" value="{{ $publication->title }}">
+			<p class="title-required hidden text-red text-base">*Title is required</p>
+		</div>
+	</div>
 	<text-input :name="'paper_url'" :data="$publication->paper_url"/>
 	<div class="flex">
 		<label class="self-center">Conference/Journal</label>
-		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="conference" value="{{ $publication->conference }}">
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="conference" value="{{ $publication->conference }}">
+			<p class="conference-required hidden text-red text-base">*Conference is required</p>
+		</div>
 	</div>
 	<div class="flex">
 		<label class="self-center">Conference/Journal Url</label>
@@ -33,7 +42,13 @@
 		<label class="self-center">Citations</label>
 		<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="number" name="citations" value="{{ $publication->citations }}">
 	</div>
-	<date-input :name="'publication_date'" :data="$publication->publication_date"/>
+	<div class="flex">
+		<label class="self-center">Publication Date</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded datepick" type="date" name="publication_date" value="{{ $publication->publication_date }}">
+			<p class="date-required hidden text-red text-base">*Publication Date is required</p>
+		</div>
+	</div>
 	<div class="flex m-2">
     	<label class="p-2">Related Projects</label>
 	    <div id='app'>
@@ -83,12 +98,32 @@
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
+	    	var incomplete = false;
+	    	var title = $('input[name=title]').val();
+	    	var conference = $('input[name=conference]').val();
+	    	var date = $('input[name=publication_date]').val();
+	    	if(title == ''){
+	    		$('.title-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(conference == ''){
+	    		$('.conference-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(date == ''){
+	    		$('.date-required').show();
+	    		incomplete = true;
+	    	}
 	    	$(".selected_items").each(function(){
 	    		// $("#tag_values").append($(this).text()+",");
 	    		var tag_text = $(this).text()+",";
     		    $('#tag_values').val($('#tag_values').val() + tag_text);
 	    	});
-	    	$("#editForm").submit();
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		$('#editForm').submit();
+	    	}
 	    });
 
 	    @foreach($p_tags as $tag)

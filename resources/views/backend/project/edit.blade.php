@@ -19,13 +19,35 @@
 	@csrf
 	@method('PUT')
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
-	<text-input :name="'title'" :data="$project->title"/>
+	<div class="flex">
+		<label class="self-center">Title</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="title" value="{{ $project->title }}">
+			<p class="title-required hidden text-red text-base">*Project Title is required</p>
+
+		</div>
+	</div>
 	<div class="flex">
 		<label class="pt-4">Description</label>
-		<textarea name="description" class="m-2 summernote"></textarea>
+		<div class="flex flex-col">
+			<textarea name="description" class="m-2 summernote"></textarea>
+			<p class="description-required hidden text-red text-base">*Description is required</p>
+		</div>
 	</div>
-	<date-input :name="'start_date'" :data="$project->start_date"/>
-	<date-input :name="'end_date'" :data="$project->end_date"/>
+	<div class="flex">
+		<label class="self-center">Start Date</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded datepick" type="date" name="start_date" value="{{ $project->start_date }}">
+			<p class="start-required hidden text-red text-base">*Start Date is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">End Date</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded datepick" type="date" name="end_date" value="{{ $project->end_date }}">
+			<p class="end-required hidden text-red text-base">*End Date is required</p>
+		</div>
+	</div>
 	<div class="flex">
     	<label class="p-2">Related Research Areas</label>
 	    <div id='app'>
@@ -76,6 +98,27 @@
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
+	    	var incomplete = false;
+	    	var title = $('input[name=title]').val();
+	    	var description = $('textarea[name=description]').val();
+	    	var start = $('input[name=start_date]').val();
+	    	var end = $('input[name=end_date]').val();
+	    	if(title == ''){
+	    		$('.title-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(description == ''){
+	    		$('.description-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(start == ''){
+	    		$('.start-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(end == ''){
+	    		$('.end-required').show();
+	    		incomplete = true;
+	    	}
 	    	$(".selected_items").each(function(){
 	    		// $("#tag_values").append($(this).text()+",");
 	    		var tag_text = $(this).text()+",";
@@ -86,7 +129,11 @@
 	    		var tag_text = $(this).text()+",";
     		    $('#ktag_values').val($('#ktag_values').val() + tag_text);
 	    	});
-	    	$("#editForm").submit();
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		$('#editForm').submit();
+	    	}
 	    });
 
 	    $("#add-btn").click(function(e){

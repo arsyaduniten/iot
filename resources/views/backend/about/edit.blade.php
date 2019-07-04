@@ -29,6 +29,9 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
+		@if(session()->has('status'))
+		swal("Success!", "Your changes has been saved!", "success");
+		@endif
 		$('.summernote').summernote({
 	    	height:200,
 	    });

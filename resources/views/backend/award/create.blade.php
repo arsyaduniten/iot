@@ -19,8 +19,20 @@
 <form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:award:store') }}" enctype="multipart/form-data">
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
-	<text-input :name="'title'" :data=null/>
-	<text-input :name="'awarded_by'" :data=null/>
+	<div class="flex">
+		<label class="self-center">Title</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="title">
+			<p class="title-required hidden text-red text-base">*Title is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">Awarded By</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="awarded_by">
+			<p class="awarded-required hidden text-red text-base">*Awarded By is required</p>
+		</div>
+	</div>
 	<text-input :name="'file_url'" :data=null/>
 	<div class="flex m-2">
 		<label class="p-2">File/Award</label></label>
@@ -30,7 +42,13 @@
 		<label class="pt-4">Description</label>
 		<textarea name="description" class="m-2 summernote"></textarea>
 	</div>
-	<date-input :name="'date_obtained'" :data=null/>
+	<div class="flex">
+		<label class="self-center">Date Obtained</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded datepick" type="date" name="date_obtained">
+			<p class="date-required hidden text-red text-base">*Date Obtained is required</p>
+		</div>
+	</div>
 	<div class="flex m-2">
     	<label class="p-2">Related Projects</label>
 	    <div id='app'>
@@ -70,12 +88,33 @@
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
+	    	var incomplete = false;
+	    	var title = $('input[name=title]').val();
+	    	var awarded = $('input[name=awarded_by]').val();
+	    	var date = $('input[name=date_obtained]').val();
+	    	if(title == ''){
+	    		$('.title-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(awarded == ''){
+	    		$('.awarded-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(date == ''){
+	    		$('.date-required').show();
+	    		incomplete = true;
+	    	}
 	    	$(".selected_items").each(function(){
 	    		// $("#tag_values").append($(this).text()+",");
 	    		var tag_text = $(this).text()+",";
     		    $('#tag_values').val($('#tag_values').val() + tag_text);
 	    	});
-	    	$("#createForm").submit();
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		$('#createForm').submit();
+	    	}
+
 	    });
 
 	    function addTag(element, className) {

@@ -21,6 +21,14 @@
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'display_name'" :data="$sns->display_name"/>
 	<text-input :name="'url'" :data="$sns->url" />
+	<div class="flex">
+		<label class="py-2 mx-2">Category</label>
+		<select class="px-4 py-3 bg-white shadow-md" name='category' id='category'>
+			<option value="professional">Professional</option>
+			<option value="academic">Academic</option>
+			<option value="training">Training</option>
+		</select>
+	</div>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection
@@ -28,7 +36,7 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$('#category option[value={{ $sns->category }}]').prop('selected', true);
 	});
 
 </script>

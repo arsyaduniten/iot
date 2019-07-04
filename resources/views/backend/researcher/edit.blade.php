@@ -19,15 +19,27 @@
 	@csrf
 	@method('PUT')
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
-	<text-input :name="'fullname'" :data="$researcher->fullname"/>
-	<text-input :name="'profile_url'" :data="$researcher->profile_url"/>
 	<div class="flex">
+		<label class="self-center">Full Name</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="fullname" value="{{ $researcher->fullname }}">
+			<p class="name-required hidden text-red text-base">*Full Name is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">Profile URL</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="profile_url" value="{{ $researcher->profile_url }}">
+			<p class="profile-required hidden text-red text-base">*Profile URL is required</p>
+		</div>
+	</div>
+	{{-- <div class="flex">
 		<label class="self-center">Image Url</label>
 		<div>
 			<input class="self-center m-2 p-2 bg-white shadow-md rounded" value="{{ $researcher->image_url }}" type="text" name="image_url">
 			<p class="text-xs text-red hidden" id="warning_image">Image URL is not valid</p>
 		</div>
-	</div>
+	</div> --}}
 	<div class="flex">
 		<label class="pt-4">Bio</label>
 		<textarea name="bio" class="m-2 summernote"></textarea>
@@ -71,20 +83,42 @@
 
 
 	    $("#submit-btn").click(function(e){
-	    	e.preventDefault();
-	    	var imageURL = $('input[name=image_url]').val();
-	    	var isValid = ImageExist(imageURL);
-	    	if(isValid){
-		    	$(".selected_items").each(function(){
-		    		// $("#tag_values").append($(this).text()+",");
-		    		var tag_text = $(this).text()+",";
-	    		    $('#tag_values').val($('#tag_values').val() + tag_text);
-		    	});
-		    	$("#editForm").submit();
-		    } else {
-		    	$('#warning_image').show();
-		    	return;
-		    }
+	    	// e.preventDefault();
+	    	// var imageURL = $('input[name=image_url]').val();
+	    	// var isValid = ImageExist(imageURL);
+	    	// if(isValid){
+		    // 	$(".selected_items").each(function(){
+		    // 		// $("#tag_values").append($(this).text()+",");
+		    // 		var tag_text = $(this).text()+",";
+	    	// 	    $('#tag_values').val($('#tag_values').val() + tag_text);
+		    // 	});
+		    // 	$("#editForm").submit();
+		    // } else {
+		    // 	$('#warning_image').show();
+		    // 	return;
+		    // }
+		    e.preventDefault();
+	    	var incomplete = false;
+	    	var name = $('input[name=fullname]').val();
+	    	var profile = $('input[name=profile_url]').val();
+	    	if(name == ''){
+	    		$('.name-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(profile == ''){
+	    		$('.profile-required').show();
+	    		incomplete = true;
+	    	}
+	    	$(".selected_items").each(function(){
+	    		// $("#tag_values").append($(this).text()+",");
+	    		var tag_text = $(this).text()+",";
+    		    $('#tag_values').val($('#tag_values').val() + tag_text);
+	    	});
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		$('#editForm').submit();
+	    	}
 	    });
 
 	    @foreach($p_tags as $tag)
@@ -109,9 +143,9 @@
 		    $("#app input").val('');
 		 }
 
-		function ImageExist(url) {
-		     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
-		 }
+		// function ImageExist(url) {
+		//      return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+		//  }
 	});
 </script>
 @endsection

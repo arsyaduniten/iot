@@ -20,6 +20,14 @@
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<text-input :name="'display_name'" :data=null/>
 	<text-input :name="'url'" :data=null />
+	<div class="flex">
+		<label class="py-2 mx-2">Category</label>
+		<select class="px-4 py-3 bg-white shadow-md" name='category' id='category'>
+			<option value="professional">Professional</option>
+			<option value="academic">Academic</option>
+			<option value="training">Training</option>
+		</select>
+	</div>
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection

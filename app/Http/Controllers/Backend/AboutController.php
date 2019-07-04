@@ -80,7 +80,7 @@ class AboutController extends Controller
         //
         $about = About::find($id);
         $about->update($request->all());
-        return redirect()->route('backend:abouts');
+        return back()->with('status', 'success');
     }
 
     /**

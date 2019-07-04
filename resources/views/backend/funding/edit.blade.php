@@ -19,10 +19,34 @@
 	@csrf
 	@method('PUT')
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
-	<text-input :name="'granted_by'" :data="$funding->granted_by"/>
-	<text-input :name="'amount'" :data="$funding->amount"/>
-	<date-input :name="'start_date'" :data="$funding->start_date"/>
-	<date-input :name="'end_date'" :data="$funding->end_date"/>
+	<div class="flex">
+		<label class="self-center">Granted By</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="granted_by" value="{{ $funding->granted_by }}">
+			<p class="granted-required hidden text-red text-base">*Granted By is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">Amount</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="amount" value="{{ $funding->amount }}">
+			<p class="amount-required hidden text-red text-base">*Amount is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">Start Date</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded datepick" type="date" name="start_date" value="{{ $funding->start_date }}">
+			<p class="start-required hidden text-red text-base">*Start Date is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">End Date</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded datepick" type="date" name="end_date" value="{{ $funding->end_date }}">
+			<p class="end-required hidden text-red text-base">*End Date is required</p>
+		</div>
+	</div>
 	<div class="flex">
     	<label class="p-2">Related Project</label>
 	    <div id='app'>
@@ -56,12 +80,37 @@
 
 	    $("#submit-btn").click(function(e){
 	    	e.preventDefault();
+	    	var incomplete = false;
+	    	var granted = $('input[name=granted_by]').val();
+	    	var amount = $('input[name=amount]').val();
+	    	var start = $('input[name=start_date]').val();
+	    	var end = $('input[name=end_date]').val();
+	    	if(granted == ''){
+	    		$('.granted-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(amount == ''){
+	    		$('.amount-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(start == ''){
+	    		$('.start-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(end == ''){
+	    		$('.end-required').show();
+	    		incomplete = true;
+	    	}
 	    	$(".selected_items").each(function(){
 	    		// $("#tag_values").append($(this).text()+",");
 	    		var tag_text = $(this).text()+",";
     		    $('#tag_values').val($('#tag_values').val() + tag_text);
 	    	});
-	    	$("#editForm").submit();
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		$('#editForm').submit();
+	    	}
 	    });
 
 	    @foreach($p_tags as $tag)
