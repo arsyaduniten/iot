@@ -22,9 +22,9 @@ class EnquiryController extends Controller
 
     public function notify(Request $request)
     {   
-        $message = $request->get('message');
+        $content = $request->get('content');
         $email = $request->get('email');
-        Mail::to("sami.s.hajjaj@gmail.com")->send(new EnquiryMail($message, $email));
+        Mail::to("sami.s.hajjaj@gmail.com")->send(new EnquiryMail($content, $email));
         return redirect('/')->with('status', 'success');
     }
 
@@ -49,11 +49,11 @@ class EnquiryController extends Controller
         //
         $e = Enquiry::create($request->all());
         $name = $request->get('name');
-        $message = $request->get('message');
+        $content = $request->get('message');
         $email = $request->get('email');
         $phone = $request->get('phone');
         $type = $request->get('type');
-        Mail::to("arsyad.ndk@gmail.com")->send(new EnquiryMail($message, $email, $type, $phone));
+        Mail::to("arsyad.ndk@gmail.com")->send(new EnquiryMail($content, $email, $type, $phone));
         return "true";
 
     }

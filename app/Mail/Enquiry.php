@@ -11,7 +11,7 @@ use Carbon\Carbon;
 class Enquiry extends Mailable
 {
     use Queueable, SerializesModels;
-    public $messages;
+    public $content;
     public $email;
     public $phone;
     public $type;
@@ -23,10 +23,10 @@ class Enquiry extends Mailable
      *
      * @return void
      */
-    public function __construct($messages, $email, $type='landing', $name, $phone=null)
+    public function __construct($content, $email, $type='landing', $name=null, $phone=null)
     {
         //
-        $this->messages = $messages;
+        $this->content = $content;
         $this->email = $email;
         $this->type = $type;
         $this->name = $name;

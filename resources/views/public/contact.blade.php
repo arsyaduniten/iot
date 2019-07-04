@@ -126,6 +126,9 @@
 				$('#message').val("");
 				$('#phone').val("");
 			  },
+			  error: function(e){
+			  	console.log(e);
+			  }
 			});
 		});
 
