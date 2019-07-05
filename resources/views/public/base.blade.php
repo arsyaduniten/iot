@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="/js/sweetalert.min.js"></script>
+	{{-- <script src="/js/summernote-ext-addclass.js"></script> --}}
 	<style type="text/css">
 		body{
 	        font-family: "Clear Sans", "Helvetica Neue","sans-serif";

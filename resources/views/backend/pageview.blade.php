@@ -19,6 +19,8 @@
 </style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 @endsection
 @section('content')
 @include('backend.v2nav')
@@ -91,16 +93,31 @@
 			@if($p->id == 6)
 			<table class="content mx-auto mt-6">
 		        <tr class="bg-grey p-5 text-center">
-		            <th class="this-black py-5 px-6">NAME</th>
-		            <th class="this-black py-5 px-6">EMAIL</th>
+		            <th class="this-black py-5 px-6">TYPE OF ENQUIRY</th>
+		            <th class="this-black py-5 px-6">DATE</th>
 		            <th class="this-black py-5 px-6">MESSAGE</th>
+		            <th></th>
+		            <th></th>
 		        </tr>
 		        @foreach($enquiries as $contact)
 		        <tr class="bg-grey-lightest p-5 text-center">
-		            <td class="this-black py-5 px-6">{{ $contact->name }}</td>
-		            <td class="this-black py-5 px-6">{{ $contact->email }}</td>
-		            <td class="this-black py-5 px-6">{{ $contact->message }}</td>
+		            <td class="this-black py-5 px-6">{{ $contact->type }}</td>
+		            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($contact->created_at)->toDateString() }}</td>
+		            <td class="this-black py-5 px-6">{{ strlen($contact->message) > 50 ? substr($contact->message,0,50)."..." : $contact->message }}</td>
+		            <td class="p-2 py-4"><a href="#message-{{ $contact->id }}" rel="modal:open" class="text-black font-bold no-underline p-2 bg-yellow">View</a></td>
+					<td><form  id="delete-form-{{ $contact->id }}" action="{{ route('backend:enquiry:destroy', ['enquiry' => $contact->id]) }}" method="POST">
+	                    @csrf
+	                    @method('DELETE')
+	                    <button class="text-white font-bold no-underline p-2 bg-red delete-btn" data-id="{{ $contact->id }}" type="submit">Delete</button>
+	                </form></td>
 		        </tr>
+		        <div id="message-{{ $contact->id }}" class="modal">
+				  <p class="text-large font-bold">{{ \Carbon\Carbon::parse($contact->created_at)->toDateString() }}</p>
+				  <p class="text-large">{{ $contact->name }} | {{ $contact->email }} | {{ $contact->phone }}</p>
+				  <p class="text-large font-bold underline">RE:{{ ucfirst($contact->type) }}</p>
+				  <p class="text-large">{{ $contact->message }}</p>
+				  <a class="text-xl font-bold text-red underline" href="#" rel="modal:close">Close</a>
+				</div>
 		        @endforeach
 		    </table>
 			@endif
@@ -148,6 +165,22 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('.delete-btn').on('click', function(e){
+            const formId = $(this).attr('data-id');
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this data!",
+                icon: "warning",
+                buttons: ['Cancel', 'Yes, delete it!'],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $('#delete-form-'+formId).submit();
+                }
+            });
+        });
 		$(".sub-nav-btn").click(function(e){
 			e.preventDefault();
 			$(".sub-nav-btn").each(function(){

@@ -21,7 +21,7 @@ Route::get('/v2/contact', 'LandingController@contact')->name('contact')->middlew
 Route::get('/details', 'DetailsController@index')->name('details');
 Route::get('/post', 'DetailsController@view')->name('details');
 
-Route::post('/enquiry', 'Backend\EnquiryController@store')->name('enquiry');
+// Route::post('/enquiry', 'Backend\EnquiryController@store')->name('enquiry');
 Route::post('/landing/enquiry', 'Backend\EnquiryController@notify')->name('landing_enquiry');
 
 Route::group(['prefix'=>'/v2/backend', 'middleware' => ['auth','is_admin']], function(){
@@ -40,6 +40,11 @@ Route::group(['prefix'=>'backend', 'middleware' => ['auth','is_admin']], functio
         'edit' =>'backend:sns:edit',
         'update' => 'backend:sns:update',
         'destroy' => 'backend:sns:destroy'
+    ]);
+
+    Route::resource('/enquiry', 'Backend\EnquiryController')->names([
+        'store' =>'backend:enquiry:store',
+        'destroy' => 'backend:enquiry:destroy'
     ]);
 
     Route::resource('/statistic', 'Backend\StatisticController')->names([

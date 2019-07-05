@@ -53,7 +53,7 @@ class EnquiryController extends Controller
         $email = $request->get('email');
         $phone = $request->get('phone');
         $type = $request->get('type');
-        Mail::to("arsyad.ndk@gmail.com")->send(new EnquiryMail($content, $email, $type, $name, $phone));
+        Mail::to("sami.s.hajjaj@gmail.com")->send(new EnquiryMail($content, $email, $type, $name, $phone));
         return "true";
 
     }
@@ -101,5 +101,8 @@ class EnquiryController extends Controller
     public function destroy($id)
     {
         //
+        $enquiry = Enquiry::find($id);
+        $enquiry->delete();
+        return redirect('/v2/backend/getpage/6');
     }
 }
