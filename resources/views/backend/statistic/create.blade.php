@@ -15,11 +15,23 @@
     <a class="p-4 m-4 rounded text-black text-xl bg-yellow action-btns" href="/v2/backend/getpage/1">Back to Layout</a>
     <a class="p-4 m-4 rounded text-black text-xl bg-green action-btns" href="/backend/statistics">View All</a>
 </div>
-<form class="container mx-auto flex flex-col w-1/2" method="POST" action="{{ route('backend:statistic:store') }}">
+<form class="container mx-auto flex flex-col w-1/2" id="createForm" method="POST" action="{{ route('backend:statistic:store') }}">
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
-	<text-input :name="'content'" :data=null/>
-	<text-input :name="'description'" :data=null />
+	<div class="flex">
+		<label class="self-center">Content</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="content">
+			<p class="content-required hidden text-red text-base">*Content is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">Description</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="description">
+			<p class="description-required hidden text-red text-base">*Description is required</p>
+		</div>
+	</div>
 </form>
 @endsection
 
@@ -30,6 +42,25 @@
 	    	height:200,
 	    });
 	    $(".note-editor").addClass("m-2 shadow-md");
+	    $("#submit-btn").click(function(e){
+		    e.preventDefault();
+	    	var incomplete = false;
+	    	var content = $('input[name=content]').val();
+	    	var description = $('input[name=description]').val();
+	    	if(content == ''){
+	    		$('.content-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(description == ''){
+	    		$('.description-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		$('#createForm').submit();
+	    	}
+	    });
 	});
 </script>
 @endsection
