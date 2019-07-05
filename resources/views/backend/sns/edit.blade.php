@@ -41,7 +41,6 @@
 			<option value="training">Training</option>
 		</select>
 	</div>
-	<button class="p-4 m-2 shadow-lg bg-white" type="submit">Submit</button>
 </form>
 @endsection
 

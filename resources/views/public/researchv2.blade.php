@@ -6,12 +6,12 @@
 		<div class="flex flex-no-shrink mx-6 py-6">
 			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
 		</div>
-		<div class="container mx-auto flex justify-between py-6 px-12">
-				<a class="no-underline hover:text-blue-darker" href="/v2/next">Profile</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
-				<a class="border-b-4 border-blue-darker font-bold">Research</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
+		<div class="flex justify-between py-6 px-12">
+				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/next">Profile</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/portfolio">Academic</a>
+				<a class="border-b-4 border-blue-darker mx-4 font-bold">Research</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/mycorner">My Corner</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -43,8 +43,8 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full h-screen mt-16" style="margin-left:15%">
-			<div class="flex w-full container mx-auto m-8 justify-center">
+		<div class="text-left w-full h-screen mt-16" style="margin-left:15%">
+			<div class="flex w-full m-8 justify-left">
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav default" content-id="researches">Research Areas</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="projects">Active Projects</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="fundings">Grants & Funding</button>
@@ -53,7 +53,7 @@
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="publications">Publications</button>
 				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="awards">Innovation Awards</button>
 			</div>
-			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4">
+			<div class="flex flex-col h-full w-full p-4">
 				<div class="flex flex-wrap">
 					@foreach($tags as $tag)
 					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</button>
@@ -62,7 +62,7 @@
 				<div class="border border-grey-light mt-4"></div>
 				<p class="container mx-auto my-8 mt-12 font-bold text-5xl text-grey-darker landing-message">Click on above buttons to get started.</p>
 				@if(!is_null($projects))
-				<table class="hidden content mx-auto mt-6" id="projects">
+				<table class="hidden content mt-6" id="projects">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">TITLE</th>
 			            <th class="this-black py-5 px-6">FROM</th>
@@ -78,7 +78,7 @@
 			    </table>
 				@endif
 				@if(!is_null($researches))
-				<table class="hidden content mx-auto mt-6" id="researches">
+				<table class="hidden content mt-6" id="researches">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">AREAS</th>
 			            <th class="this-black py-5 px-6">DESCRIPTION</th>
@@ -96,7 +96,7 @@
 			    </table>
 				@endif
 				@if(!is_null($awards))
-				<table class="hidden content mx-auto mt-6" id="awards">
+				<table class="hidden content mt-6" id="awards">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">TITLE</th>
 			            <th class="this-black py-5 px-6">BY</th>
@@ -112,7 +112,7 @@
 			    </table>
 				@endif
 				@if(!is_null($fundings))
-				<table class="hidden content mx-auto mt-6" id="fundings">
+				<table class="hidden content mt-6" id="fundings">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">AMOUNT</th>
 			            <th class="this-black py-5 px-6">YEAR</th>
@@ -130,7 +130,7 @@
 			    </table>
 				@endif
 				@if(!is_null($publications))
-				<div class="hidden content mx-auto" id="publications">
+				<div class="hidden content" id="publications">
 					<p class="text-3xl text-center m-4">Highlighted Publications</p>
 					<table class="mt-6">
 				        <tr class="bg-grey p-5 text-center">
@@ -168,7 +168,7 @@
 				</div>
 				@endif
 				@if(!$collaborators->isEmpty())
-				<table class="hidden content mx-auto mt-6" id="collaborators">
+				<table class="hidden content mt-6" id="collaborators">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">LOGO</th>
 			            <th class="this-black py-5 px-6">NAME</th>
@@ -188,7 +188,7 @@
 			    </table>
 				@endif
 				@if(!$colleagues->isEmpty())
-				<table class="hidden content mx-auto mt-6" id="colleagues">
+				<table class="hidden content mt-6" id="colleagues">
 			        <tr class="bg-grey p-5 text-center">
 			            <th class="this-black py-5 px-6">IMAGE</th>
 			            <th class="this-black py-5 px-6">NAME</th>
