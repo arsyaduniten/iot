@@ -24,6 +24,7 @@
     		});
     		$("#"+$(this).attr('content-id')).removeClass('hidden');
     	});
+        $('.default').trigger('click');
     });
 </script>
 
