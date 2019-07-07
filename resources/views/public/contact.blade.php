@@ -1,6 +1,22 @@
 @extends('public.base')
 
 @section('content')
+<div class="fixed z-50 hidden" id="loader" style="top:50%; bottom:50%; left: 50%; right: 50%">
+	<svg width="51px" height="50px" viewBox="0 0 51 50">
+	    <rect y="0" width="13" height="50" fill="#1fa2ff">
+	        <animate attributeName="height" values="50;10;50" begin="0s" dur="1s" repeatCount="indefinite" />
+	        <animate attributeName="y" values="0;20;0" begin="0s" dur="1s" repeatCount="indefinite" />
+	    </rect>
+	    <rect x="19" y="0" width="13" height="50" fill="#12d8fa">
+	        <animate attributeName="height" values="50;10;50" begin="0.2s" dur="1s" repeatCount="indefinite" />
+	        <animate attributeName="y" values="0;20;0" begin="0.2s" dur="1s" repeatCount="indefinite" />
+	    </rect>
+	    <rect x="38" y="0" width="13" height="50" fill="#06ffcb">
+	        <animate attributeName="height" values="50;10;50" begin="0.4s" dur="1s" repeatCount="indefinite" />
+	        <animate attributeName="y" values="0;20;0" begin="0.4s" dur="1s" repeatCount="indefinite" />
+	    </rect>
+	</svg>
+</div>
 <div class="flex flex-col w-full">
 	<div class="flex fixed pin-t w-full bg-grey-dark this-white shadow-md">
 		<div class="flex flex-no-shrink mx-6 py-6">
@@ -50,11 +66,17 @@
 				<div class="flex flex-wrap">
 					<div class="flex flex-col text-left mx-8">
 						<label class="py-2">Full Name</label>
-						<input class="bg-white border border-grey-dark px-4 py-2" type="text" name="name" id="name" placeholder="John Doe" required>
+						<div class="flex flex-col">
+							<input class="bg-white border border-grey-dark px-4 py-2" type="text" name="name" id="name" placeholder="John Doe" required>
+							<p class="name-required hidden text-red text-base">*Full Name is required</p>
+						</div>
 					</div>
 					<div class="flex flex-col text-left mx-8">
 						<label class="py-2">Email</label>
-						<input class="bg-white border border-grey-dark px-4 py-2" type="text" name="email" id="email" placeholder="john@example.com">
+						<div class="flex flex-col">
+							<input class="bg-white border border-grey-dark px-4 py-2" type="text" name="email" id="email" placeholder="john@example.com">
+							<p class="email-required hidden text-red text-base">*Email is required</p>
+						</div>
 					</div>
 					<div class="flex flex-col text-left mx-8">
 						<label class="py-2">Phone (optional)</label>
@@ -85,7 +107,10 @@
 				</div>
 				<div class="flex flex-col text-left mx-8">
 					<label class="py-2">Message</label>
-					<textarea class="bg-white border border-grey-dark px-4 py-2" name="message" id="message" style="height: 200px;"></textarea>
+					<div class="flex flex-col">
+						<textarea class="bg-white border border-grey-dark px-4 py-2" name="message" id="message" style="height: 200px;"></textarea>
+						<p class="message-required hidden text-red text-base">*Message is required</p>
+					</div>
 				</div>
 				<button class="mx-auto px-6 mt-6 py-4 bg-purple-darker text-white rounded shadow-lg" id="submitBtn">Submit</button>
 			</div>
@@ -110,30 +135,60 @@
 
 		$("#submitBtn").click(function(e){
 			e.preventDefault();
-			var name = $('#name').val();
-			var email = $('#email').val();
-			var message = $('#message').val();
-			var phone = $('#phone').val();
-			var type = $("select[name=type] :selected").text();
-			$.ajax({
-			  type: "POST",
-			  url: "/enquiry",
-			  data: {'name': name, 'email':email, 'message':message, 'phone':phone, 'type':type},
-			  success: function(){
-			  	swal("Thank You!", "Your enquiry has been submitted!", "success");
-			  	$('#name').val("");
-				$('#email').val("");
-				$('#message').val("");
-				$('#phone').val("");
-			  },
-			  error: function(e){
-			  	console.log(e);
-			  }
-			});
+			var incomplete = false;
+	    	var name = $('input[name=name]').val();
+	    	var email = $('input[name=email]').val();
+	    	var message = $('textarea[name=message]').val();
+	    	if(name == ''){
+	    		$('.name-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(email == ''){
+	    		$('.email-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(message == ''){
+	    		$('.message-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(incomplete){
+	    		return;
+	    	} else{
+	    		blurAll();
+				var name = $('#name').val();
+				var email = $('#email').val();
+				var message = $('#message').val();
+				var phone = $('#phone').val();
+				var type = $("select[name=type] :selected").text();
+				$.ajax({
+				  type: "POST",
+				  url: "/enquiry",
+				  data: {'name': name, 'email':email, 'message':message, 'phone':phone, 'type':type},
+				  success: function(){
+				  	deBlur();
+				  	swal("Thank You!", "Your enquiry has been submitted!", "success");
+				  	$('#name').val("");
+					$('#email').val("");
+					$('#message').val("");
+					$('#phone').val("");
+				  },
+				  error: function(e){
+				  	console.log(e);
+				  }
+				});
+	    	}
 		});
 
 
     });
+    function blurAll(){
+		$( "*" ).not( "#loader , body, head, html, svg, rect").addClass('blur');
+		$("#loader").removeClass('hidden');
+	}
+	function deBlur(){
+		$( "*" ).not( "#loader , body, head, html, svg, rect").removeClass('blur');
+		$("#loader").addClass('hidden');
+	}
 </script>
 
 @endsection

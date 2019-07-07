@@ -143,6 +143,13 @@
 	.this-white{
 		color: #FBFBFB;
 	}
+	.blur {
+		-webkit-filter: blur(3px);
+		-moz-filter: blur(3px);
+		-o-filter: blur(3px);
+		-ms-filter: blur(3px);
+		filter: blur(3px);
+	}
 
 /*	.dropdown:hover .dropbtn {background-color: #3e8e41;}
 */	</style>
