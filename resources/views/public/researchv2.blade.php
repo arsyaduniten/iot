@@ -43,7 +43,7 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-left w-full h-screen mt-16" style="margin-left:15%">
+		<div class="text-left w-full h-screen mt-16" style="margin-left:250px;">
 			<div class="flex w-full m-8 justify-left">
 				<a href="?active=researches" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav default" id="researches-tab" content-id="researches">Research Areas</a>
 				<a href="?active=projects" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" id="projects-tab" content-id="projects">Active Projects</a>

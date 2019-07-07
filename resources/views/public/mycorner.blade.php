@@ -43,7 +43,7 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-left w-full h-screen mt-16" style="margin-left:15%">
+		<div class="text-left w-full h-screen mt-16" style="margin-left:250px;">
 			{{-- <p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p> --}}
 			<p class="text-xl text-teal-dark my-12 mx-4"><?php echo $data->description->content ?></p>
 			<div class="flex flex-col h-full w-full p-4">

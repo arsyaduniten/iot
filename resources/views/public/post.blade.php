@@ -43,7 +43,7 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center flex flex-col items-center w-full h-screen mt-16" style="margin-left:15%">
+		<div class="text-center flex flex-col items-center w-full h-screen mt-16" style="margin-left:250px;">
 			<div class="flex items-center justify-center">
 				<a href="/mycorner" class="border border-black p-4 rounded mt-8  hover:text-white hover:bg-black w-1/7">Back</a>
 				<p class="text-5xl p-4 pt-12 font-bold w-2/3">{{ $blog->title }}</p>

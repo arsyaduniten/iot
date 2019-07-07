@@ -40,7 +40,7 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-left w-full h-screen mt-16" style="margin-left: 15%;">
+		<div class="text-left w-full h-screen mt-16" style="margin-left: 250px;">
 			{{-- <p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
 			@if(!is_null($data->snss))
 			<div class="flex justify-center">
