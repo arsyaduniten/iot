@@ -4,14 +4,14 @@
 <div class="flex flex-col w-full">
 	<div class="flex w-full fixed pin-t bg-grey-dark shadow-md this-white">
 		<div class="flex flex-no-shrink mx-6 py-6">
-			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
+			<a class="no-underline font-bold text-2xl" href="/">Sami Hajjaj</a>
 		</div>
-		<div class="container mx-auto flex justify-between py-6">
-				<a class="no-underline hover:text-blue-darker" href="/v2/next">Profile</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/research">Research</a>
-				<a class="border-b-4 border-blue-darker font-bold">My Corner</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
+		<div class="flex justify-between py-6">
+				<a class="no-underline hover:text-blue-darker mx-4" href="/profile">Profile</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/academic">Academic</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/research">Research</a>
+				<a class="border-b-4 border-blue-darker mx-4 font-bold">My Corner</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -45,7 +45,7 @@
 		</div>
 		<div class="text-center flex flex-col items-center w-full h-screen mt-16" style="margin-left:15%">
 			<div class="flex items-center justify-center">
-				<a href="/v2/mycorner" class="border border-black p-4 rounded mt-8  hover:text-white hover:bg-black w-1/7">Back</a>
+				<a href="/mycorner" class="border border-black p-4 rounded mt-8  hover:text-white hover:bg-black w-1/7">Back</a>
 				<p class="text-5xl p-4 pt-12 font-bold w-2/3">{{ $blog->title }}</p>
 			</div>
 			<p class="text-xl font-bold text-grey-dark p-4">{{ \Carbon\Carbon::parse($blog->created_at)->toFormattedDateString() }} - Sami Hajjaj</p>

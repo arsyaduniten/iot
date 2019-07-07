@@ -1,17 +1,17 @@
 @extends('public.base')
 
 @section('content')
-<div class="flex flex-col w-full">
+<div class="flex flex-col w-full justify-start">
 	<div class="flex w-full fixed pin-t bg-grey-dark shadow-md this-white">
 		<div class="flex flex-no-shrink mx-6 py-6">
-			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
+			<a class="no-underline font-bold text-2xl" href="/">Sami Hajjaj</a>
 		</div>
 		<div class="flex justify-between py-6 px-12">
-				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/next">Profile</a>
-				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/portfolio">Academic</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/profile">Profile</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/academic">Academic</a>
 				<a class="border-b-4 border-blue-darker mx-4 font-bold">Research</a>
-				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline hover:text-blue-darker mx-4" href="/v2/contact">Contact Me</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/mycorner">My Corner</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -45,13 +45,13 @@
 		</div>
 		<div class="text-left w-full h-screen mt-16" style="margin-left:15%">
 			<div class="flex w-full m-8 justify-left">
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav default" content-id="researches">Research Areas</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="projects">Active Projects</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="fundings">Grants & Funding</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="collaborators">Industrial Collaboration</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="colleagues">Colleagues</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="publications">Publications</button>
-				<button class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" content-id="awards">Innovation Awards</button>
+				<a href="?active=researches" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav default" id="researches-tab" content-id="researches">Research Areas</a>
+				<a href="?active=projects" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" id="projects-tab" content-id="projects">Active Projects</a>
+				<a href="?active=fundings" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" id="fundings-tab" content-id="fundings">Grants & Funding</a>
+				<a href="?active=collaborators" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" id="collaborators-tab" content-id="collaborators">Industrial Collaboration</a>
+				<a href="?active=colleagues" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" id="colleagues-tab" content-id="colleagues">Colleagues</a>
+				<a href="?active=publications" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" id="publications-tab" content-id="publications">Publications</a>
+				<a href="?active=awards" class="bg-grey-lighter text-teal-dark px-6 py-4 border border-grey sub-nav" id="awards-tab" content-id="awards">Innovation Awards</a>
 			</div>
 			<div class="flex flex-col h-full w-full p-4">
 				<div class="flex flex-wrap">
@@ -60,7 +60,6 @@
 					@endforeach
 				</div>
 				<div class="border border-grey-light mt-4"></div>
-				<p class="container mx-auto my-8 mt-12 font-bold text-5xl text-grey-darker landing-message">Click on above buttons to get started.</p>
 				@if(!is_null($projects))
 				<table class="hidden content mt-6" id="projects">
 			        <tr class="bg-grey p-5 text-center">
@@ -131,7 +130,7 @@
 				@endif
 				@if(!is_null($publications))
 				<div class="hidden content" id="publications">
-					<p class="text-3xl text-center m-4">Highlighted Publications</p>
+					<p class="text-3xl text-left m-4">Highlighted Publications</p>
 					<table class="mt-6">
 				        <tr class="bg-grey p-5 text-center">
 				            <th class="this-black py-5 px-6">TITLE</th>
@@ -148,7 +147,7 @@
 				        </tr>
 				        @endforeach
 				    </table>
-					<p class="text-3xl text-center m-4">All Publications</p>
+					<p class="text-3xl text-left m-4">All Publications</p>
 					<table class="mt-6">
 				        <tr class="bg-grey p-5 text-center">
 				            <th class="this-black py-5 px-6">TITLE</th>
@@ -221,21 +220,20 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
-    	$('.sub-nav').click(function(e){
-    		e.preventDefault();
-    		$('.landing-message').hide();
-    		$('.sub-nav').each(function(){
-    			$(this).removeClass('bg-green text-white');
-				$(this).addClass('bg-grey-lighter text-teal-dark');
-    		});
-			$(this).removeClass('bg-grey-lighter text-teal-dark');
-    		$(this).addClass('bg-green text-white');
-    		$(".content").each(function(){
-    			$(this).addClass('hidden');
-    		});
-    		$("#"+$(this).attr('content-id')).removeClass('hidden');
-    	});
-    	$('.default').trigger('click');
+    	@if(Request::get('active') == null)
+    	window.location.href = "?active=researches";
+    	@else
+		$('.sub-nav').each(function(){
+			$(this).removeClass('bg-green text-white');
+			$(this).addClass('bg-grey-lighter text-teal-dark');
+		});
+		$("#{{ Request::get('active') }}-tab").removeClass('bg-grey-lighter text-teal-dark');
+		$("#{{ Request::get('active') }}-tab").addClass('bg-green text-white');
+		$(".content").each(function(){
+			$(this).addClass('hidden');
+		});
+		$("#"+$("#{{ Request::get('active') }}-tab").attr('content-id')).removeClass('hidden');
+    	@endif
     });
 </script>
 

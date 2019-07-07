@@ -154,14 +154,14 @@
 <div class="flex flex-col w-full">
 	<div class="flex w-full bg-grey-dark shadow-md this-white">
 		<div class="flex mx-8 py-6">
-			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
+			<a class="no-underline font-bold text-2xl" href="/">Sami Hajjaj</a>
 		</div>
-		<div class="container mx-auto flex justify-between py-6">
-				<a class="no-underline hover:text-blue-darker" href="/v2/next">Profile</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/research">Research</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
+		<div class="flex justify-between py-6">
+				<a class="no-underline hover:text-blue-darker mx-4" href="/profile">Profile</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/academic">Academic</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/research">Research</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/mycorner">My Corner</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -179,10 +179,10 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full overflow-y-auto" style="height: 94vh">
-			<div class="container mx-auto m-4 rounded-t-lg z-20">
+		<div class="text-left w-full overflow-y-auto" style="height: 94vh">
+			<div class="m-4 rounded-t-lg z-20">
 				<div class="flex p-8 rounded-t-lg axis">
-					<a class="pr-8" href="/v2/research"><i class="fas fa-2x fa-arrow-left object move-left text-black"></i></a>
+					<a class="pr-8" href="/research"><i class="fas fa-2x fa-arrow-left object move-left text-black"></i></a>
 					<div class="text-left">
 						<p class="text-xl font-bold text-grey-dark">{{ $title }}</p>
 						<p class="text-4xl font-bold -my-2 text-black">{{ $h_title }}</p>
@@ -243,7 +243,7 @@
 					@endif
 				</div>
 			</div>
-			<div class="container mx-auto z-10 mb-8">
+			<div class="z-10 mb-8 mx-4">
 				<div class="px-8 pt-4">
 				<button class="p-4 flex text-white font-bold my-2 text-3xl submit-btn axis"><span class="self-center mx-8 pb-1">Learn More</span><svg class="object move-right" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="50" height="50"

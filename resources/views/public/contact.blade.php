@@ -20,14 +20,14 @@
 <div class="flex flex-col w-full">
 	<div class="flex fixed pin-t w-full bg-grey-dark this-white shadow-md">
 		<div class="flex flex-no-shrink mx-6 py-6">
-			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
+			<a class="no-underline font-bold text-2xl" href="/">Sami Hajjaj</a>
 		</div>
-		<div class="container mx-auto flex justify-between py-6 px-12">
-				<a class="no-underline hover:text-blue-darker" href="/v2/next">Profile</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
-				<a class="no-underline hover:text-blue-darker nav-link" href="/v2/research">Research</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/mycorner">My Corner</a>
-				<a class="border-b-4 border-blue-darker font-bold">Contact Me</a>
+		<div class="flex justify-between py-6 px-12">
+				<a class="no-underline hover:text-blue-darker mx-4" href="/profile">Profile</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/academic">Academic</a>
+				<a class="no-underline hover:text-blue-darker mx-4 nav-link" href="/research">Research</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/mycorner">My Corner</a>
+				<a class="border-b-4 border-blue-darker mx-4 font-bold">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -59,10 +59,10 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full mt-16" style="margin-left: 15%">
-			<p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
-			<p class="text-xl text-teal-dark pt-6"><?php echo ($data->description->content); ?></p>
-			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto p-4 m-8">
+		<div class="text-left w-full mt-16" style="margin-left: 15%">
+			<p class="text-5xl font-bold text-teal-dark pt-8 mx-16">{{ $data->title }}</p>
+			<div class="text-xl text-teal-dark pt-6 mx-16"><?php echo ($data->description->content); ?></div>
+			<div class="flex flex-col h-full w-full p-4 m-8">
 				<div class="flex flex-wrap">
 					<div class="flex flex-col text-left mx-8">
 						<label class="py-2">Full Name</label>
@@ -105,14 +105,14 @@
 				      </div>
 					</div>
 				</div>
-				<div class="flex flex-col text-left mx-8">
+				<div class="flex flex-col text-left mx-8" style="width:63.3%">
 					<label class="py-2">Message</label>
 					<div class="flex flex-col">
 						<textarea class="bg-white border border-grey-dark px-4 py-2" name="message" id="message" style="height: 200px;"></textarea>
 						<p class="message-required hidden text-red text-base">*Message is required</p>
 					</div>
+					<button class="px-6 mt-6 py-4 bg-purple-darker text-white rounded shadow-lg" id="submitBtn">Submit</button>
 				</div>
-				<button class="mx-auto px-6 mt-6 py-4 bg-purple-darker text-white rounded shadow-lg" id="submitBtn">Submit</button>
 			</div>
 		</div>
 	</div>

@@ -6,12 +6,12 @@
 		<div class="flex mx-8 py-6">
 			{{-- <p class="font-bold text-2xl">Sami Hajjaj</p> --}}
 		</div>
-		<div class="container mx-auto flex justify-between py-6">
-				<a class="no-underline hover:text-blue-darker" href="/v2/next">Profile</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/research">Research</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
+		<div class="container justify-between py-6" style="margin-left: 150px;">
+				<a class="no-underline hover:text-blue-darker mx-4" href="/profile">Profile</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/academic">Academic</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/research">Research</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/mycorner">My Corner</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -37,7 +37,7 @@
 		<div class="flex flex-col text-center w-full bg-grey">
 			<p class="text-5xl font-bold this-white pt-8 mt-16">{{ $data->title }}</p>
 			<p class="text-xl this-white pt-6"><?php echo $data->description->content ?></p>
-			<a class="mx-auto px-6 mt-6 py-4 text-white rounded border-2 font-bold border-black" href="/v2/next">Welcome</a>
+			<a class="mx-auto px-6 mt-6 py-4 text-white rounded border-2 font-bold border-black" href="/profile">Welcome</a>
 		</div>
 	</div>
 </div>

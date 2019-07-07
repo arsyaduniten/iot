@@ -1,14 +1,14 @@
 <div class="flex flex-col w-full">
 	<div class="flex w-full fixed pin-t bg-grey-dark shadow-md this-white">
 		<div class="flex flex-no-shrink mx-6 py-6">
-			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
+			<a class="no-underline font-bold text-2xl" href="/">Sami Hajjaj</a>
 		</div>
-		<div class="container mx-auto flex justify-between py-6 px-12">
-				<a class="font-bold border-b-4 border-blue-darker">Profile</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/portfolio">Academic</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/research">Research</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
+		<div class="flex justify-between py-6 px-12">
+				<a class="font-bold border-b-4 border-blue-darker mx-4">Profile</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/academic">Academic</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/research">Research</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/mycorner">My Corner</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -40,7 +40,7 @@
 				<a class="py-1 this-white">Recent Award</a>
 			</div>
 		</div>
-		<div class="text-center w-full overflow-y-auto mt-16" style="margin-left: 15%;">
+		<div class="text-left w-full h-screen mt-16" style="margin-left: 15%;">
 			{{-- <p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
 			@if(!is_null($data->snss))
 			<div class="flex justify-center">
@@ -50,20 +50,20 @@
 			@endforeach
 			</div>
 			@endif --}}
-			<p class="text-xl text-grey-darker pt-6"><?php echo $data->description->content ?></p>
-			<div class="flex w-full container justify-center mx-auto m-8">
+			<p class="text-xl text-grey-darker pt-6 mx-4"><?php echo $data->description->content ?></p>
+			<div class="flex w-full justify-left">
 				@foreach($data->statistics as $stat)
-				<div class="flex flex-col bg-blue-custom-dark shadow p-6 m-4 rounded">
+				<div class="flex flex-col text-center bg-blue-custom-dark shadow p-6 m-4 rounded">
 					<p class="text-2xl font-bold text-orange-dark">{{ $stat->content }}</p>
 					<p class="text-orange-dark pt-4">{{ $stat->description }}</p>
 				</div>
 				@endforeach
 			</div>
-			<div class="flex w-full container mx-auto m-8 justify-center">
+			<div class="flex w-full m-8 ml-4 justify-left">
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav default" content-id="bodies">Professional Bodies</button>
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="recognition">Academic Recognition</button>
 			</div>
-			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto mb-12 p-4">
+			<div class="flex flex-col h-full w-full mb-12 p-4">
 				<div class="border border-grey-light mt-4"></div>
 				<p class="container mx-auto my-8 mt-12 font-bold text-5xl text-grey-darker landing-message">Click on above buttons to get started.</p>
 				<div class="hidden content p-6" id="{{ $about->type }}"><?php echo $about->description ?></div>

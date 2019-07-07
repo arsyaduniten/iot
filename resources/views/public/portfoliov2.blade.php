@@ -4,14 +4,14 @@
 <div class="flex flex-col w-full">
 	<div class="flex fixed pin-t w-full bg-grey-dark shadow-md this-white">
 		<div class="flex flex-no-shrink mx-6 py-6">
-			<a class="no-underline font-bold text-2xl" href="/v2">Sami Hajjaj</a>
+			<a class="no-underline font-bold text-2xl" href="/">Sami Hajjaj</a>
 		</div>
-		<div class="container mx-auto flex justify-between py-6 px-12">
-				<a class="no-underline hover:text-blue-darker" href="/v2/next">Profile</a>
-				<a class="border-b-4 border-blue-darker font-bold">Academic</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/research">Research</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/mycorner">My Corner</a>
-				<a class="no-underline hover:text-blue-darker" href="/v2/contact">Contact Me</a>
+		<div class="flex justify-between py-6 px-12">
+				<a class="no-underline hover:text-blue-darker mx-4" href="/profile">Profile</a>
+				<a class="border-b-4 border-blue-darker mx-4 font-bold">Academic</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/research">Research</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/mycorner">My Corner</a>
+				<a class="no-underline hover:text-blue-darker mx-4" href="/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
@@ -54,21 +54,20 @@
 			</div>
 			@endif --}}
 			{{-- <p class="text-xl text-grey-darker pt-6">A short paragraph summarizes my career and highlight its key achievements<br> and milestones; it acts as a condensed version of a cover letter, to intrigue<br> to the reader/visitor to learn more about me. This should not <br>be more than 3 to 4 lines maximum.</p> --}}
-			<div class="flex w-full container mx-auto m-8 justify-center">
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav default" content-id="education">Education</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="experience">Employment</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="qualifications">Qualifications</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="teaching">Teaching</button>
-				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="administrative">Administrative</button>
+			<div class="flex w-full m-8 justify-left">
+				<a href="?active=education" class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav default" id='education-tab' content-id="education">Education</a>
+				<a href="?active=experience" class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" id='experience-tab' content-id="experience">Employment</a>
+				<a href="?active=qualifications" class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" id='qualifications-tab' content-id="qualifications">Qualifications</a>
+				<a href="?active=teaching" class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" id='teaching-tab' content-id="teaching">Teaching</a>
+				<a href="?active=administrative" class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" id='administrative-tab' content-id="administrative">Administrative</a>
 			</div>
-			<div class="flex flex-col h-full w-full border-2 border-grey container mx-auto mb-12 p-4">
+			<div class="flex flex-col h-full w-full mb-12 p-4">
 				<div class="flex flex-wrap">
 					@foreach($tags as $tag)
 					<button class="rounded-full bg-inherit border border-grey cursor-default this-black px-4 py-2 mx-4 my-2 text-sm">#{{ $tag }}</button>
 					@endforeach
 				</div>
 				<div class="border border-grey-light mt-4"></div>
-				<p class="container mx-auto my-8 mt-12 font-bold text-5xl text-grey-darker landing-message">Click on above buttons to get started.</p>
 				@foreach($about as $desc)
 				<div class="hidden content p-6" id="{{ $desc->type }}"><?php echo $desc->description ?></div>
 				@endforeach
@@ -86,21 +85,34 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
-    	$('.sub-nav').click(function(e){
-    		e.preventDefault();
-    		$('.landing-message').hide();
-    		$('.sub-nav').each(function(){
-    			$(this).removeClass('bg-green text-white');
-				$(this).addClass('bg-grey-lighter text-teal-dark');
-    		});
-			$(this).removeClass('bg-grey-lighter text-teal-dark');
-    		$(this).addClass('bg-green text-white');
-    		$(".content").each(function(){
-    			$(this).addClass('hidden');
-    		});
-    		$("#"+$(this).attr('content-id')).removeClass('hidden');
-    	});
-    	$('.default').trigger('click');
+   //  	$('.sub-nav').click(function(e){
+   //  		e.preventDefault();
+   //  		$('.landing-message').hide();
+   //  		$('.sub-nav').each(function(){
+   //  			$(this).removeClass('bg-green text-white');
+			// 	$(this).addClass('bg-grey-lighter text-teal-dark');
+   //  		});
+			// $(this).removeClass('bg-grey-lighter text-teal-dark');
+   //  		$(this).addClass('bg-green text-white');
+   //  		$(".content").each(function(){
+   //  			$(this).addClass('hidden');
+   //  		});
+   //  		$("#"+$(this).attr('content-id')).removeClass('hidden');
+   //  	});
+    	@if(Request::get('active') == null)
+    	window.location.href = "?active=education";
+    	@else
+		$('.sub-nav').each(function(){
+			$(this).removeClass('bg-green text-white');
+			$(this).addClass('bg-grey-lighter text-teal-dark');
+		});
+		$("#{{ Request::get('active') }}-tab").removeClass('bg-grey-lighter text-teal-dark');
+		$("#{{ Request::get('active') }}-tab").addClass('bg-green text-white');
+		$(".content").each(function(){
+			$(this).addClass('hidden');
+		});
+		$("#"+$("#{{ Request::get('active') }}-tab").attr('content-id')).removeClass('hidden');
+    	@endif
     });
 </script>
 
