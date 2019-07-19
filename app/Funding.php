@@ -9,7 +9,7 @@ class Funding extends Model
 {
     //
     use Taggable;
-    protected $fillable = ['granted_by', 'amount','start_date','end_date'];
+    protected $fillable = ['name', 'granted_by', 'amount','start_date','end_date'];
     public function project()
     {
     	return $this->belongsTo('App\Project');

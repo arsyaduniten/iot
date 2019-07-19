@@ -82,11 +82,11 @@ class LandingController extends Controller
     {
         $data = Page::find(4);
         $tags = $data->tagNames();
-        $projects = Project::all()->toArray();
+        $projects = Project::orderBy('created_at', 'desc')->get()->toArray();
         $projects_2 = [];
         $researches = Research::orderBy('start_date', 'desc')->get();
-        $colleagues = Researcher::all();
-        $awards = Award::all();
+        $colleagues = Researcher::orderBy('created_at', 'desc')->get();
+        $awards = Award::orderBy('created_at', 'desc')->get();
         foreach ($colleagues as $colleague) {
             $tags = $colleague->tagNames();
             foreach ($projects as $key => $project) {
@@ -99,8 +99,8 @@ class LandingController extends Controller
             }
             
         }
-        $collaborators = Collaborator::all();
-        $fundings = Funding::all();
+        $collaborators = Collaborator::orderBy('created_at', 'desc')->get();
+        $fundings = Funding::orderBy('created_at', 'desc')->get();
         $publications = Publication::orderBy('publication_date', 'desc')->get();
         $highlighted = Publication::where('highlight', 1)->orderBy('rank', 'asc')->get();
         return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'fundings', 'publications', 'highlighted', 'awards'));

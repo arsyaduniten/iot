@@ -50,7 +50,7 @@
 			@endforeach
 			</div>
 			@endif --}}
-			<p class="text-xl text-grey-darker pt-6 mx-4"><?php echo $data->description->content ?></p>
+			<div class="text-xl text-left text-grey-darker pt-6 mx-4"><?php echo $data->description->content ?></div>
 			<div class="flex w-full justify-left">
 				@foreach($data->statistics as $stat)
 				<div class="flex flex-col text-center bg-blue-custom-dark shadow p-6 m-4 rounded">

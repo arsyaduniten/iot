@@ -182,7 +182,7 @@
 		<div class="text-left w-full overflow-y-auto" style="height: 94vh">
 			<div class="m-4 rounded-t-lg z-20">
 				<div class="flex p-8 rounded-t-lg axis">
-					<a class="pr-8" href="/research"><i class="fas fa-2x fa-arrow-left object move-left text-black"></i></a>
+					<a class="pr-8" href="{{ url()->previous() }}"><i class="fas fa-2x fa-arrow-left object move-left text-black"></i></a>
 					<div class="text-left">
 						<p class="text-xl font-bold text-grey-dark">{{ $title }}</p>
 						<p class="text-4xl font-bold -my-2 text-black">{{ $h_title }}</p>
@@ -191,7 +191,7 @@
 				<div class="flex m-4 p-4">
 					<div class="bg-grey-lighter shadow-lg">
 						<p class="p-4 font-bold">Description</p>
-						<p class="p-4">Velit labore fugiat nulla est ut dolor consequat ut do voluptate. Ex sit culpa excepteur ad incididunt dolor adipisicing quis velit dolore consectetur nulla adipisicing. Occaecat sunt officia fugiat minim voluptate duis officia laborum nostrud. Elit magna magna et id culpa excepteur velit ad sed ut voluptate ut nulla excepteur consectetur ex adipisicing proident. Lorem ipsum deserunt id occaecat sunt velit sunt labore officia proident. Ea nulla ex laboris non reprehenderit do deserunt id deserunt pariatur laborum fugiat laborum est. Dolor veniam ea ex qui aliqua esse do quis fugiat esse occaecat in. Nisi irure velit magna ea ut in anim consectetur deserunt. Eu eiusmod quis anim culpa proident nisi velit est velit. Velit eu occaecat sit deserunt in ut ut dolor adipisicing anim tempor tempor. Mollit ad elit non enim tempor aliqua officia eu dolor sunt officia occaecat qui aute.</p>
+						<p class="p-4"><?php echo $data->description ?></p>
 					</div>
 				</div>
 				<div class="flex m-4 p-4 mb-0 pb-0">

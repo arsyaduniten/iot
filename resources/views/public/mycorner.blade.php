@@ -70,12 +70,12 @@
 			    </table>
 				@endif --}}
 				<table class="mt-6">
-			        <tr class="bg-grey p-5 text-center">
+			        <tr class="bg-grey p-5 text-left">
 			            <th class="this-black py-5 px-6">Title</th>
 			            <th class="this-black py-5 px-6">Posted On</th>
 			        </tr>
 			        @foreach($posts as $post)
-			        <tr class="bg-grey-lightest p-5 text-center">
+			        <tr class="bg-grey-lightest p-5 text-left">
 			            <td class="this-black py-5 px-6"><a class="no-underline font-bold text-blue-dark" href="/post?id={{ $post->id }}">{{ $post->title }}</a></td>
 			            <td class="this-black py-5 px-6">{{ $post->post_date }}</td>
 			        </tr>

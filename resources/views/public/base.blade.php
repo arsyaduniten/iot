@@ -42,6 +42,17 @@
 		top:74px;
 	}
 
+	.ml-250{
+		margin-left: 250px;
+	}
+
+	@media only screen and (max-width: 768px) {
+	  /* For mobile phones: */
+	  .ml-250{
+	  	margin-left: 5px;
+	  }
+	}
+
 	.dropdown {
 	    position: relative;
 	    display: inline-block;

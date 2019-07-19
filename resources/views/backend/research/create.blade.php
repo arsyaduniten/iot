@@ -51,6 +51,10 @@
 			<p class="end-required hidden text-red text-base">*End Date is required</p>
 		</div>
 	</div>
+	<div class="flex">
+		<label class="pt-4">Post to Latest Activity?</label>
+		<input class="self-center mt-4 m-2" type="checkbox" name="activity" value="true">
+	</div>
 </form>
 @endsection
 

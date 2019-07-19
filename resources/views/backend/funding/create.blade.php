@@ -19,6 +19,13 @@
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<div class="flex">
+		<label class="self-center">Grant Name</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="name">
+			<p class="granted-name-required hidden text-red text-base">*Granted Name is required</p>
+		</div>
+	</div>
+	<div class="flex">
 		<label class="self-center">Granted By</label>
 		<div class="flex flex-col">
 			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="granted_by">
@@ -81,11 +88,16 @@
 	    	e.preventDefault();
 	    	var incomplete = false;
 	    	var granted = $('input[name=granted_by]').val();
+	    	var grant_name = $('input[name=name]').val();
 	    	var amount = $('input[name=amount]').val();
 	    	var start = $('input[name=start_date]').val();
 	    	var end = $('input[name=end_date]').val();
 	    	if(granted == ''){
 	    		$('.granted-required').show();
+	    		incomplete = true;
+	    	}
+	    	if(grant_name == ''){
+	    		$('.granted-name-required').show();
 	    		incomplete = true;
 	    	}
 	    	if(amount == ''){

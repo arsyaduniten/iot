@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Research;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\LatestActivity;
 
 
 class ResearchController extends Controller
@@ -41,7 +42,14 @@ class ResearchController extends Controller
     public function store(Request $request)
     {
         //
-        Research::create($request->all());
+        
+        $r = Research::create($request->all());
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Created new Research Area";
+            $a->link = "/details?type=research&id=".$r->id;
+            $a->save();
+        }
         return redirect()->route('backend:researches');
     }
 
