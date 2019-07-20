@@ -188,8 +188,8 @@
 						<p class="text-4xl font-bold -my-2 text-black">{{ $h_title }}</p>
 					</div>
 				</div>
-				<div class="flex m-4 p-4">
-					<div class="bg-grey-lighter shadow-lg">
+				<div class="flex m-4 p-8">
+					<div class="">
 						<p class="p-4 font-bold">Description</p>
 						<p class="p-4"><?php echo $data->description ?></p>
 					</div>
@@ -199,7 +199,7 @@
 						<related type="Projects" :data="$r_data['projects']" />
 					@endif
 					@if(array_key_exists('research_areas', $r_data))
-						<div class="bg-grey-lighter shadow-lg flex-1 p-4">
+						<div class="flex-1 p-4">
 							<p class="font-bold text-base p-4">Research Areas</p>
 							<ul class="list-reset flex flex-col">
 							@foreach($r_data['research_areas'] as $item)
@@ -217,7 +217,7 @@
 				</div>
 				<div class="flex m-4 p-4 pt-0">
 					@if(array_key_exists('fundings', $r_data))
-						<div class="bg-grey-lighter shadow-lg flex-1 p-4">
+						<div class="flex-1 p-4">
 							<p class="font-bold text-base p-4">Fundings</p>
 							<ul class="list-reset flex flex-col">
 							@foreach($r_data['fundings'] as $item)
@@ -230,7 +230,7 @@
 					@endif
 					<space-between/>
 					@if(array_key_exists('collaborators', $r_data))
-						<div class="bg-grey-lighter shadow-lg flex-1 p-4">
+						<div class="flex-1 p-4">
 							<p class="font-bold text-base p-4">Collaborators</p>
 							<div class="m-2 mx-4">
 							@foreach($r_data['collaborators'] as $item)
@@ -243,7 +243,7 @@
 					@endif
 				</div>
 			</div>
-			<div class="z-10 mb-8 mx-4">
+			<div class="z-10 mb-8 mx-4 px-8">
 				<div class="px-8 pt-4">
 				<button class="p-4 flex text-white font-bold my-2 text-3xl submit-btn axis"><span class="self-center mx-8 pb-1">Learn More</span><svg class="object move-right" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="50" height="50"

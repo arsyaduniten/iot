@@ -43,6 +43,10 @@
 		<label class="pt-4">Event</label>
 		<input class="self-center mt-4 m-2" type="checkbox" name="event" value="true">
 	</div>
+	<div class="flex">
+		<label class="pt-4">Post to Latest Activity?</label>
+		<input class="self-center mt-4 m-2" type="checkbox" name="activity" value="true">
+	</div>
 	<input type="hidden" id="tag_values" name="tags">
 </form>
 @endsection

@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class LatestActivity extends Model
 {
     //
-    protected $fillable = ['text', 'link'];
+    protected $fillable = ['text', 'link', 'type'];
 }

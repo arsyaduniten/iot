@@ -6,6 +6,7 @@ use App\Blog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Project;
+use App\LatestActivity;
 
 class BlogController extends Controller
 {
@@ -68,6 +69,13 @@ class BlogController extends Controller
             $b->event = true;
         }
         $b->save();
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Created new Post";
+            $a->link = "/post?id=".$b->id;
+            $a->type = "mycorner";
+            $a->save();
+        }
         return redirect()->route('backend:blogs');
     }
 

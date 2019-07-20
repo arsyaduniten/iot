@@ -38,7 +38,10 @@
 			</div>
 			<div class="flex flex-col pt-4">
 				<p class="font-bold this-white text-xl">Latest Activity:</p>
-				@foreach(\App\LatestActivity::orderBy('created_at', 'desc')->take(3)->get() as $latest)
+				@foreach(\App\LatestActivity::where('type','mycorner')->orderBy('created_at', 'desc')->take(1)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
+				@endforeach
+				@foreach(\App\LatestActivity::where('type','other')->orderBy('created_at', 'desc')->take(3)->get() as $latest)
 				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
 				@endforeach
 			</div>
