@@ -27,7 +27,6 @@
 		<div class="flex flex-col">
 			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="research_area">
 			<p class="research-required hidden text-red text-base">*Research Area is required</p>
-
 		</div>
 	</div>
 	<div class="flex">
@@ -52,7 +51,13 @@
 		</div>
 	</div>
 	<div class="flex">
-		<label class="pt-4">Post to Latest Activity?</label>
+		<label class="self-center">External Website (Optional)</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="external_link">
+		</div>
+	</div>
+	<div class="flex">
+		<label class="pt-4">Post to Recent Activity?</label>
 		<input class="self-center mt-4 m-2" type="checkbox" name="activity" value="true">
 	</div>
 </form>

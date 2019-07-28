@@ -130,6 +130,13 @@ class BlogController extends Controller
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
         $blog->retag($tags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Updated a Post";
+            $a->link = "/post?id=".$blog->id;
+            $a->type = "mycorner";
+            $a->save();
+        }
         return redirect()->route('backend:blogs');
     }
 

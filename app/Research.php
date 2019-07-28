@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Research extends Model
 {
-    protected $fillable = ['research_area', 'description', 'start_date', 'end_date'];
+    protected $fillable = ['research_area', 'description', 'start_date', 'end_date', 'external_link'];
     //
     public function projects()
     {

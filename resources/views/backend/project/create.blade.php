@@ -70,6 +70,16 @@
             <input type="text" name="ktags-field"/>
         </div>
     </div>
+    <div class="flex">
+		<label class="self-center">External Website (Optional)</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="external_link">
+		</div>
+	</div>
+    <div class="flex">
+		<label class="pt-4">Post to Recent Activity?</label>
+		<input class="self-center mt-4 m-2" type="checkbox" name="activity" value="true">
+	</div>
 	<input type="hidden" id="tag_values" name="tags">
 	<input type="hidden" id="ktag_values" name="ktags">
 </form>

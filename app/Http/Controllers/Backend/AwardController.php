@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use ImageOptimizer;
 use Storage;
 use Illuminate\Http\File;
-
+use App\LatestActivity;
 
 class AwardController extends Controller
 {
@@ -63,6 +63,13 @@ class AwardController extends Controller
         array_pop($tags);
         $new_p = Award::create($request->all());
         $image = $request->file('file_upload');
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Added new Award";
+            $a->link = "/research?active=awards";
+            $a->type = "other";
+            $a->save();
+        }
         if ($image != null){
             ImageOptimizer::optimize($image->getRealPath());
             $file = Storage::disk('s3')->putFile('/', new File($image->getRealPath()), 'public');
@@ -153,6 +160,13 @@ class AwardController extends Controller
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
         $award->retag($tags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Updated an Award";
+            $a->link = "/research?active=awards";
+            $a->type = "other";
+            $a->save();
+        }
         return redirect()->route('backend:awards');
     }
 

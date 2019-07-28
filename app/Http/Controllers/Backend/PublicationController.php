@@ -9,6 +9,7 @@ use App\Keyword;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\LatestActivity;
 
 
 class PublicationController extends Controller
@@ -57,6 +58,13 @@ class PublicationController extends Controller
         array_pop($tags);
         $new_p = Publication::create($request->all());
         $new_p->tag($tags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Added new Publication";
+            $a->link = "/research?active=publications";
+            $a->type = "other";
+            $a->save();
+        }
         $rank = $request->get('rank');
         if($request->get('highlight') == null){
             $new_p->highlight = false;
@@ -145,6 +153,13 @@ class PublicationController extends Controller
             $publication->rank = $rank == "null" ? $current_rank + 1 : $this->arrange_rank($rank);
         }
         $publication->save();
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Updated a Publication";
+            $a->link = "/research?active=publications";
+            $a->type = "other";
+            $a->save();
+        }
         return redirect()->route('backend:publications');
     }
 

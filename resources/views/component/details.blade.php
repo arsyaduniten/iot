@@ -182,32 +182,35 @@
 		<div class="text-left w-full overflow-y-auto" style="height: 94vh">
 			<div class="m-4 rounded-t-lg z-20">
 				<div class="flex p-8 rounded-t-lg axis">
-					<a class="pr-8" href="{{ url()->previous() }}"><i class="fas fa-2x fa-arrow-left object move-left text-black"></i></a>
 					<div class="text-left">
-						<p class="text-xl font-bold text-grey-dark">{{ $title }}</p>
 						<p class="text-4xl font-bold -my-2 text-black">{{ $h_title }}</p>
 					</div>
 				</div>
 				<div class="flex m-4 p-8">
 					<div class="">
-						<p class="p-4 font-bold">Description</p>
+						<p class="p-4 font-bold text-teal-darker">Description</p>
 						<p class="p-4"><?php echo $data->description ?></p>
 					</div>
 				</div>
 				<div class="flex m-4 p-4 mb-0 pb-0">
 					@if(array_key_exists('projects', $r_data))
-						<related type="Projects" :data="$r_data['projects']" />
+						<div class="flex-1 p-4">
+							<p class="font-bold text-base p-4">Projects</p>
+							<p class="text-base p-4">
+							@foreach($r_data['projects'] as $item)
+							{{ $item->title }},&nbsp;
+							@endforeach
+							</p>
+						</div>
 					@endif
 					@if(array_key_exists('research_areas', $r_data))
 						<div class="flex-1 p-4">
 							<p class="font-bold text-base p-4">Research Areas</p>
-							<ul class="list-reset flex flex-col">
+							<p class="text-base p-4">
 							@foreach($r_data['research_areas'] as $item)
-								<li class="m-2 mx-4">
-									<button href="" class="w-full shadow border-l-8 border-black p-2 no-underline text-black bg-white hover:bg-teal-lighter hover:border-teal">{{ $item->research_area }}</button>
-								</li>
+							{{ $item->research_area }},&nbsp;
 							@endforeach
-							</ul>
+							</p>
 						</div>
 					@endif
 					<space-between/>
@@ -243,6 +246,7 @@
 					@endif
 				</div>
 			</div>
+			@if($data->external_link != null)
 			<div class="z-10 mb-8 mx-4 px-8">
 				<div class="px-8 pt-4">
 				<button class="p-4 flex text-white font-bold my-2 text-3xl submit-btn axis"><span class="self-center mx-8 pb-1">Learn More</span><svg class="object move-right" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -251,6 +255,7 @@ viewBox="0 0 172 172"
 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M102.6625,45.0425c-2.67406,0.25531 -4.95844,2.05594 -5.83187,4.59563c-0.88688,2.55312 -0.20156,5.375 1.74687,7.22937l22.2525,22.2525h-86.43c-0.215,-0.01344 -0.43,-0.01344 -0.645,0c-3.80281,0.17469 -6.73219,3.39969 -6.5575,7.2025c0.17469,3.80281 3.39969,6.73219 7.2025,6.5575h86.43l-22.36,22.2525c-2.70094,2.70094 -2.70094,7.08156 0,9.7825c2.70094,2.70094 7.08156,2.70094 9.7825,0l33.97,-34.0775l4.945,-4.8375l-4.945,-4.8375l-33.97,-34.0775c-1.45125,-1.49156 -3.50719,-2.24406 -5.59,-2.0425z"></path></g></g></g></svg></button>
 				</div>
 			</div>
+			@endif
 		</div>
 	</div>
 </div>

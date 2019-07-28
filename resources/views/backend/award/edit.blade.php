@@ -67,6 +67,10 @@
 		    <input type="text" name="ptags-field"/>
 		</div>
 	</div>
+	<div class="flex">
+		<label class="pt-4">Post to Recent Activity?</label>
+		<input class="self-center mt-4 m-2" type="checkbox" name="activity" value="true">
+	</div>
 	<input type="hidden" id="tag_values" name="tags">
 </form>
 @endsection

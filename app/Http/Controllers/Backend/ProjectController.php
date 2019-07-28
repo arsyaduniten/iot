@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Support\Arr;
+use App\LatestActivity;
 
 class ProjectController extends Controller
 {
@@ -58,6 +59,13 @@ class ProjectController extends Controller
         $new_p = Project::create($request->all());
         $new_p->tag($tags);
         $new_p->tag($ktags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Added new Project";
+            $a->link = "/details?type=project&id=".$r->id;
+            $a->type = "other";
+            $a->save();
+        }
         foreach ($new_p->tags as $tag) {
             $relatedProjects = $this->in_arrayi($tag->name, $tags);
             $keywords = $this->in_arrayi($tag->name, $ktags);
@@ -133,6 +141,13 @@ class ProjectController extends Controller
         $project->untag();
         $project->tag($tags);
         $project->tag($ktags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Updated a Project";
+            $a->link = "/details?type=project&id=".$project->id;
+            $a->type = "other";
+            $a->save();
+        }
         foreach ($project->tags as $tag) {
             $relatedProjects = $this->in_arrayi($tag->name, $tags);
             $keywords = $this->in_arrayi($tag->name, $ktags);

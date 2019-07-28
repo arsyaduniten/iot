@@ -7,6 +7,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\LatestActivity;
 
 class FundingController extends Controller
 {
@@ -54,6 +55,13 @@ class FundingController extends Controller
         array_pop($tags);
         $new_p = Funding::create($request->all());
         $new_p->tag($tags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Added new Funding";
+            $a->link = "/research?active=fundings";
+            $a->type = "other";
+            $a->save();
+        }
         return redirect()->route('backend:fundings');
     }
 
@@ -113,6 +121,13 @@ class FundingController extends Controller
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
         $funding->retag($tags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Updated a Funding";
+            $a->link = "/research?active=fundings";
+            $a->type = "other";
+            $a->save();
+        }
         return redirect()->route('backend:fundings');
     }
 

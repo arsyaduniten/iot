@@ -54,9 +54,12 @@
 			</div>
 			<div class="flex flex-col pt-4">
 				<p class="font-bold this-white text-xl">Recent Activity:</p>
-				<a class="pt-2 py-1 this-white">Latest Post</a>
-				<a class="py-1 this-white">Recent Project</a>
-				<a class="py-1 this-white">Recent Award</a>
+				@foreach(\App\LatestActivity::where('type','mycorner')->orderBy('created_at', 'desc')->take(1)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
+				@endforeach
+				@foreach(\App\LatestActivity::where('type','other')->orderBy('created_at', 'desc')->take(4)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
+				@endforeach
 			</div>
 		</div>
 		<div class="text-left w-full mt-16" style="margin-left: 250px;">

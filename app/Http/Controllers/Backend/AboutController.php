@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\About;
 use App\Http\Controllers\Controller;
+use App\LatestActivity;
 
 class AboutController extends Controller
 {
@@ -80,6 +81,12 @@ class AboutController extends Controller
         //
         $about = About::find($id);
         $about->update($request->all());
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Added new Research Area";
+            $a->link = "/details?type=research&id=".$r->id;
+            $a->save();
+        }
         return back()->with('status', 'success');
     }
 

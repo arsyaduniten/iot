@@ -8,7 +8,7 @@ use App\Project;
 use Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\LatestActivity;
 
 class CollaboratorController extends Controller
 {
@@ -61,6 +61,13 @@ class CollaboratorController extends Controller
         array_pop($tags);
         $new_p = Collaborator::create($request->all());
         $new_p->tag($tags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Added new Industrial Collaboration";
+            $a->link = "/research?active=collaborators";
+            $a->type = "other";
+            $a->save();
+        }
         return redirect()->route('backend:collaborators');
     }
 
@@ -127,6 +134,13 @@ class CollaboratorController extends Controller
         $tags = explode(",",$request->get('tags'));
         array_pop($tags);
         $collaborator->retag($tags);
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Updated an Industrial Collaboration";
+            $a->link = "/research?active=collaborators";
+            $a->type = "other";
+            $a->save();
+        }
         return redirect()->route('backend:collaborators');
     }
 

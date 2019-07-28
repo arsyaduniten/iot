@@ -46,8 +46,9 @@ class ResearchController extends Controller
         $r = Research::create($request->all());
         if($request->has('activity')){
             $a = new LatestActivity();
-            $a->text = "Created new Research Area";
+            $a->text = "Added new Research Area";
             $a->link = "/details?type=research&id=".$r->id;
+            $a->type = "other";
             $a->save();
         }
         return redirect()->route('backend:researches');
@@ -86,7 +87,14 @@ class ResearchController extends Controller
     public function update(Request $request, Research $research)
     {
         //
-        $research->update($request->all());
+        $research->update($request->all());\
+        if($request->has('activity')){
+            $a = new LatestActivity();
+            $a->text = "Updated a Research Area";
+            $a->link = "/details?type=research&id=".$research->id;
+            $a->type = "other";
+            $a->save();
+        }
         return redirect()->route('backend:researches');
     }
 

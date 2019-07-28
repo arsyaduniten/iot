@@ -9,7 +9,7 @@ class Project extends Model
 {
     //
     use Taggable;
-    protected $fillable = ['title', 'description', 'start_date', 'end_date'];
+    protected $fillable = ['title', 'description', 'start_date', 'end_date', 'external_link'];
     public function researches()
     {
     	return $this->belongsToMany('App\Research', 'research_project');

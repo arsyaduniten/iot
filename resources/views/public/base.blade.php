@@ -40,6 +40,7 @@
 
 	.left-nav{
 		top:74px;
+		max-width: 200px;
 	}
 
 	.ml-250{
