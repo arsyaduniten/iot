@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<div class="flex">
-		<div class="flex flex-col px-6 bg-grey-darker py-6 h-screen shadow-md fixed left-nav">
+		<div class="hidden md:flex md:flex-col px-6 bg-grey-darker py-6 h-screen shadow-md fixed left-nav">
 			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				@foreach(\App\Sns::all() as $sns)
