@@ -181,12 +181,12 @@
 		</div>
 		<div class="text-left w-full overflow-y-auto" style="height: 94vh">
 			<div class="m-4 rounded-t-lg z-20">
-				<div class="flex p-8 rounded-t-lg axis">
+				<div class="flex px-8 py-2 rounded-t-lg axis">
 					<div class="text-left">
-						<p class="text-4xl font-bold p-4 px-6 text-black">{{ $h_title }}</p>
+						<p class="text-4xl font-bold p-4 px-8 text-black">{{ $h_title }}</p>
 					</div>
 				</div>
-				<div class="flex m-4 p-8">
+				<div class="flex m-4 px-8 py-2">
 					<div class="">
 						<p class="p-4 text-2xl font-bold text-teal-darker">Description</p>
 						<div class="p-4"><?php echo $data->description ?></div>
