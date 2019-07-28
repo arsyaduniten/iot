@@ -213,9 +213,9 @@
 							<p class="text-base p-4">
 							@foreach($r_data['research_areas'] as $key => $item)
 							@if($key == $r_data['research_areas']->keys()->last())
-							{{ $item->title }}
+							{{ $item->research_area }}
 							@else
-							{{ $item->title }},&nbsp;
+							{{ $item->research_area }},&nbsp;
 							@endif
 							@endforeach
 							</p>
