@@ -48,6 +48,7 @@ class DetailsController extends Controller
                             'research_areas' => Research::whereIn('research_area', $project->tagNames())->get(),
                             'publications' => Publication::withAnyTag($project->title)->get(),
                             'fundings' => Funding::withAnyTag($project->title)->get(),
+                            'awards' => Award::withAnyTag($project->title)->get(),
                             'collaborator' => Collaborator::withAnyTag($project->title)->get(),
                           ])->all();
         }

@@ -236,13 +236,24 @@
 							<p class="font-bold text-2xl text-teal-darker p-4">Publications</p>
 							<ul class="text-base p-4 px-8">
 							@foreach($r_data['publications'] as $key => $item)
-							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="{{ $item->paper_url }}">{{ $item->title }}</a></li>
+							<li><a class="no-underline text-blue-darker hover:text-blue-light" target="_blank" href="{{ $item->paper_url }}">{{ $item->title }}</a></li>
+							@endforeach
+							</ul>
+						</div>
+					@endif
+					<space-between/>
+					@if(array_key_exists('awards', $r_data))
+						<div class="flex-1 p-4">
+							<p class="font-bold text-2xl text-teal-darker p-4">Innovation Awards</p>
+							<ul class="text-base p-4 px-8">
+							@foreach($r_data['awards'] as $key => $item)
+							<li><a class="no-underline text-blue-darker hover:text-blue-light" target="_blank" href="{{ $item->file_url_s3 }}">{{ $item->title }}</a></li>
 							@endforeach
 							</ul>
 						</div>
 					@endif
 				</div>
-				<div class="flex m-4 p-4 pt-0">
+				<div class="flex flex-col m-4 p-4 pt-0">
 					@if(array_key_exists('fundings', $r_data) or $total_fund > 0)
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker p-4">Fundings</p>
