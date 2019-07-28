@@ -197,8 +197,12 @@
 						<div class="flex-1 p-4">
 							<p class="font-bold text-teal-darker text-2xl p-4">Projects</p>
 							<p class="text-base p-4">
-							@foreach($r_data['projects'] as $item)
+							@foreach($r_data['projects'] as $key => $item)
+							@if($key == $r_data['projects']->keys()->last())
+							{{ $item->title }}
+							@else
 							{{ $item->title }},&nbsp;
+							@endif
 							@endforeach
 							</p>
 						</div>
@@ -207,8 +211,12 @@
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker p-4">Research Areas</p>
 							<p class="text-base p-4">
-							@foreach($r_data['research_areas'] as $item)
-							{{ $item->research_area }},&nbsp;
+							@foreach($r_data['research_areas'] as $key => $item)
+							@if($key == $r_data['research_areas']->keys()->last())
+							{{ $item->title }}
+							@else
+							{{ $item->title }},&nbsp;
+							@endif
 							@endforeach
 							</p>
 						</div>
