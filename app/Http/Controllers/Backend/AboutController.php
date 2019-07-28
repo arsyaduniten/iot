@@ -83,8 +83,9 @@ class AboutController extends Controller
         $about->update($request->all());
         if($request->has('activity')){
             $a = new LatestActivity();
-            $a->text = "Added new Research Area";
-            $a->link = "/details?type=research&id=".$r->id;
+            $a->text = "Updated ".ucfirst($about->type);
+            $a->link = "/academic?active=".$about->type;
+            $a->type = "other";
             $a->save();
         }
         return back()->with('status', 'success');
