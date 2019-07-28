@@ -152,34 +152,51 @@
 
 @section('content')
 <div class="flex flex-col w-full">
-	<div class="flex w-full bg-grey-dark shadow-md this-white">
-		<div class="flex mx-8 py-6">
+	<div class="flex fixed pin-t w-full bg-grey-dark this-white shadow-md">
+		<div class="flex flex-no-shrink mx-6 py-6">
 			<a class="no-underline font-bold text-2xl" href="/">Sami Hajjaj</a>
 		</div>
-		<div class="flex justify-between py-6">
+		<div class="flex justify-between py-6 px-12">
 				<a class="no-underline hover:text-blue-darker mx-4" href="/profile">Profile</a>
 				<a class="no-underline hover:text-blue-darker mx-4" href="/academic">Academic</a>
-				<a class="no-underline hover:text-blue-darker mx-4" href="/research">Research</a>
+				<a class="no-underline hover:text-blue-darker mx-4 nav-link" href="/research">Research</a>
 				<a class="no-underline hover:text-blue-darker mx-4" href="/mycorner">My Corner</a>
 				<a class="no-underline hover:text-blue-darker mx-4" href="/contact">Contact Me</a>
 		</div>
 	</div>
 	<div class="flex">
-		<div class="flex flex-col px-8 bg-grey-darker py-6 h-screen shadow-md" style="height: 100vh;">
+		<div class="hidden md:flex md:flex-col px-6 bg-grey-darker py-6 h-screen shadow-md fixed left-nav">
 			<div class="flex flex-col pt-4">
-				<p class="font-extrabold this-white text-xl">Find me on:</p>
-				@foreach(\App\Sns::all() as $sns)
-					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+				<p class="font-bold this-white text-xl">Latest Activity:</p>
+				@foreach(\App\LatestActivity::where('type','mycorner')->orderBy('created_at', 'desc')->take(1)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
+				@endforeach
+				@foreach(\App\LatestActivity::where('type','other')->orderBy('created_at', 'desc')->take(4)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
 				@endforeach
 			</div>
 			<div class="flex flex-col pt-4">
-				<p class="font-bold this-white text-xl">Recent Activity:</p>
-				<a class="pt-2 py-1 this-white">Latest Post</a>
-				<a class="py-1 this-white">Recent Project</a>
-				<a class="py-1 this-white">Recent Award</a>
+				<p class="font-extrabold this-white text-xl">Find me on:</p>
+				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'professional')
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
+				@endforeach
+				<div class="border border-blue-lighter my-2 mr-2"></div>
+				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'academic')
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
+				@endforeach
+				<div class="border border-blue-lighter my-2 mr-2"></div>
+				@foreach(\App\Sns::all() as $sns)
+					@if($sns->category == 'training')
+					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
+					@endif
+				@endforeach
 			</div>
 		</div>
-		<div class="text-left w-full overflow-y-auto" style="height: 94vh">
+		<div class="text-left w-full mt-16" style="margin-left: 200px;">
 			<div class="m-4 rounded-t-lg z-20">
 				<div class="flex px-8 py-2 rounded-t-lg axis">
 					<div class="text-left">
@@ -192,53 +209,44 @@
 						<div class="p-4"><?php echo $data->description ?></div>
 					</div>
 				</div>
-				<div class="flex m-4 p-4 mb-0 pb-0">
+				<div class="flex flex-col m-4 p-4 mb-0 pb-0">
 					@if(array_key_exists('projects', $r_data))
 						<div class="flex-1 p-4">
 							<p class="font-bold text-teal-darker text-2xl p-4">Projects</p>
-							<p class="text-base p-4">
+							<ul class="text-base p-4 px-8">
 							@foreach($r_data['projects'] as $key => $item)
-							@if($key == $r_data['projects']->keys()->last())
-							{{ $item->title }}
-							@else
-							{{ $item->title }},&nbsp;
-							@endif
+							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="/details?type=project&id={{ $item->id }}">{{ $item->title }}</a></li>
 							@endforeach
-							</p>
+							</ul>
 						</div>
 					@endif
 					@if(array_key_exists('research_areas', $r_data))
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker p-4">Research Areas</p>
-							<p class="text-base p-4">
+							<ul class="text-base p-4 px-8">
 							@foreach($r_data['research_areas'] as $key => $item)
-							@if($key == $r_data['research_areas']->keys()->last())
-							{{ $item->research_area }}
-							@else
-							{{ $item->research_area }},&nbsp;
-							@endif
+							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="/details?type=research&id={{ $item->id }}">{{ $item->research_area }}</a></li>
 							@endforeach
-							</p>
+							</ul>
 						</div>
 					@endif
 					<space-between/>
 					@if(array_key_exists('publications', $r_data))
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker p-4">Publications</p>
-							<ul class="list-reset flex flex-col">
-							@foreach($r_data['publications'] as $item)
-								<li class="m-2 mx-4">
-									{{ $item->title }}
-								</li>
+							<ul class="text-base p-4 px-8">
+							@foreach($r_data['publications'] as $key => $item)
+							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="{{ $item->paper_url }}">{{ $item->title }}</a></li>
 							@endforeach
 							</ul>
 						</div>
 					@endif
 				</div>
 				<div class="flex m-4 p-4 pt-0">
-					@if(array_key_exists('fundings', $r_data))
+					@if(array_key_exists('fundings', $r_data) or $total_fund > 0)
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker p-4">Fundings</p>
+							@if($title == 'Project')
 							<ul class="list-reset flex flex-col">
 							@foreach($r_data['fundings'] as $item)
 								<li class="m-2 mx-4">
@@ -246,19 +254,22 @@
 								</li>
 							@endforeach
 							</ul>
+							@else
+							<p class="text-base p-4">
+								MYR{{ $total_fund }}
+							</p>
+							@endif
 						</div>
 					@endif
 					<space-between/>
 					@if(array_key_exists('collaborators', $r_data))
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker p-4">Collaborators</p>
-							<div class="m-2 mx-4">
-							@foreach($r_data['collaborators'] as $item)
-							@if($collaborator->logo_url != NULL)
-							<img width="50" height="50" class="" src="{{ \Image::make($collaborator->logo_url)->greyscale()->encode('data-url') }}">
-							@endif
+							<ul class="text-base p-4 px-8">
+							@foreach($r_data['collaborators'] as $key => $item)
+							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="{{ $item->company_url }}">{{ $item->name }}</a></li>
 							@endforeach
-							</div>
+							</ul>
 						</div>
 					@endif
 				</div>

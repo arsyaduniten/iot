@@ -14,6 +14,15 @@
 	<div class="flex">
 		<div class="hidden md:flex md:flex-col px-6 bg-grey-darker py-6 h-screen shadow-md fixed left-nav">
 			<div class="flex flex-col pt-4">
+				<p class="font-bold this-white text-xl">Latest Activity:</p>
+				@foreach(\App\LatestActivity::where('type','mycorner')->orderBy('created_at', 'desc')->take(1)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
+				@endforeach
+				@foreach(\App\LatestActivity::where('type','other')->orderBy('created_at', 'desc')->take(4)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
+				@endforeach
+			</div>
+			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				@foreach(\App\Sns::all() as $sns)
 					@if($sns->category == 'professional')
@@ -33,15 +42,6 @@
 					@endif
 				@endforeach
 			</div>
-			<div class="flex flex-col pt-4">
-				<p class="font-bold this-white text-xl">Recent Activity:</p>
-				@foreach(\App\LatestActivity::where('type','mycorner')->orderBy('created_at', 'desc')->take(1)->get() as $latest)
-				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
-				@endforeach
-				@foreach(\App\LatestActivity::where('type','other')->orderBy('created_at', 'desc')->take(4)->get() as $latest)
-				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
-				@endforeach
-			</div>
 		</div>
 		<div class="text-left w-full h-screen mt-16" style="margin-left: 250px;">
 			{{-- <p class="text-5xl font-bold text-teal-dark pt-8">{{ $data->title }}</p>
@@ -53,15 +53,15 @@
 			@endforeach
 			</div>
 			@endif --}}
-			<div class="text-xl text-left text-grey-darker pt-6 mx-4"><?php echo $data->description->content ?></div>
-			<div class="flex w-full justify-left">
+			<div class="flex w-full justify-left pt-6">
 				@foreach($data->statistics as $stat)
 				<div class="flex flex-col text-center bg-blue-custom-dark shadow p-6 m-4 rounded">
-					<p class="text-xl font-bold" style="color:#FF299C;">{{ $stat->content }}</p>
-					<p class="text-blue-dark pt-4" style="color:#FF299C;">{{ $stat->description }}</p>
+					<p class="text-xl font-bold" style="color:#92466b;">{{ $stat->content }}</p>
+					<p class="text-blue-dark pt-4" style="color:#92466b;">{{ $stat->description }}</p>
 				</div>
 				@endforeach
 			</div>
+			<div class="text-xl text-left text-grey-darker pt-6 mx-4"><?php echo $data->description->content ?></div>
 			<div class="flex w-full m-8 ml-4 justify-left">
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav default" content-id="bodies">Professional Bodies</button>
 				<button class="bg-grey-lighter px-6 py-4 border border-grey text-teal-dark sub-nav" content-id="recognition">Academic Recognition</button>

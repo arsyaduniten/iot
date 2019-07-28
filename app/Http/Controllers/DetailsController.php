@@ -26,6 +26,13 @@ class DetailsController extends Controller
             	$title = "Research";
                 $h_title = $data->research_area;
             	$projects = Project::withAnyTag($research->research_area)->get();
+                $total_fund = 0;
+                foreach ($projects as $project) {
+                    $fundings = Funding::withAnyTag($project->title)->get();
+                    foreach ($fundings as $funding) {
+                        $total_fund += $funding->amount;
+                    }
+                }
             	$r_data = collect([
             				'projects' => $projects,
             				'publications' => $research->publications->all(),
@@ -44,7 +51,7 @@ class DetailsController extends Controller
                             'collaborator' => Collaborator::withAnyTag($project->title)->get(),
                           ])->all();
         }
-        return view('component.details', compact('data', 'r_data', 'title', 'h_title'));
+        return view('component.details', compact('data', 'r_data', 'title', 'h_title', 'total_fund'));
     }
 
     public function view(Request $request)
