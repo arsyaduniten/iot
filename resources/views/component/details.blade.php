@@ -183,7 +183,7 @@
 			<div class="m-4 rounded-t-lg z-20">
 				<div class="flex p-8 rounded-t-lg axis">
 					<div class="text-left">
-						<p class="text-4xl font-bold p-4 -my-2 text-black">{{ $h_title }}</p>
+						<p class="text-4xl font-bold p-4 px-6 text-black">{{ $h_title }}</p>
 					</div>
 				</div>
 				<div class="flex m-4 p-8">
