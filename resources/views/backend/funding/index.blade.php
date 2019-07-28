@@ -18,6 +18,7 @@
 <div class="container mx-auto">
     <table class="border border-grey-dark m-2">
         <tr>
+            <th class="p-2">Grant Name</th>
             <th class="p-2">Granted By</th>
             <th class="p-2">Amount</th>
             <th class="p-2">Start Date</th>
@@ -28,6 +29,7 @@
         @if(!$data->isEmpty())
         @foreach($data as $funding)
         <tr class="">
+            <td class="p-2">{{ $funding->name }}</td>
             <td class="p-2">{{ $funding->granted_by }}</td>
             <td class="p-2">{{ $funding->amount }}</td>
             <td class="p-2">{{ $funding->start_date }}</td>

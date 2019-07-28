@@ -116,6 +116,7 @@
 				@if(!is_null($fundings))
 				<table class="hidden content mt-6" id="fundings">
 			        <tr class="bg-grey p-5 text-left">
+			            <th class="this-black py-5 px-6">NAME</th>
 			            <th class="this-black py-5 px-6">AMOUNT</th>
 			            <th class="this-black py-5 px-6">YEAR</th>
 			            <th class="this-black py-5 px-6">GRANTED BY</th>
@@ -123,6 +124,7 @@
 			        </tr>
 			        @foreach($fundings as $funding)
 			        <tr class="bg-grey-lightest p-5 text-left">
+			            <td class="this-black py-5 px-6">{{ $funding->name }}</td>
 			            <td class="this-black py-5 px-6">MYR<?php echo number_format($funding->amount) ?></td>
 			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($funding->start_date)->year }}</td>
 			            <td class="this-black py-5 px-6"><?php echo $funding->granted_by ?></td>
