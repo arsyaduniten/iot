@@ -42,7 +42,6 @@ class ResearchController extends Controller
     public function store(Request $request)
     {
         //
-        
         $r = Research::create($request->all());
         if($request->has('activity')){
             $a = new LatestActivity();
@@ -87,7 +86,7 @@ class ResearchController extends Controller
     public function update(Request $request, Research $research)
     {
         //
-        $research->update($request->all());\
+        $research->update($request->all());
         if($request->has('activity')){
             $a = new LatestActivity();
             $a->text = "Updated a Research Area";
