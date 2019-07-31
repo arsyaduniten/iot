@@ -17,15 +17,6 @@
 	<div class="flex">
 		<div class="hidden md:flex md:flex-col px-6 bg-grey-darker py-6 h-screen shadow-md fixed left-nav">
 			<div class="flex flex-col pt-4">
-				<p class="font-bold this-white text-xl">Latest Activity:</p>
-				@foreach(\App\LatestActivity::where('type','mycorner')->orderBy('created_at', 'desc')->take(1)->get() as $latest)
-				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
-				@endforeach
-				@foreach(\App\LatestActivity::where('type','other')->orderBy('created_at', 'desc')->take(4)->get() as $latest)
-				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
-				@endforeach
-			</div>
-			<div class="flex flex-col pt-4">
 				<p class="font-extrabold this-white text-xl">Find me on:</p>
 				@foreach(\App\Sns::all() as $sns)
 					@if($sns->category == 'professional')
@@ -43,6 +34,16 @@
 					@if($sns->category == 'training')
 					<a class="py-1 text-blue-lighter hover:text-blue-light" target="_blank" href="{{ $sns->url }}">{{ $sns->display_name }}</a>
 					@endif
+				@endforeach
+			</div>
+			<div class="flex flex-col pt-4">
+				<p class="font-bold this-white text-xl">Latest Activity:</p>
+				@foreach(\App\LatestActivity::where('type','mycorner')->orderBy('created_at', 'desc')->take(1)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
+				@endforeach
+				<div class="border border-blue-lighter my-2 mr-2"></div>
+				@foreach(\App\LatestActivity::where('type','other')->orderBy('created_at', 'desc')->take(4)->get() as $latest)
+				<a href="{{ $latest->link }}" class="pt-2 py-1 text-blue-lighter hover:text-blue-light">{{ $latest->text }}</a>
 				@endforeach
 			</div>
 		</div>
@@ -115,20 +116,19 @@
 				@endif
 				@if(!is_null($fundings))
 				<table class="hidden content mt-6" id="fundings">
+				<p class="hidden total_fund pt-4 text-xl this-black">Total Funding: <span class="font-bold">MYR {{ $total_funding }}</span> | <span class="font-bold">USD {{ $usd }}</span></p>
 			        <tr class="bg-grey p-5 text-left">
-			            <th class="this-black py-5 px-6">NAME</th>
-			            <th class="this-black py-5 px-6">AMOUNT</th>
+			            <th class="this-black py-5 px-6">GRANT NAME/GRANTED BY</th>
+			            <th class="this-black py-5 px-6">TITLE</th>
 			            <th class="this-black py-5 px-6">YEAR</th>
-			            <th class="this-black py-5 px-6">GRANTED BY</th>
-			            <th class="this-black py-5 px-6">RELATED PROJECT(S)</th>
+			            <th class="this-black py-5 px-6">AMOUNT</th>
 			        </tr>
 			        @foreach($fundings as $funding)
 			        <tr class="bg-grey-lightest p-5 text-left">
-			            <td class="this-black py-5 px-6">{{ $funding->name }}</td>
-			            <td class="this-black py-5 px-6">MYR<?php echo number_format($funding->amount) ?></td>
-			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($funding->start_date)->year }}</td>
 			            <td class="this-black py-5 px-6"><?php echo $funding->granted_by ?></td>
-			            <td class="this-black py-5 px-6">{{ implode(", ", $funding->tagNames()) }}</td>
+			            <td class="this-black py-5 px-6">{{ $funding->name }}</td>
+			            <td class="this-black py-5 px-6">{{ \Carbon\Carbon::parse($funding->start_date)->year }}</td>
+			            <td class="this-black py-5 px-6">MYR<?php echo number_format($funding->amount) ?></td>
 			        </tr>
 			        @endforeach
 			    </table>
@@ -212,6 +212,9 @@
 			$(this).addClass('hidden');
 		});
 		$("#"+$("#{{ Request::get('active') }}-tab").attr('content-id')).removeClass('hidden');
+		@if(Request::get('active') == 'fundings')
+		$(".total_fund").removeClass('hidden');
+		@endif
     	@endif
     });
 </script>

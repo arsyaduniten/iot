@@ -101,9 +101,14 @@ class LandingController extends Controller
         }
         $collaborators = Collaborator::orderBy('created_at', 'desc')->get();
         $fundings = Funding::orderBy('created_at', 'desc')->get();
+        $total_funding = Funding::orderBy('created_at', 'desc')->sum('amount');
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'https://free.currconv.com/api/v7/convert?q=USD_MYR&compact=ultra&apiKey=29e644fb846d2284dcf9');
+        $rate = json_decode($res->getBody()->getContents());
+        $usd = number_format((float)$total_funding / $rate->USD_MYR, 2, '.', '');
         $publications = Publication::orderBy('publication_date', 'desc')->get();
         $highlighted = Publication::where('highlight', 1)->orderBy('rank', 'asc')->get();
-        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'fundings', 'publications', 'highlighted', 'awards'));
+        return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'fundings', 'publications', 'highlighted', 'awards', 'total_funding', 'usd'));
     }
 
     public function mycorner(Request $request)

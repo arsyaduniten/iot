@@ -19,17 +19,17 @@
 	@csrf
 	<button class="p-4 m-2 shadow-lg bg-white" type="submit" id="submit-btn">Submit</button>
 	<div class="flex">
-		<label class="self-center">Grant Name</label>
-		<div class="flex flex-col">
-			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="name">
-			<p class="granted-name-required hidden text-red text-base">*Granted Name is required</p>
-		</div>
-	</div>
-	<div class="flex">
-		<label class="self-center">Granted By</label>
+		<label class="self-center">Grant Name/Granted By</label>
 		<div class="flex flex-col">
 			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="granted_by">
 			<p class="granted-required hidden text-red text-base">*Granted By is required</p>
+		</div>
+	</div>
+	<div class="flex">
+		<label class="self-center">Title</label>
+		<div class="flex flex-col">
+			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="name">
+			<p class="granted-name-required hidden text-red text-base">*Granted Name is required</p>
 		</div>
 	</div>
 	<div class="flex">
