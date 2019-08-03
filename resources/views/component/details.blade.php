@@ -244,7 +244,7 @@
 					@endif
 					<space-between/>
 					@if(array_key_exists('awards', $r_data))
-						<div class="flex-1 pagination-next-4">
+						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Innovation Awards</p>
 							<ul class="text-base px-8 py-2">
 							@foreach($r_data['awards'] as $key => $item)
