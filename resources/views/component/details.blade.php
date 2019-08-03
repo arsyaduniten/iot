@@ -214,43 +214,59 @@
 					@if(array_key_exists('projects', $r_data))
 						<div class="flex-1 px-4 py-2">
 							<p class="font-bold text-teal-darker text-2xl px-4 py-2">Projects</p>
+							@if(empty($r_data['projects']))
+							<p class="text-large text-grey-dark px-4">Work in Progress</p>
+							@else
 							<ul class="text-base px-4 py-2 px-8">
 							@foreach($r_data['projects'] as $key => $item)
 							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="/details?type=project&id={{ $item->id }}">{{ $item->title }}</a></li>
 							@endforeach
 							</ul>
+							@endif
 						</div>
 					@endif
 					@if(array_key_exists('research_areas', $r_data))
 						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Research Areas</p>
+							@if(empty($r_data['research_areas']))
+							<p class="text-large text-grey-dark px-4">Work in Progress</p>
+							@else
 							<ul class="text-base px-4 py-2 px-8">
 							@foreach($r_data['research_areas'] as $key => $item)
 							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="/details?type=research&id={{ $item->id }}">{{ $item->research_area }}</a></li>
 							@endforeach
 							</ul>
+							@endif
 						</div>
 					@endif
 					<space-between/>
 					@if(array_key_exists('publications', $r_data))
 						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Publications</p>
+							@if(empty($r_data['publications']))
+							<p class="text-large text-grey-dark px-4">Work in Progress</p>
+							@else
 							<ul class="text-base py-2 px-8">
 							@foreach($r_data['publications'] as $key => $item)
 							<li><a class="no-underline text-blue-darker hover:text-blue-light" target="_blank" href="{{ $item->paper_url }}">{{ $item->title }}</a></li>
 							@endforeach
 							</ul>
+							@endif
 						</div>
 					@endif
 					<space-between/>
 					@if(array_key_exists('awards', $r_data))
 						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Innovation Awards</p>
+							@if(empty($r_data['awards']))
+							<p class="text-large text-grey-dark px-4">Work in Progress</p>
+							@else
 							<ul class="text-base px-8 py-2">
 							@foreach($r_data['awards'] as $key => $item)
 							<li><a class="no-underline text-blue-darker hover:text-blue-light" target="_blank" href="{{ $item->file_url_s3 }}">{{ $item->title }}</a></li>
 							@endforeach
 							</ul>
+							@endif
 						</div>
 					@endif
 				</div>
@@ -277,11 +293,15 @@
 					@if(array_key_exists('collaborators', $r_data))
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Collaborators</p>
+							@if(empty($r_data['collaborators']))
+							<p class="text-large text-grey-dark px-4">Work in Progress</p>
+							@else
 							<ul class="text-base py-2 px-8">
 							@foreach($r_data['collaborators'] as $key => $item)
 							<li><a class="no-underline text-blue-darker hover:text-blue-light" href="{{ $item->company_url }}">{{ $item->name }}</a></li>
 							@endforeach
 							</ul>
+							@endif
 						</div>
 					@endif
 				</div>
