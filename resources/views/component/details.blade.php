@@ -278,13 +278,13 @@
 							<ul class="list-reset flex flex-col">
 							@foreach($r_data['fundings'] as $item)
 								<li class="m-2 mx-4">
-									{{ $item->granted_by }} MYR{{ number_format($item->amount) }}
+									{{ $item->granted_by }} MYR {{ number_format($item->amount) }}
 								</li>
 							@endforeach
 							</ul>
 							@else
 							<p class="text-base p-4">
-								MYR{{ $total_fund }}
+								MYR {{ number_format($total_fund) }}
 							</p>
 							@endif
 						</div>
