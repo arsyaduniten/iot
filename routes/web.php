@@ -12,12 +12,12 @@
 */
 
 // Route::get('/', 'LandingController@index')->name('home');
-Route::get('/', 'LandingController@index_v2_default')->name('homev2')->middleware('auth');
-Route::get('/profile', 'LandingController@index_v2')->name('homev2')->middleware('auth');
-Route::get('/academic', 'LandingController@portfolio_v2')->name('portfoliov2')->middleware('auth');
-Route::get('/research', 'LandingController@research_v2')->name('researchv2')->middleware('auth');
-Route::get('/mycorner', 'LandingController@mycorner')->name('mycorner')->middleware('auth');
-Route::get('/contact', 'LandingController@contact')->name('contact')->middleware('auth');
+Route::get('/', 'LandingController@index_v2_default')->name('homev2');
+Route::get('/profile', 'LandingController@index_v2')->name('homev2');
+Route::get('/academic', 'LandingController@portfolio_v2')->name('portfoliov2');
+Route::get('/research', 'LandingController@research_v2')->name('researchv2');
+Route::get('/mycorner', 'LandingController@mycorner')->name('mycorner');
+Route::get('/contact', 'LandingController@contact')->name('contact');
 Route::get('/details', 'DetailsController@index')->name('details');
 Route::get('/post', 'DetailsController@view')->name('details');
 
