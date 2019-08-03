@@ -47,18 +47,15 @@
 				@endforeach
 			</div>
 		</div>
-		<div class="text-center flex flex-col items-center w-full h-screen mt-16" style="margin-left:250px;">
-			<div class="flex items-center justify-center">
-				<a href="/mycorner" class="border border-black p-4 rounded mt-8  hover:text-white hover:bg-black w-1/7">Back</a>
-				<p class="text-5xl p-4 pt-12 font-bold w-2/3">{{ $blog->title }}</p>
-			</div>
-			<p class="text-xl font-bold text-grey-dark p-4">{{ \Carbon\Carbon::parse($blog->created_at)->toFormattedDateString() }} - Sami Hajjaj</p>
-			<div class="flex pt-4">
+		<div class="text-left flex flex-col items-left w-full h-screen mt-16" style="margin-left:250px;">
+			<p class="text-5xl p-4 pt-12 font-bold w-2/3">{{ $blog->title }}</p>
+			<p class="text-xl font-bold text-grey-dark p-4 px-5">{{ \Carbon\Carbon::parse($blog->created_at)->toFormattedDateString() }}</p>
+			<div class="flex pt-4 px-2">
 				@foreach($blog->tagNames() as $tag)
 					<div class="border border-grey rounded-full p-2 px-4 mx-2">#{{ $tag }}</div>
 				@endforeach
 			</div>
-			<p class="pt-10"><?php echo $blog->content ?></p>
+			<div class="pt-10 px-5"><?php echo $blog->content ?></div>
 		</div>
 	</div>
 </div>

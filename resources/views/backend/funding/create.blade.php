@@ -22,14 +22,14 @@
 		<label class="self-center">Grant Name/Granted By</label>
 		<div class="flex flex-col">
 			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="granted_by">
-			<p class="granted-required hidden text-red text-base">*Granted By is required</p>
+			<p class="granted-required hidden text-red text-base">*Grant Name/Granted By is required</p>
 		</div>
 	</div>
 	<div class="flex">
 		<label class="self-center">Title</label>
 		<div class="flex flex-col">
 			<input class="self-center m-2 p-2 bg-white shadow-md rounded" type="text" name="name">
-			<p class="granted-name-required hidden text-red text-base">*Granted Name is required</p>
+			<p class="granted-name-required hidden text-red text-base">*Title is required</p>
 		</div>
 	</div>
 	<div class="flex">

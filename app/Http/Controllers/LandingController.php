@@ -101,11 +101,11 @@ class LandingController extends Controller
         }
         $collaborators = Collaborator::orderBy('created_at', 'desc')->get();
         $fundings = Funding::orderBy('created_at', 'desc')->get();
-        $total_funding = Funding::orderBy('created_at', 'desc')->sum('amount');
+        $total_funding = round(Funding::orderBy('created_at', 'desc')->sum('amount'));
         $client = new \GuzzleHttp\Client();
         $res = $client->request('GET', 'https://api.exchangeratesapi.io/latest?base=USD');
         $rate = json_decode($res->getBody()->getContents());
-        $usd = number_format((float)$total_funding / $rate->rates->MYR, 2, '.', '');
+        $usd = round((float)$total_funding / $rate->rates->MYR);
         $publications = Publication::orderBy('publication_date', 'desc')->get();
         $highlighted = Publication::where('highlight', 1)->orderBy('rank', 'asc')->get();
         return view('public.researchv2', compact('data', 'tags', 'projects', 'researches', 'colleagues', 'collaborators', 'fundings', 'publications', 'highlighted', 'awards', 'total_funding', 'usd'));

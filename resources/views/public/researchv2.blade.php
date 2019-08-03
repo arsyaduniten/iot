@@ -116,7 +116,7 @@
 				@endif
 				@if(!is_null($fundings))
 				<table class="hidden content mt-6" id="fundings">
-				<p class="hidden total_fund pt-4 text-xl this-black">Total Funding: <span class="font-bold">MYR {{ $total_funding }}</span> | <span class="font-bold">USD {{ $usd }}</span></p>
+				<p class="hidden total_fund pt-4 text-xl this-black">Total Funding: <span class="font-bold">MYR {{ number_format($total_funding) }}.00</span> | <span class="font-bold">USD {{ number_format($usd) }}.00</span></p>
 			        <tr class="bg-grey p-5 text-left">
 			            <th class="this-black py-5 px-6">GRANT NAME/GRANTED BY</th>
 			            <th class="this-black py-5 px-6">TITLE</th>
