@@ -214,7 +214,7 @@
 					@if(array_key_exists('projects', $r_data))
 						<div class="flex-1 px-4 py-2">
 							<p class="font-bold text-teal-darker text-2xl px-4 py-2">Projects</p>
-							@if(empty($r_data['projects']))
+							@if($r_data['projects']->isEmpty())
 							<p class="text-large text-grey-dark px-4">Work in Progress</p>
 							@else
 							<ul class="text-base px-4 py-2 px-8">
@@ -228,7 +228,7 @@
 					@if(array_key_exists('research_areas', $r_data))
 						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Research Areas</p>
-							@if(empty($r_data['research_areas']))
+							@if($r_data['research_areas']->isEmpty())
 							<p class="text-large text-grey-dark px-4">Work in Progress</p>
 							@else
 							<ul class="text-base px-4 py-2 px-8">
@@ -243,7 +243,7 @@
 					@if(array_key_exists('publications', $r_data))
 						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Publications</p>
-							@if(empty($r_data['publications']))
+							@if($r_data['publications']->isEmpty())
 							<p class="text-large text-grey-dark px-4">Work in Progress</p>
 							@else
 							<ul class="text-base py-2 px-8">
@@ -258,7 +258,7 @@
 					@if(array_key_exists('awards', $r_data))
 						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Innovation Awards</p>
-							@if(empty($r_data['awards']))
+							@if($r_data['awards']->isEmpty())
 							<p class="text-large text-grey-dark px-4">Work in Progress</p>
 							@else
 							<ul class="text-base px-8 py-2">
@@ -293,7 +293,7 @@
 					@if(array_key_exists('collaborators', $r_data))
 						<div class="flex-1 p-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Collaborators</p>
-							@if(empty($r_data['collaborators']))
+							@if($r_data['collaborators']->isEmpty())
 							<p class="text-large text-grey-dark px-4">Work in Progress</p>
 							@else
 							<ul class="text-base py-2 px-8">

@@ -52,6 +52,7 @@ class DetailsController extends Controller
                             'collaborator' => Collaborator::withAnyTag($project->title)->get(),
                           ])->all();
         }
+
         return view('component.details', compact('data', 'r_data', 'title', 'h_title', 'total_fund'));
     }
 
