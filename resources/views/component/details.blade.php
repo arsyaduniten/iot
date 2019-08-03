@@ -243,7 +243,7 @@
 					@if(array_key_exists('publications', $r_data))
 						<div class="flex-1 px-4">
 							<p class="font-bold text-2xl text-teal-darker px-4">Publications</p>
-							@if($r_data['publications']->isEmpty())
+							@if(empty($r_data['publications']))
 							<p class="text-large text-grey-dark px-4">Work in Progress</p>
 							@else
 							<ul class="text-base py-2 px-8">
