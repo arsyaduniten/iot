@@ -21,6 +21,8 @@ Route::get('/contact', 'LandingController@contact')->name('contact');
 Route::get('/details', 'DetailsController@index')->name('details');
 Route::get('/post', 'DetailsController@view')->name('details');
 
+Route::view('/privacy', 'public.privacy');
+
 Route::post('/enquiry', 'Backend\EnquiryController@store')->name('enquiry');
 Route::post('/landing/enquiry', 'Backend\EnquiryController@notify')->name('landing_enquiry');
 
