@@ -37,7 +37,7 @@
 		<div class="flex flex-col text-center w-full h-screen bg-grey">
 			<p class="text-5xl font-bold this-white pt-8 mt-16">{{ $data->title }}</p>
 			<p class="text-xl this-white pt-6"><?php echo $data->description->content ?></p>
-			<a class="mx-auto px-6 mt-16 py-4 text-white bg-black rounded border-2 font-bold border-black" href="/profile">Welcome</a>
+			<a class="mx-auto px-6 mt-16 py-4 text-white bg-green rounded border-2 font-bold border-green" href="/profile">Welcome</a>
 		</div>
 	</div>
 </div>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
-use Illuminate\Http\Request;
 use App\PostView;
+use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class PostViewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,6 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $data = Blog::all();
-        return view("backend.blog.index", compact('data'));
     }
 
     /**
@@ -28,7 +25,6 @@ class BlogController extends Controller
     public function create()
     {
         //
-        return view('backend.blog.create');
     }
 
     /**
@@ -40,20 +36,15 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //
-        $new_b = Blog::create($request->all());
-        $tags = explode(",",$request->get('tags'));
-        array_pop($tags);
-        $new_b->tag($tags);
-        return redirect()->route('backend:blogs');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Blog  $blog
+     * @param  \App\PostView  $postView
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show(PostView $postView)
     {
         //
     }
@@ -61,41 +52,33 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Blog  $blog
+     * @param  \App\PostView  $postView
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(PostView $postView)
     {
         //
-        $tags = $blog->tagNames();
-        dd($tags);
-        return view('backend.blog.edit', compact('blog', 'tags'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Blog  $blog
+     * @param  \App\PostView  $postView
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, PostView $postView)
     {
         //
-        $blog->update($request->all());
-        $tags = explode(",",$request->get('tags'));
-        array_pop($tags);
-        $blog->retag($tags);
-        return redirect()->route('backend:blogs');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Blog  $blog
+     * @param  \App\PostView  $postView
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(PostView $postView)
     {
         //
     }

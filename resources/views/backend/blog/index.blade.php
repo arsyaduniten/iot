@@ -20,6 +20,8 @@
         <tr>
             <th class="p-2">Title</th>
             <th class="p-2">Post Date</th>
+            <th class="p-2">Unique View</th>
+            <th class="p-2">Total View</th>
             <th></th><th></th>
         </tr>
         @if(!$data->isEmpty())
@@ -27,6 +29,8 @@
         <tr class="">
             <td class="p-2">{{ $blog->title }}</td>
             <td class="p-2">{{ \Carbon\Carbon::parse($blog->created_at)->toDateString() }}</td>
+            <td class="p-2">{{ \App\PostView::where('post_id', $blog->id)->count() }}</td>
+            <td class="p-2">{{ $blog->view_count }}</td>
             <td class="p-2 py-4"><a href="{{ route('backend:blog:edit', ['blog' => $blog]) }}" class="text-black font-bold no-underline p-2 bg-yellow">Edit</a></td>
             <td class="p-2 py-4">
                 <form id="delete-form-{{ $blog->id }}" action="{{ route('backend:blog:destroy', ['blog' => $blog]) }}" method="POST">

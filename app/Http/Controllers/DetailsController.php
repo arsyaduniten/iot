@@ -12,6 +12,7 @@ use App\Funding;
 use App\Project;
 use App\Researcher;
 use App\Blog;
+use App\PostView;
 
 class DetailsController extends Controller
 {
@@ -59,6 +60,13 @@ class DetailsController extends Controller
     public function view(Request $request)
     {
         $blog = Blog::find($request->get('id'));
+        $blog->view_count = $blog->view_count + 1;
+        $blog->save();
+        $ip_address = $request->ip();
+        $ip = PostView::where('ip_address', $ip_address)->where('post_id', $blog->id)->first();
+        if ($ip === null) {
+            PostView::createViewLog($blog, $request);
+        }
         return view('public.post', compact('blog'));
     }
 }
