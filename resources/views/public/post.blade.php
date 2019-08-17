@@ -4,6 +4,10 @@
 <meta property="og:description" content="{{ strlen($blog->content) > 50 ? substr(strip_tags($blog->content),0,50)."..." : strip_tags($blog->content) }}">
 <meta property="og:image" content="http://samihajjaj.com/images/og.jpg">
 <meta property="og:url" content="http://samihajjaj.com/post?id={{ $blog->id }}">
+<meta name="twitter:title" content="{{ $blog->title }}">
+<meta name="twitter:description" content="{{ strlen($blog->content) > 50 ? substr(strip_tags($blog->content),0,50)."..." : strip_tags($blog->content) }}">
+<meta name="twitter:image" content="http://samihajjaj.com/images/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 @endsection
 @section('content')
 <div class="flex flex-col w-full">
