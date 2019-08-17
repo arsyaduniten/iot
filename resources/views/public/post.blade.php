@@ -1,7 +1,7 @@
 @extends('public.base')
 @section('head')
 <meta property="og:title" content="{{ $blog->title }}">
-<meta property="og:description" content="{{ strlen($blog->content) > 50 ? substr(strip_tags($blog->content,0,50))."..." : strip_tags($blog->content) }}">
+<meta property="og:description" content="{{ strlen($blog->content) > 50 ? substr(strip_tags($blog->content),0,50)."..." : strip_tags($blog->content) }}">
 <meta property="og:image" content="/images/sh.png">
 <meta property="og:url" content="http://samihajjaj.com/post?id={{ $blog->id }}">
 @endsection
