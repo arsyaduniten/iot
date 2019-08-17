@@ -1,9 +1,9 @@
 @extends('public.base')
 @section('head')
 <meta property="og:title" content="{{ $blog->title }}">
-<meta property="og:description" content="{{ strlen($blog->content) > 50 ? substr($blog->content,0,50)."..." : $blog->content }}">
+<meta property="og:description" content="<?php echo strlen($blog->content) > 50 ? substr($blog->content,0,50)."..." : $blog->content ?>">
 <meta property="og:image" content="/images/sh.png">
-<meta property="og:url" content="/post?id={{ $blog->id }}">
+<meta property="og:url" content="http://samihajjaj.com/post?id={{ $blog->id }}">
 @endsection
 @section('content')
 <div class="flex flex-col w-full">

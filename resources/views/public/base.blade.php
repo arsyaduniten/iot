@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+	@yield('head')
 	<title>Sami Hajjaj</title>
 	<link rel="shortcut icon" type="image/png" href="/images/sh.png"/>
 	<link rel="stylesheet" type="text/css" href="/css/tailwind.min.css">
@@ -175,7 +176,6 @@
 		});
 	} );
 	</script> --}}
-	@yield('head')
 </head>
 <body>
 <div id="fb-root"></div>
