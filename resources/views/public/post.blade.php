@@ -1,5 +1,10 @@
 @extends('public.base')
-
+@section('head')
+<meta property="og:title" content="{{ $blog->title }}">
+<meta property="og:description" content="{{ strlen($blog->content) > 50 ? substr($blog->content,0,50)."..." : $blog->content }}">
+<meta property="og:image" content="/images/sh.png">
+<meta property="og:url" content="/post?id={{ $blog->id }}">
+@endsection
 @section('content')
 <div class="flex flex-col w-full">
 	<div class="flex w-full fixed pin-t bg-grey-dark shadow-md this-white">
@@ -50,6 +55,7 @@
 		<div class="text-left flex flex-col items-left w-full h-screen mt-16" style="margin-left:250px;">
 			<p class="text-5xl p-4 pt-12 font-bold w-2/3">{{ $blog->title }}</p>
 			<p class="text-xl font-bold text-grey-dark p-4 px-5">{{ \Carbon\Carbon::parse($blog->created_at)->toFormattedDateString() }}</p>
+			<div class="px-4 addthis_inline_share_toolbox_fp01"></div>
 			<div class="fb-like px-5" data-href="http://samihajjaj.com" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 			<div class="flex pt-4 px-2">
 				@foreach($blog->tagNames() as $tag)
@@ -57,7 +63,7 @@
 				@endforeach
 			</div>
 			<div class="pt-10 px-5"><?php echo $blog->content ?></div>
-			<div class="fb-comments pt-12 px-5" data-href="http://samihajjaj.com" data-width="" data-numposts="5"></div>
+			<div class="fb-comments pt-12 px-4" data-href="http://samihajjaj.com" data-width="" data-numposts="5"></div>
 		</div>
 	</div>
 </div>
